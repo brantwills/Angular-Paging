@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <title>Angular ngPaging</title>
+    <style>
+        
+        .paging {
+         	margin-top: 40px;   
+        }
+        
+    	.paging li {
+         	display: inline;
+            padding: 3px 10px;
+            margin: 0 2px;
+            border: solid 1px #000;
+            cursor: pointer;
+        }
+        
+        .paging ul {
+            margin: 0;
+            padding: 0;
+         	list-style: none;   
+        }
+        
+        .paging .selected {
+            color: #fff;
+         	background: #7c7676;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <div ng-app="myApp">
+    
+        <input placeholder="page" type="text" ng-model="page" value="1"/>
+        <input placeholder="size" type="text" ng-model="size" value="50"/>
+        <input placeholder="total" type="text" ng-model="total" value="1000"/>
+        
+        
+        <div paging
+        	class="paging"
+            click="alert('hi')" 
+            page="{{page}}" 
+            pagesize="{{size}}" 
+            total="1000">
+        </div>
+    </div>
+    
+       
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+    <script src="paging.js"></script>
+</body>
+</html>
