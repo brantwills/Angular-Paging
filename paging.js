@@ -119,12 +119,12 @@ app.directive('paging', function () {
         },
         template:
         '<ul> \
-        	<li \
-				title="{{Item.title}}" \
-				class="{{Item.class}}" \
-				ng-click="Item.click(Item.value)" \
-        		ng-repeat="Item in List track by $index"> \
-				{{Item.value}} \
+			<li \
+                title="{{Item.title}}" \
+                class="{{Item.class}}" \
+                ng-click="Item.click(Item.value)" \
+                ng-repeat="Item in List track by $index"> \
+                {{Item.value}} \
         </ul>',
         link: function (scope, element, attrs) {
             build(scope);
