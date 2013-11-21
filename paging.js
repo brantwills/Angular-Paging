@@ -75,20 +75,12 @@ app.directive('paging', function () {
             // default page is 1
             scope.page = 1;
         }
-
-        // convert to int
-        scope.page = parseInt(scope.page);
-
-        // clear list
-        scope.List = [];
-
-
+        
         // variables
-        var start = 1,
-            size = adjacent * 2,
-            pageCount = Math.ceil(scope.total / scope.pagesize);
-
-
+        var size = adjacent * 2;  
+        scope.page = parseInt(scope.page);
+        scope.List = [];          
+        pageCount = Math.ceil(scope.total / scope.pagesize);
 
         if (pageCount < (5 + size)) {
             addRange(start, pageCount, scope);
@@ -109,15 +101,13 @@ app.directive('paging', function () {
                 addLast(scope);
             }
             else {
-                var start = finish - (1 + size);
+                var start = pageCount - (1 + size);
                 var finish = pageCount;
                 addFirst(scope);
                 addRange(start, finish, scope);
             }
         }
     }
-
-
 
 
     return {
@@ -128,9 +118,14 @@ app.directive('paging', function () {
             total: '@'
         },
         template:
-        '<ul>' +
-        	'<li title="{{Item.title}}" class="{{Item.class}}" ng-click="Item.click(Item.value)" ng-repeat="Item in List track by $index">{{Item.value}}' +
-        '</ul>',
+        '<ul> \
+        	<li \
+				title="{{Item.title}}" \
+				class="{{Item.class}}" \
+				ng-click="Item.click(Item.value)" \
+        		ng-repeat="Item in List track by $index"> \
+				{{Item.value}} \
+        </ul>',
         link: function (scope, element, attrs) {
             build(scope);
 
