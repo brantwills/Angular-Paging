@@ -1,3 +1,7 @@
+/**
+* Sample app declaration
+*
+*/
 var app = angular.module('myApp', []);
 
 
@@ -10,7 +14,8 @@ var app = angular.module('myApp', []);
 *
 * @element E
 * 
-* todo: figure out best commenting structure 
+* @todo
+* figure out best commenting structure 
 *
 */
 app.directive('paging', function () {
@@ -19,7 +24,8 @@ app.directive('paging', function () {
     var pageCount = 0,
         dots = '...',
         adjacent = 2,
-        selectedClass = 'selected';
+		ulClass = 'pagination',
+        liClass = 'active';
 
 
     // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
@@ -39,12 +45,18 @@ app.directive('paging', function () {
             var item = {
                 value: i,
                 title: 'Page ' + i,
-                class: scope.page == i ? selectedClass : '',
-                click: function (page) {
+                liClass: scope.page == i ? liClass : '',
+                onClick: function () {
 
-                    scope.page = page;
+                    if (scope.page == this.value) {
+                        return;
+                    }
+
+                    var value = this.value;
+                    scope.page = value;
+                    scrollTo(0);
                 }
-            }
+            };
 
             scope.List.push(item);
         }
@@ -75,34 +87,60 @@ app.directive('paging', function () {
             // default page is 1
             scope.page = 1;
         }
+<<<<<<< HEAD
         
         // variables
         var size = adjacent * 2;  
         scope.page = parseInt(scope.page);
         scope.List = [];          
         pageCount = Math.ceil(scope.total / scope.pagesize);
+=======
+		
+		// variables
+        var start,
+            size = adjacent * 2;
+
+        scope.Hide = false;
+		scope.ulClass = ulClass;
+        scope.page = parseInt(scope.page);
+        scope.List = [];
+        pageCount = Math.ceil(scope.total / scope.pagesize);
+
+
+        // Hide from page if we have 1 or less pages
+        if (pageCount <= 1) {
+            scope.Hide = true;
+            return;
+        }
+>>>>>>> Update logic - add bootstrap
 
         if (pageCount < (5 + size)) {
+            start = 1;
             addRange(start, pageCount, scope);
         }
         else {
-
+            var finish;
             if (scope.page <= (1 + size)) {
-                var start = 1;
-                var finish = 2 + size;
+                start = 1;
+                finish = 2 + size;
                 addRange(start, finish, scope);
                 addLast(scope);
             }
             else if (pageCount - size > scope.page && scope.page > size) {
-                var start = scope.page - adjacent;
-                var finish = scope.page + adjacent;
+                start = scope.page - adjacent;
+                finish = scope.page + adjacent;
                 addFirst(scope);
                 addRange(start, finish, scope);
                 addLast(scope);
             }
             else {
+<<<<<<< HEAD
                 var start = pageCount - (1 + size);
                 var finish = pageCount;
+=======
+                start = pageCount - (1 + size);
+                finish = pageCount;
+>>>>>>> Update logic - add bootstrap
                 addFirst(scope);
                 addRange(start, finish, scope);
             }
@@ -114,10 +152,11 @@ app.directive('paging', function () {
         restrict: 'EA',
         scope: {
             page: '@',
-            pagesize: '@',
-            total: '@'
+            pagesize: '=',
+            total: '='
         },
         template:
+<<<<<<< HEAD
         '<ul> \
 			<li \
                 title="{{Item.title}}" \
@@ -132,12 +171,20 @@ app.directive('paging', function () {
             scope.$watch('total', function () {
                 build(scope);
             });
+=======
+            '<ul ng-hide="Hide" class="{{ulClass}}"> ' +
+                '<li ' +
+                    'title="{{Item.title}}" ' +
+                    'class="{{Item.liClass}}" ' +
+                    'ng-click="Item.onClick()" ' +
+                    'ng-repeat="Item in List"> ' +
+                '<span>{{Item.value}}</span> ' +
+            '</ul>',
+        link: function (scope) {
+			build(scope);
+>>>>>>> Update logic - add bootstrap
 
             scope.$watch('page', function () {
-                build(scope);
-            });
-
-            scope.$watch('pagesize', function () {
                 build(scope);
             });
         }

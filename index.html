@@ -2,51 +2,33 @@
 <html>
 <head>
     <title>Angular ngPaging</title>
-    
-
-    <!-- 
-    todo: add note about bootstrap here
-    -->
-    <style>
-        
-        .paging {
-         	margin-top: 40px;   
-        }
-        
-    	.paging li {
-         	display: inline;
-            padding: 3px 10px;
-            margin: 0 2px;
-            border: solid 1px #000;
-            cursor: pointer;
-        }
-        
-        .paging ul {
-            margin: 0;
-            padding: 0;
-         	list-style: none;   
-        }
-        
-        .paging .selected {
-            color: #fff;
-         	background: #7c7676;
-            font-weight: bold;
-        }
-    </style>
+	<link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" >
 </head>
-<body>
+<body class="container">
     
+<<<<<<< HEAD
     <div ng-app="myApp">           
         <div paging
         	class="paging"
             page="1" 
+=======
+    <div ng-app="myApp">
+    
+		<div class="well">
+			Page: 
+			<input placeholder="page" type="text" ng-model="page" value="1"/>
+        </div>
+        
+        <div paging
+            page="{{page}}" 
+>>>>>>> Update logic - add bootstrap
             pagesize="50" 
             total="1000">
         </div>
     </div>
            
     
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
     <script src="paging.js"></script>
 </body>
 </html>
