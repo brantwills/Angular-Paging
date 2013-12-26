@@ -87,14 +87,6 @@ app.directive('paging', function () {
             // default page is 1
             scope.page = 1;
         }
-<<<<<<< HEAD
-        
-        // variables
-        var size = adjacent * 2;  
-        scope.page = parseInt(scope.page);
-        scope.List = [];          
-        pageCount = Math.ceil(scope.total / scope.pagesize);
-=======
 		
 		// variables
         var start,
@@ -112,7 +104,6 @@ app.directive('paging', function () {
             scope.Hide = true;
             return;
         }
->>>>>>> Update logic - add bootstrap
 
         if (pageCount < (5 + size)) {
             start = 1;
@@ -134,18 +125,15 @@ app.directive('paging', function () {
                 addLast(scope);
             }
             else {
-<<<<<<< HEAD
-                var start = pageCount - (1 + size);
-                var finish = pageCount;
-=======
                 start = pageCount - (1 + size);
                 finish = pageCount;
->>>>>>> Update logic - add bootstrap
                 addFirst(scope);
                 addRange(start, finish, scope);
             }
         }
     }
+
+ 
 
 
     return {
@@ -156,22 +144,6 @@ app.directive('paging', function () {
             total: '='
         },
         template:
-<<<<<<< HEAD
-        '<ul> \
-			<li \
-                title="{{Item.title}}" \
-                class="{{Item.class}}" \
-                ng-click="Item.click(Item.value)" \
-                ng-repeat="Item in List track by $index"> \
-                {{Item.value}} \
-        </ul>',
-        link: function (scope, element, attrs) {
-            build(scope);
-
-            scope.$watch('total', function () {
-                build(scope);
-            });
-=======
             '<ul ng-hide="Hide" class="{{ulClass}}"> ' +
                 '<li ' +
                     'title="{{Item.title}}" ' +
@@ -182,7 +154,6 @@ app.directive('paging', function () {
             '</ul>',
         link: function (scope) {
 			build(scope);
->>>>>>> Update logic - add bootstrap
 
             scope.$watch('page', function () {
                 build(scope);
