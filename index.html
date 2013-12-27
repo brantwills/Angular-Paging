@@ -4,18 +4,21 @@
     <title>Angular ngPaging</title>
 	<link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" >
 </head>
-<body class="container">
+<body>
      
-    <div ng-app="myApp">
+    <div class="container" ng-app="myApp">
     
 		<div class="well">
-			Page: 
-			<input placeholder="page" type="text" ng-model="page" value="1"/>
-        </div>
+			Change Page: 
+			<input placeholder="page" type="text" ng-model="currentPage" value="1"/>
+		</div>
+		<div class="well">
+			Scope Page: {{currentPage}}
+		</div>
         
         <div paging
-            page="{{page}}" 
-            pagesize="50" 
+            page="currentPage" 
+            pagesize="10" 
             total="1000">
         </div>
     </div>

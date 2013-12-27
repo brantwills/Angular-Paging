@@ -25,7 +25,7 @@ app.directive('paging', function () {
         dots = '...',
         adjacent = 2,
 		ulClass = 'pagination',
-        liClass = 'active';
+        activeClass = 'active';
 
 
     // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
@@ -45,7 +45,7 @@ app.directive('paging', function () {
             var item = {
                 value: i,
                 title: 'Page ' + i,
-                liClass: scope.page == i ? liClass : '',
+                liClass: scope.page == i ? activeClass : '',
                 onClick: function () {
 
                     if (scope.page == this.value) {
@@ -76,9 +76,10 @@ app.directive('paging', function () {
     }
 
 
+	
     function build(scope) {
 
-        if (!scope.pagesize) {
+        if (!scope.pagesize || scope.pagesize < 0) {
             // to block divide by 0
             return;
         }
@@ -98,13 +99,21 @@ app.directive('paging', function () {
         scope.List = [];
         pageCount = Math.ceil(scope.total / scope.pagesize);
 
+		
+		// Block anything to big
+		if(scope.page > pageCount)
+		{
+			scope.page = pageCount;
+		}
+		
 
         // Hide from page if we have 1 or less pages
         if (pageCount <= 1) {
             scope.Hide = true;
             return;
         }
-
+		
+		
         if (pageCount < (5 + size)) {
             start = 1;
             addRange(start, pageCount, scope);
@@ -127,7 +136,7 @@ app.directive('paging', function () {
             else {
                 start = pageCount - (1 + size);
                 finish = pageCount;
-                addFirst(scope);
+				addFirst(scope);
                 addRange(start, finish, scope);
             }
         }
@@ -139,7 +148,7 @@ app.directive('paging', function () {
     return {
         restrict: 'EA',
         scope: {
-            page: '@',
+            page: '=',
             pagesize: '=',
             total: '='
         },
@@ -147,7 +156,7 @@ app.directive('paging', function () {
             '<ul ng-hide="Hide" class="{{ulClass}}"> ' +
                 '<li ' +
                     'title="{{Item.title}}" ' +
-                    'class="{{Item.liClass}}" ' +
+                    'ng-class="Item.liClass" ' +
                     'ng-click="Item.onClick()" ' +
                     'ng-repeat="Item in List"> ' +
                 '<span>{{Item.value}}</span> ' +
@@ -155,8 +164,8 @@ app.directive('paging', function () {
         link: function (scope) {
 			build(scope);
 
-            scope.$watch('page', function () {
-                build(scope);
+            scope.$watch('page', function (value) {
+				build(scope);
             });
         }
     }
