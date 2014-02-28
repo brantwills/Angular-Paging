@@ -1,30 +1,110 @@
 <!doctype html>
 <html>
 <head>
-    <title>Angular ngPaging</title>
-	<link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" >
+    <title>Angular Paging Directive</title>
+	<link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" >
 </head>
 <body>
-     
-    <div class="container" ng-app="myApp">
     
-		<div class="well">
-			Change Page: 
-			<input placeholder="page" type="text" ng-model="currentPage" value="1"/>
+
+	<div class="jumbotron">
+		<div class="container">
+			<h2>Angular Paging</h2> 
+			<div class="row">
+				<div class="col-xs-1">
+					<ul class="list-unstyled">
+						<li>/pājiNG/
+						<li><em>noun</em>
+					</ul>
+				</div>
+				<div class="col-xs-11">
+					<ul class="list-unstyled">
+						<li><strong>Definition:</strong></li>
+						<li>
+							Pagination can be handled client-side or server-side. 
+							Server-side pagination is more common. 
+							Client-side pagination can be used when there are very few records to be accessed, 
+							in which case all records can be returned, and the client can use JavaScript 
+							to view the separate pages. <strong>By using AJAX, hybrid server/client-side pagination can be used</strong>, 
+							in which Javascript is used to request the subsequent page which is loaded and 
+							inserted into the Document Object Model via AJAX.
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<div class="well">
-			Scope Page: {{currentPage}}
+	</div>
+	
+    <div class="container" ng-app="myApp">
+		<div class="row">
+			<div class="col-xs-8">
+			
+
+				
+				<h2> Basic Sample </h2>
+				<div paging
+					page="currentPage" 
+					page-size="pageSize" 
+					total="total">
+				</div>	
+			 
+				<hr/>		
+				<br/>
+				
+				<h2> Advanced Sample </h2>
+				<div paging
+					page="currentPage" 
+					page-size="pageSize" 
+					total="total"
+					dots="."
+					scroll-top="false"
+					hide-if-empty="true">
+				</div>	
+
+				<br/>
+			</div>
+			<div class="col-xs-4">
+				<div class="well" class="form-group">
+					<div class="form-group">
+						<label>Current Page:</label> 
+						<input 
+							placeholder="page" 
+							class="form-control"  
+							maxlength="16"
+							ng-model="currentPage" 
+							ng-init="currentPage = 1"/>
+					</div>
+					<div class="form-group">
+						<label>Page Size:</label> 
+						<input 
+							placeholder="Page Size" 
+							class="form-control" 
+							maxlength="16"
+							ng-model="pageSize"
+							ng-init="pageSize = 10"/>
+					</div>		
+					<div class="form-group">
+						<label>Total Items:</label> 
+						<input
+							placeholder="Total" 
+							class="form-control" 
+							maxlength="16"
+							ng-model="total" 
+							ng-init="total = 1000"/>
+					</div>
+					<br/>
+					<span class="btn btn-success" ng-click="currentPage = 0">
+						Apply Settings
+					</span>
+				</div>				
+			</div>
 		</div>
-        
-        <div paging
-            page="currentPage" 
-            page-size="10" 
-            total="1000">
-        </div>
     </div>
            
-    
+    				
+				<hr/>	
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
-    <script src="paging.js"></script>
+    <script src="app.js"></script>
+	<script src="paging.js"></script>
 </body>
 </html>
