@@ -1,19 +1,11 @@
 /**
-* @ngDoc module
-* @name ng.module:myApp
-* 
-* @description
-* This module is just here for sample purposes
-*/
-var app = angular.module('myApp', []);
-
-
-/**
 * @ngDoc directive
 * @name ng.directive:paging
 *
 * @description
-* The paging directive allows you to specify custom 
+* A directive to aid in paging large datasets 
+* while requiring a small amount of page
+* information.
 *
 * @element E
 * 
@@ -22,8 +14,8 @@ app.directive('paging', function() {
 
 
         // Assign null-able scope values from settings
-        function defaultValues(scope) {
-            scope.page = scope.page || 1;
+        function setScopeValues(scope) {
+            scope.page = parseInt(scope.page) || 1;
             scope.dots = scope.dots || '...';
 			scope.ulClass = scope.ulClass || 'pagination';
 			scope.adjacent = scope.adjacent || 2;
@@ -31,7 +23,6 @@ app.directive('paging', function() {
 			scope.hideIfEmpty = scope.hideIfEmpty || false;
 			scope.scrollTop = scope.scrollTop || true;
         }
-
 
 
         // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
@@ -88,7 +79,6 @@ app.directive('paging', function() {
 
         // Main build function
         function build(scope) {
-
 					
 			// Block divide by 0 and empty page size
 			if (!scope.pageSize || scope.pageSize < 0) {
@@ -97,50 +87,59 @@ app.directive('paging', function() {
 		
             // Assign scope values
             scope.List = [];
-            defaultValues(scope);
-            scope.page = parseInt(scope.page);
-	
+            setScopeValues(scope);
 						
             // local variables
             var start,
                 size = scope.adjacent * 2,
                 pageCount = Math.ceil(scope.total / scope.pageSize);
-
-
+			
             // Block anything to big
             if (scope.page > pageCount) {
                 scope.page = pageCount;
             }
 
             // Hide from page if we have 1 or less pages
-            if (pageCount <= 1) {
-                scope.hideIfEmpty = true;
-                return;
+            if (pageCount <= 1 && scope.hideIfEmpty) {
+                scope.Hide = true;
             }
 
-
+			// Calculate Counts and display
             if (pageCount < (5 + size)) {
-                start = 1;
+                
+				start = 1;
                 addRange(start, pageCount, scope);
+				
             } else {
-                var finish;
-                if (scope.page <= (1 + size)) {
-                    start = 1;
+                
+				var finish;
+                
+				if (scope.page <= (1 + size)) {
+                
+					start = 1;
                     finish = 2 + size;
-                    addRange(start, finish, scope);
+                    
+					addRange(start, finish, scope);
                     addLast(pageCount, scope);
-                } else if (pageCount - size > scope.page && scope.page > size) {
-                    start = scope.page - scope.adjacent;
+                
+				} else if (pageCount - size > scope.page && scope.page > size) {
+                    
+					start = scope.page - scope.adjacent;
                     finish = scope.page + scope.adjacent;
+					
                     addFirst(scope);
                     addRange(start, finish, scope);
                     addLast(pageCount, scope);
-                } else {
-                    start = pageCount - (1 + size);
+                
+				} else {
+                
+					start = pageCount - (1 + size);
                     finish = pageCount;
-                    addFirst(scope);
+                    
+					addFirst(scope);
                     addRange(start, finish, scope);
-                }
+                
+				}
             }
         }
 
