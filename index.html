@@ -21,11 +21,8 @@
 					<ul class="list-unstyled">
 						<li><strong>Definition:</strong></li>
 						<li>
-							Pagination can be handled client-side or server-side. 
-							Server-side pagination is more common. 
-							Client-side pagination can be used when there are very few records to be accessed, 
-							in which case all records can be returned, and the client can use JavaScript 
-							to view the separate pages. <strong>By using AJAX, hybrid server/client-side pagination can be used</strong>, 
+							A directive to aid in paging large datasets while requiring the bare minimum of actual paging information. 
+							By using AJAX, hybrid server/client-side pagination can be used, 
 							in which Javascript is used to request the subsequent page which is loaded and 
 							inserted into the Document Object Model via AJAX.
 						</li>
@@ -39,17 +36,24 @@
 		<div class="row">
 			<div class="col-xs-8">
 			
-				<h2> Basic Sample </h2>
+				<h3> Basic Sample </h3>
+				<ul class="text-muted">
+					<li>Nothing amazing just a basic paging example
+					<li>Using Bootstraps paging css by default
+				</ul>
 				<div paging
 					page="currentPage" 
 					page-size="pageSize" 
 					total="total">
 				</div>	
 			 
-				<hr/>		
-				<br/>
+				<br/><hr/><br/>
 				
-				<h2> Advanced Sample </h2>
+				<h3> Advanced Sample </h3>
+				<ul class="text-muted">
+					<li>Changes in settings will be reflected in the advanced sample.
+					<li>Don't forget to <strong>apply your settings</strong> once they've been modified!
+				</ul>
 				<div paging
 					page="currentPage" 
 					page-size="pageSize" 
@@ -61,6 +65,14 @@
 					ul-class="{{ulClass}}"
 					active-class="{{activeClass}}">
 				</div>	
+				<br/><hr/><br/>
+				<h3> Links and Shoutouts </h3>
+				<ul> 
+					<li>Githug - <a href="https://github.com/brantwills/ngPaging">https://github.com/brantwills/ngPaging</a>
+					<li>Brant Wills - <a href="http://brantwills.com">http://brantwills.com</a>
+					<li>@brantwills - <a href="http://twitter.com/brantwills">http://twitter.com/brantwills</a>
+				</ul>
+
 
 				<br/>
 			</div>
