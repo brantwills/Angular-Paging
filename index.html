@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Ngpaging : A paging directory for angularjs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Ngpaging</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/brantwills/ngPaging">View on GitHub</a>
+
+          <h1 id="project_title">Ngpaging</h1>
+          <h2 id="project_tagline">A paging directory for angularjs</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/brantwills/ngPaging/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/brantwills/ngPaging/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a name="ngpaging" class="anchor" href="#ngpaging"><span class="octicon octicon-link"></span></a>ngPaging</h3>
+
+<hr><p>A directive to aid in paging large datasets while requiring the bare minimum of actual paging information.</p>
+
+<p><br></p>
+
+<h4>
+<a name="background" class="anchor" href="#background"><span class="octicon octicon-link"></span></a>Background</h4>
+
+<hr><p>I often find myself paging across millions of rows even after I'd allowed users some level of database filtering (say by date range or name).  I also find myself forced into positions with large tables where normalization was not considered, or to be fair, the input into the database itself is just garbage or very "log based".  These two limitations have pushed me to develop a reusable paging scheme which just happens to drop nicely into angular.js</p>
+
+<p><br></p>
+
+<h4>
+<a name="programmatic-goals" class="anchor" href="#programmatic-goals"><span class="octicon octicon-link"></span></a>Programmatic Goals</h4>
+
+<hr><p>I wanted to create an angular directive I could easily reuse and tie back into some form of controller.  I wanted to include as little "paging" information as possible.  Although there are some attributes for handling CSS classes the I settled on the required input being:</p>
+
+<ol>
+<li>What page am I currently viewing</li>
+<li>How many items in the list to display on a page</li>
+<li>What is the total count of items in my list</li>
+</ol><p><br></p>
+
+<h4>
+<a name="visual-goals" class="anchor" href="#visual-goals"><span class="octicon octicon-link"></span></a>Visual Goals</h4>
+
+<hr><p>I wanted to develop a paging display which pulls away from the typical &lt; &lt;&lt; first 1 2 3 4 [drop-down] last &gt;&gt; &gt;.  In my experience users never really have a true need to zip to the 9th page 2nd result and if they do they have probably bookmarked the actual URL or more directly they have found the result through "better" filtering.</p>
+
+<p>I've found the the best representation allowed the user to quickly move next or previous page, as this meets the immediate need for paging, while still allowing them to "get out of jail freely" by moving to the first or last page instantly. So visually I selected the common pattern 1 2 ... 7 8 9 ... 100 101 where the count inside the ellipsis changes as the pages increase or decrease.</p>
+
+<p><br></p>
+
+<h4>
+<a name="known-issues" class="anchor" href="#known-issues"><span class="octicon octicon-link"></span></a>Known Issues</h4>
+
+<hr><ol>
+<li>Would be nice to pass in a function to the directive on page item click</li>
+<li>The repository name should probably not have 'ng' as in ngPaging</li>
+</ol><p><br></p>
+
+<h4>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h4>
+
+<hr><p>MIT Licensed - with the exception that you star this repo :)</p>
+
+<p><br></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Ngpaging maintained by <a href="https://github.com/brantwills">brantwills</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
