@@ -1,6 +1,7 @@
 ###ngPaging
 --------------
 A directive to aid in paging large datasets while requiring the bare minimum of actual paging information.
+<br/>
 <b>Demo Available At: http://brantwills.github.io/ngPaging/</b>
 <br/>
 
