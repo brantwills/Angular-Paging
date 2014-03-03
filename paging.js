@@ -15,6 +15,7 @@ app.directive('paging', function() {
 
         // Assign null-able scope values from settings
         function setScopeValues(scope) {
+		    scope.List = [];
             scope.page = parseInt(scope.page) || 1;
             scope.dots = scope.dots || '...';
 			scope.ulClass = scope.ulClass || 'pagination';
@@ -86,7 +87,6 @@ app.directive('paging', function() {
             }
 		
             // Assign scope values
-            scope.List = [];
             setScopeValues(scope);
 						
             // local variables
