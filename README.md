@@ -7,7 +7,7 @@ A directive to aid in paging large datasets while requiring the bare minimum of 
 
 ####Background
 --------------
-I found myself constantly paging across millions of rows even after I've performed some level of database filtering (say by date range or name).  I constantly found myself forced into positions with large tables where normalization was not considered, or to be fair, the input into the database itself is just garbage or very "log based".
+I often find myself paging across millions of rows even after I'd allowed users some level of database filtering (say by date range or name).  I also find myself forced into positions with large tables where normalization was not considered, or to be fair, the input into the database itself is just garbage or very "log based".  These two limitations have pushed me to develop a reusable paging scheme which just happens to drop nicely into angular.js
 
 <br/>
 
