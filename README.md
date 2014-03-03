@@ -2,8 +2,8 @@
 --------------
 A directive to aid in paging large datasets while requiring the bare minimum of actual paging information.
 
-
 <br/>
+
 
 ####Background
 --------------
@@ -11,7 +11,8 @@ I often find myself paging across millions of rows even after I'd allowed users 
 
 <br/>
 
-####Programatic Goals
+
+####Programmatic Goals
 -------------
 I wanted to create an angular directive I could easily reuse and tie back into some form of controller.  I wanted to include as little "paging" information as possible.  Although there are some attributes for handling CSS classes the I settled on the required input being:
 
@@ -28,10 +29,10 @@ I wanted to create an angular directive I could easily reuse and tie back into s
 I wanted to develop a paging display which pulls away from the typical < << first 1 2 3 4 [drop-down] last >> >.  In my 
 experience users never really have a true need to zip to the 9th page 2nd result and if they do they have probably bookmarked the actual URL or more directly they have found the item of interest through filters.
 
-I found the the best representation was allowing the user to quickly move next or previous as this meets the immediate need for paging, while still allowing them toget out of jail freely (move to the first or last page). 
-So visually I selected the common pattern 1 2 ... 7 8 9 ... 100 101  
+I found the the best representation was allowing the user to quickly move next or previous as this meets the immediate need for paging, while still allowing them to "get out of jail freely" or more formally, move to the first or last page. So visually I selected the common pattern 1 2 ... 7 8 9 ... 100 101  
 
 <br/>
+
 
 ####Known Issues
 --------------
