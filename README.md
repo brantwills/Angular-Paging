@@ -27,9 +27,9 @@ I wanted to create an angular directive I could easily reuse and tie back into s
 ####Visual Goals
 --------------
 I wanted to develop a paging display which pulls away from the typical < << first 1 2 3 4 [drop-down] last >> >.  In my 
-experience users never really have a true need to zip to the 9th page 2nd result and if they do they have probably bookmarked the actual URL or more directly they have found the item of interest through filters.
+experience users never really have a true need to zip to the 9th page 2nd result and if they do they have probably bookmarked the actual URL or more directly they have found the result through "better" filtering.
 
-I found the the best representation was allowing the user to quickly move next or previous as this meets the immediate need for paging, while still allowing them to "get out of jail freely" or more formally, move to the first or last page. So visually I selected the common pattern 1 2 ... 7 8 9 ... 100 101  
+I've found the the best representation allowed the user to quickly move next or previous page, as this meets the immediate need for paging, while still allowing them to "get out of jail freely" by moving to the first or last page instantly. So visually I selected the common pattern 1 2 ... 7 8 9 ... 100 101 where the count inside the ellipsis changes as the pages increase or decrease.
 
 <br/>
 
