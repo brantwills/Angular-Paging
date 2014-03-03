@@ -58,7 +58,7 @@ app.directive('paging', function () {
                     var value = this.value;
                     scope.page = value;
 
-                    if (scope.scrollTop == true) {
+                    if (scope.scrollTop) {
                         scrollTo(0, 0);
                     }
                 }
