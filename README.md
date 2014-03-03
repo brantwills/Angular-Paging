@@ -1,4 +1,4 @@
-ngPaging
+#ngPaging
 ========
 
 A directive to aid in paging large datasets 
@@ -6,8 +6,8 @@ while requiring the bare minimum of actual paging
 information.
 
 
-Background
-
+#Background
+========
 I found myself constantly paging across millions 
 of rows even after I've performed some level of 
 database filtering (say by date range or name).  I'm not
@@ -17,8 +17,8 @@ insanely generated tables where normalization was not
 considered, or to be fair, the input into the database
 itself is just garbage or very "log based".
 
-Goal
-
+#Goal
+========
 I wanted to develop a paging display which pulls away
 from the typical < << first 1 2 3 4 [drop-down] last >> >.  In my 
 experience users never really have a true need to zip to the
@@ -33,6 +33,6 @@ get out of jail freely (move to the first or last page).
 So visually I selected the common pattern 1 2 ... 7 8 9 ... 100 101  
 
 
-Known Issues
-
+#Known Issues
+========
 Increasing the adjacent values beyond '2' screws things up
