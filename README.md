@@ -41,3 +41,11 @@ I've found the the best representation allowed the user to quickly move next or 
 3. The repository name should probably not have 'ng' as in ngPaging
 
 <br/>
+
+
+
+####License
+--------------  
+MIT Licensed - with the exception that you star this repo :)
+
+<br/>
