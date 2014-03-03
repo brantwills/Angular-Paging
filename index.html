@@ -10,25 +10,10 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h2>Angular Paging</h2> 
-			<div class="row">
-				<div class="col-xs-1">
-					<ul class="list-unstyled">
-						<li>/pājiNG/
-						<li><em>noun</em>
-					</ul>
-				</div>
-				<div class="col-xs-11">
-					<ul class="list-unstyled">
-						<li><strong>Definition:</strong></li>
-						<li>
-							A directive to aid in paging large datasets while requiring the bare minimum of actual paging information. 
-							By using AJAX, hybrid server/client-side pagination can be used, 
-							in which Javascript is used to request the subsequent page which is loaded and 
-							inserted into the Document Object Model via AJAX.
-						</li>
-					</ul>
-				</div>
-			</div>
+			A directive to aid in paging large datasets while requiring the bare minimum of actual paging information. 
+			By using AJAX, hybrid server/client-side pagination can be used, 
+			in which Javascript is used to request the subsequent page which is loaded and 
+			inserted into the Document Object Model via AJAX.
 		</div>
 	</div>
 	
@@ -66,7 +51,13 @@
 					active-class="{{activeClass}}">
 				</div>	
 				<br/><hr/><br/>
-				<h3> Links and Shoutouts </h3>
+				<h3> Known Issues </h3>
+				<ul> 
+					<li>Would be nice to pass in a function to the directive on page item click
+					<li>The repository name should probably not have 'ng' as in ngPaging
+				</ul>
+				<br/><hr/><br/>
+				<h3> Reference Links </h3>
 				<ul> 
 					<li>Githug - <a href="https://github.com/brantwills/ngPaging">https://github.com/brantwills/ngPaging</a>
 					<li>Brant Wills - <a href="http://brantwills.com">http://brantwills.com</a>
@@ -176,9 +167,8 @@
 			</div>
 		</div>
     </div>
-           
-    				
-				<hr/>	
+           <br/><br/>
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
     <script src="app.js"></script>
 	<script src="paging.js"></script>
