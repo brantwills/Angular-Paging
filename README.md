@@ -35,9 +35,8 @@ I've found the the best representation allowed the user to quickly move next or 
 
 ####Known Issues
 --------------
-1. Increasing the adjacent values beyond '2' screws things up
-2. Would be nice to pass in a function to the directive on page item click
-3. The repository name should probably not have 'ng' as in ngPaging
+1. Would be nice to pass in a function to the directive on page item click
+2. The repository name should probably not have 'ng' as in ngPaging
 
 <br/>
 
