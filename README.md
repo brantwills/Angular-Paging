@@ -36,8 +36,7 @@ I've found the the best representation allowed the user to quickly move next or 
 
 ####Known Issues
 --------------
-1. Would be nice to pass in a function to the directive on page item click
-2. The repository name should probably not have 'ng' as in ngPaging
+1. The repository name should probably not have 'ng' as in ngPaging
 
 <br/>
 
