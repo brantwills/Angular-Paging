@@ -2,7 +2,7 @@
 --------------
 A directive to aid in paging large datasets while requiring the bare minimum of actual paging information.
 <br/>
-<b>Demo Available At: http://brantwills.github.io/ngPaging/</b>
+<b>Demo Available At: http://brantwills.github.io/Angular-Paging/</b>
 <br/>
 <br/>
 
@@ -36,7 +36,7 @@ I've found the the best representation allowed the user to quickly move next or 
 
 ####Known Issues
 --------------
-1. The repository name should probably not have 'ng' as in ngPaging
+1. None right now but I'm sure they are out there!
 
 <br/>
 
