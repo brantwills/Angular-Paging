@@ -3,6 +3,12 @@
 <head>
     <title>Angular Paging Directive</title>
 	<link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" >
+	<style>
+		.jumbotron h2 {margin-top: 0}
+		hr {margin: 20px 0 40px}
+		ul {margin-bottom: 40px}
+		.text-muted {margin-bottom: 20px}
+	</style>
 </head>
 <body>
     
@@ -17,7 +23,7 @@
 		</div>
 	</div>
 	
-    <div class="container" ng-app="myApp">
+    <div class="container" ng-app="myApp" ng-controller="sampleCtrl">
 		<div class="row">
 			<div class="col-xs-8">
 			
@@ -32,13 +38,24 @@
 					total="total">
 				</div>	
 			 
-				<br/><hr/><br/>
+				<hr/>
 				
 				<h3> Advanced Sample </h3>
 				<ul class="text-muted">
 					<li>Changes in settings will be reflected in the advanced sample.
+					<li>View the console.log to see onClick action
 					<li>Don't forget to <strong>apply your settings</strong> once they've been modified!
 				</ul>
+				
+				<!-- 
+					Notice the second parameter of DoCtrlPagingAct 
+					is 'page' not currentPage
+					
+					This corresponds to the paging directives 'page' attribute
+					You may pass in any number of parameters to your function 
+					just be sure that the 'currentPage' parameter is replace with
+					the paging directive page attribute
+				-->
 				<div paging
 					page="currentPage" 
 					page-size="pageSize" 
@@ -48,15 +65,17 @@
 					scroll-top="{{scrollTop}}" 
 					hide-if-empty="{{hideIfEmpty}}"
 					ul-class="{{ulClass}}"
-					active-class="{{activeClass}}">
+					active-class="{{activeClass}}"
+					paging-action="DoCtrlPagingAct('Paging Clicked', page)"
+					>
 				</div>	
-				<br/><hr/><br/>
+				<hr/>
 				<h3> Known Issues </h3>
 				<ul> 
 					<li>Would be nice to pass in a function to the directive on page item click
-					<li>The repository name should <strike>probably</strike> not have 'ng' as in ngPaging
+					<li>The repository name should probably not have 'ng' as in ngPaging
 				</ul>
-				<br/><hr/><br/>
+				<hr/>
 				<h3> Reference Links </h3>
 				<ul> 
 					<li>Githug - <a href="https://github.com/brantwills/ngPaging">https://github.com/brantwills/ngPaging</a>
@@ -64,8 +83,6 @@
 					<li>@brantwills - <a href="http://twitter.com/brantwills">http://twitter.com/brantwills</a>
 				</ul>
 
-
-				<br/>
 			</div>
 			<div class="col-xs-4">
 				<div class="well" class="form-group">

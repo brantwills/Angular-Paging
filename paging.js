@@ -38,7 +38,6 @@ app.directive('paging', function () {
     }
 
 
-
     // Add Range of Numbers
     function addRange(start, finish, scope) {
 
@@ -49,15 +48,20 @@ app.directive('paging', function () {
                 value: i,
                 title: 'Page ' + i,
                 liClass: scope.page == i ? scope.activeClass : '',
-                onClick: function () {
+                action: function () {
 
+                    // Block clicks we try to load the active page
                     if (scope.page == this.value) {
                         return;
                     }
 
-                    var value = this.value;
-                    scope.page = value;
+                    // Update the page in scope and fire any paging actions
+                    scope.page = this.value;
+                    scope.pagingAction({
+                        page: this.value
+                    });
 
+                    // If allowed scroll up to the top of the page
                     if (scope.scrollTop) {
                         scrollTo(0, 0);
                     }
@@ -166,18 +170,18 @@ app.directive('paging', function () {
             ulClass: '@',
             adjacent: '@',
             activeClass: '@',
-            scrollTop: '@'
+            scrollTop: '@',
+            pagingAction: '&'
         },
-        template: '<ul ng-hide="Hide" class="{{ulClass}}"> ' +
+        template: '<ul ng-hide="Hide" ng-class="ulClass"> ' +
             '<li ' +
             'title="{{Item.title}}" ' +
             'ng-class="Item.liClass" ' +
-            'ng-click="Item.onClick()" ' +
+            'ng-click="Item.action()" ' +
             'ng-repeat="Item in List"> ' +
             '<span>{{Item.value}}</span> ' +
             '</ul>',
         link: function (scope, element, attrs) {
-
             scope.$watch('page', function () {
                 build(scope, attrs);
             });
