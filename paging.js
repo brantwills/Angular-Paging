@@ -95,8 +95,8 @@ app.directive('paging', function () {
         }
 
         // Assign scope values
-        setScopeValues(scope, attrs);
-
+        setScopeValues(scope, attrs);		
+		
         // local variables
         var start,
             size = scope.adjacent * 2,
