@@ -1,4 +1,4 @@
-###ngPaging
+###Angular Paging
 --------------
 A directive to aid in paging large datasets while requiring the bare minimum of actual paging information.
 <br/>
