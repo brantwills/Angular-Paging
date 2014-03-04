@@ -17,9 +17,9 @@
 		<div class="container">
 			<h2>Angular Paging</h2> 
 			A directive to aid in paging large datasets while requiring the bare minimum of actual paging information. 
-			By using AJAX, hybrid server/client-side pagination can be used, 
-			in which Javascript is used to request the subsequent page which is loaded and 
-			inserted into the Document Object Model via AJAX.
+			We are very dependant on the server for "filtering" results in this paging scheme.  The central idea being
+			we only want to hold the active "page" of items - rather than holding the entire list of items in memory
+			and paging on the client-side.
 		</div>
 	</div>
 	
