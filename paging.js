@@ -12,7 +12,6 @@
  */
 app.directive('paging', function () {
 
-
     // Assign null-able scope values from settings
     function setScopeValues(scope, attrs) {
 
