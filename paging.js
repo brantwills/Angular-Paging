@@ -17,6 +17,7 @@ app.directive('paging', function () {
     function setScopeValues(scope, attrs) {
 
         scope.List = [];
+		scope.Hide = false;
         scope.page = parseInt(scope.page) || 1;
         scope.dots = scope.dots || '...';
         scope.ulClass = scope.ulClass || 'pagination';
@@ -29,6 +30,36 @@ app.directive('paging', function () {
 
     }
 
+	
+	// Validate and clean up any scope values
+	// This happens after we have set the
+	// scope values
+	function validateScopeValues(scope, pageCount) {
+        
+		// Block where the page is larger than the pageCount
+        if (scope.page > pageCount) {
+            scope.page = pageCount;
+        }
+
+        // Block where the page is less than 0
+        if (scope.page <= 0) {
+            scope.page = 1;
+        }
+
+		// Block where adjacent value is 0 or below
+		if (scope.adjacent <= 0){
+			scope.adjacent = 2;
+		}
+		
+		// Hide from page if we have 1 or less pages
+        // if directed to hide empty
+		if (pageCount <= 1) {
+            scope.Hide = scope.hideIfEmpty;
+        }
+	}
+	
+	
+	
 
     // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
     function addDots(scope) {
@@ -102,21 +133,8 @@ app.directive('paging', function () {
             size = scope.adjacent * 2,
             pageCount = Math.ceil(scope.total / scope.pageSize);
 
-        // Block where the page is larger than the pageCount
-        if (scope.page > pageCount) {
-            scope.page = pageCount;
-        }
-
-        // Similarly block where the page is less than 0
-        if (scope.page <= 0) {
-            scope.page = 1;
-        }
-
-        // Hide from page if we have 1 or less pages
-        // if directed to hide empty
-        if (pageCount <= 1) {
-            scope.Hide = scope.hideIfEmpty;
-        }
+		// Validate Scope
+		validateScopeValues(scope, pageCount);
 
         // Calculate Counts and display
         if (pageCount < (5 + size)) {
