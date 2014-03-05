@@ -17,26 +17,26 @@ app.directive('paging', function () {
     function setScopeValues(scope, attrs) {
 
         scope.List = [];
-		scope.Hide = false;
+        scope.Hide = false;
         scope.page = parseInt(scope.page) || 1;
         scope.dots = scope.dots || '...';
         scope.ulClass = scope.ulClass || 'pagination';
         scope.adjacent = parseInt(scope.adjacent) || 2;
         scope.activeClass = scope.activeClass || 'active';
 
-        // Using $eval for true / false scope string values
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
+        scope.showPrevNext = !scope.$eval(attrs.showPrevNext);
 
     }
 
-	
-	// Validate and clean up any scope values
-	// This happens after we have set the
-	// scope values
-	function validateScopeValues(scope, pageCount) {
-        
-		// Block where the page is larger than the pageCount
+
+    // Validate and clean up any scope values
+    // This happens after we have set the
+    // scope values
+    function validateScopeValues(scope, pageCount) {
+
+        // Block where the page is larger than the pageCount
         if (scope.page > pageCount) {
             scope.page = pageCount;
         }
@@ -46,26 +46,38 @@ app.directive('paging', function () {
             scope.page = 1;
         }
 
-		// Block where adjacent value is 0 or below
-		if (scope.adjacent <= 0){
-			scope.adjacent = 2;
-		}
-		
-		// Hide from page if we have 1 or less pages
+        // Block where adjacent value is 0 or below
+        if (scope.adjacent <= 0) {
+            scope.adjacent = 2;
+        }
+
+        // Hide from page if we have 1 or less pages
         // if directed to hide empty
-		if (pageCount <= 1) {
+        if (pageCount <= 1) {
             scope.Hide = scope.hideIfEmpty;
         }
-	}
-	
-	
-	
+    }
 
-    // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
-    function addDots(scope) {
-        scope.List.push({
-            value: scope.dots
+
+
+    // Internal Paging Click Action
+    function internalAction(scope, page) {
+
+        // Block clicks we try to load the active page
+        if (scope.page == page) {
+            return;
+        }
+
+        // Update the page in scope and fire any paging actions
+        scope.page = page;
+        scope.pagingAction({
+            page: page
         });
+
+        // If allowed scroll up to the top of the page
+        if (scope.scrollTop) {
+            scrollTo(0, 0);
+        }
     }
 
 
@@ -80,27 +92,20 @@ app.directive('paging', function () {
                 title: 'Page ' + i,
                 liClass: scope.page == i ? scope.activeClass : '',
                 action: function () {
-
-                    // Block clicks we try to load the active page
-                    if (scope.page == this.value) {
-                        return;
-                    }
-
-                    // Update the page in scope and fire any paging actions
-                    scope.page = this.value;
-                    scope.pagingAction({
-                        page: this.value
-                    });
-
-                    // If allowed scroll up to the top of the page
-                    if (scope.scrollTop) {
-                        scrollTo(0, 0);
-                    }
+                    internalAction(scope, this.value);
                 }
             };
 
             scope.List.push(item);
         }
+    }
+
+
+    // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
+    function addDots(scope) {
+        scope.List.push({
+            value: scope.dots
+        });
     }
 
 
@@ -110,10 +115,77 @@ app.directive('paging', function () {
         addDots(scope);
     }
 
+
     // Add Last Pages
     function addLast(pageCount, scope) {
         addDots(scope);
         addRange(pageCount - 1, pageCount, scope);
+    }
+
+
+    // Adds the first, previous text if desired   
+    function addPrev(scope) {
+
+        // Ignore if we are not showing
+        if (scope.showPrevNext) {
+            return;
+        }
+
+        // Calculate the previous page 
+        // blocking where page <= 0
+        var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
+
+        var first = {
+            value: '<<',
+            title: 'First Page',
+            action: function () {
+                internalAction(scope, 1);
+            }
+        };
+
+        var prev = {
+            value: '<',
+            title: 'Previous Page',
+            action: function () {
+                internalAction(scope, prevPage);
+            }
+        };
+
+        scope.List.push(first);
+        scope.List.push(prev);
+    }
+
+
+    // Adds the next, last text if desired
+    function addNext(scope, pageCount) {
+
+        // Ignore if we are not showing
+        if (scope.showPrevNext) {
+            return;
+        }
+
+        // Calculate the next page number
+        // blocking where page is >= pageCount
+        var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
+
+        var last = {
+            value: '>>',
+            title: 'Last Page',
+            action: function () {
+                internalAction(scope, pageCount);
+            }
+        };
+
+        var next = {
+            value: '>',
+            title: 'Next Page',
+            action: function () {
+                internalAction(scope, nextPage);
+            }
+        };
+
+        scope.List.push(next);
+        scope.List.push(last);
     }
 
 
@@ -133,10 +205,11 @@ app.directive('paging', function () {
             size = scope.adjacent * 2,
             pageCount = Math.ceil(scope.total / scope.pageSize);
 
-		// Validate Scope
-		validateScopeValues(scope, pageCount);
+        // Validate Scope
+        validateScopeValues(scope, pageCount);
 
         // Calculate Counts and display
+        addPrev(scope);
         if (pageCount < (5 + size)) {
 
             start = 1;
@@ -173,6 +246,8 @@ app.directive('paging', function () {
 
             }
         }
+        addNext(scope, pageCount);
+
     }
 
 
@@ -189,15 +264,17 @@ app.directive('paging', function () {
             adjacent: '@',
             activeClass: '@',
             scrollTop: '@',
+            showPrevNext: '@',
             pagingAction: '&'
         },
-        template: '<ul ng-hide="Hide" ng-class="ulClass"> ' +
-            '<li ' +
-            'title="{{Item.title}}" ' +
-            'ng-class="Item.liClass" ' +
-            'ng-click="Item.action()" ' +
-            'ng-repeat="Item in List"> ' +
-            '<span>{{Item.value}}</span> ' +
+        template: 
+			'<ul ng-hide="Hide" ng-class="ulClass"> ' +
+				'<li ' +
+				'title="{{Item.title}}" ' +
+				'ng-class="Item.liClass" ' +
+				'ng-click="Item.action()" ' +
+				'ng-repeat="Item in List"> ' +
+				'<span ng-bind="Item.value"></span> ' +
             '</ul>',
         link: function (scope, element, attrs) {
             scope.$watch('page', function () {

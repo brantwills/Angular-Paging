@@ -66,7 +66,7 @@
 					just be sure that the 'currentPage' parameter is replace with
 					the paging directive page attribute
 				-->
-				<div paging
+				<paging
 					page="currentPage" 
 					page-size="pageSize" 
 					total="total"
@@ -76,9 +76,9 @@
 					hide-if-empty="{{hideIfEmpty}}"
 					ul-class="{{ulClass}}"
 					active-class="{{activeClass}}"
-					paging-action="DoCtrlPagingAct('Paging Clicked', page)"
-					>
-				</div>	
+					show-prev-next="{{showPrevNext}}"
+					paging-action="DoCtrlPagingAct('Paging Clicked', page)">
+				</paging>	
 				<hr/>
 				<h3> Known Issues </h3>
 				<ul> 
@@ -180,6 +180,16 @@
 									ng-model="scrollTop" 
 									ng-init="scrollTop = true"/>
 								{{scrollTop}}
+							</td>
+						</tr>
+						<tr>
+							<td><label>Show Prev Next:</label> 
+							<td>
+								<input
+									type="checkbox"
+									ng-model="showPrevNext" 
+									ng-init="showPrevNext = true"/>
+								{{showPrevNext}}
 							</td>
 						</tr>
 					</table>
