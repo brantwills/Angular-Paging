@@ -225,7 +225,7 @@ app.directive('paging', function () {
             if (scope.page <= (1 + size)) {
 
                 start = 1;
-                finish = 2 + size;
+                finish = 2 + size + (scope.adjacent-1);
 
                 addRange(start, finish, scope);
                 addLast(pageCount, scope);
@@ -241,7 +241,7 @@ app.directive('paging', function () {
 
             } else {
 
-                start = pageCount - (1 + size);
+                start = pageCount - (1 + size + (scope.adjacent-1));
                 finish = pageCount;
 
                 addFirst(scope);
