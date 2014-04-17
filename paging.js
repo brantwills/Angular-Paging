@@ -137,6 +137,7 @@ app.directive('paging', function () {
         var first = {
             value: '<<',
             title: 'First Page',
+            liClass: scope.page - 1 <= 0 ? 'disabled' : '',
             action: function () {
                 internalAction(scope, 1);
             }
@@ -145,6 +146,7 @@ app.directive('paging', function () {
         var prev = {
             value: '<',
             title: 'Previous Page',
+            liClass: scope.page - 1 <= 0 ? 'disabled' : '',
             action: function () {
                 internalAction(scope, prevPage);
             }
@@ -170,6 +172,7 @@ app.directive('paging', function () {
         var last = {
             value: '>>',
             title: 'Last Page',
+            liClass: scope.page + 1 > pageCount ? 'disabled' : '',
             action: function () {
                 internalAction(scope, pageCount);
             }
@@ -178,6 +181,7 @@ app.directive('paging', function () {
         var next = {
             value: '>',
             title: 'Next Page',
+            liClass: scope.page + 1 > pageCount ? 'disabled' : '',
             action: function () {
                 internalAction(scope, nextPage);
             }
