@@ -12,21 +12,22 @@
  */
 app.directive('paging', function () {
 
-
     // Assign null-able scope values from settings
     function setScopeValues(scope, attrs) {
 
         scope.List = [];
         scope.Hide = false;
         scope.page = parseInt(scope.page) || 1;
+        scope.total = parseInt(scope.total) || 0;
         scope.dots = scope.dots || '...';
         scope.ulClass = scope.ulClass || 'pagination';
         scope.adjacent = parseInt(scope.adjacent) || 2;
         scope.activeClass = scope.activeClass || 'active';
+		scope.disabledClass = scope.disabledClass || 'disabled';
 
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
-        scope.showPrevNext = !scope.$eval(attrs.showPrevNext);
+        scope.showPrevNext = scope.$eval(attrs.showPrevNext);
 
     }
 
@@ -124,12 +125,14 @@ app.directive('paging', function () {
 
 
     // Adds the first, previous text if desired   
-    function addPrev(scope) {
+    function addPrev(scope, pageCount) {
 
         // Ignore if we are not showing
-        if (scope.showPrevNext) {
+		// or there are no pages to display
+        if (!scope.showPrevNext || pageCount < 1) {
             return;
         }
+
 
         // Calculate the previous page 
         // blocking where page <= 0
@@ -138,6 +141,7 @@ app.directive('paging', function () {
         var first = {
             value: '<<',
             title: 'First Page',
+            liClass: scope.page - 1 <= 0 ? scope.disabledClass : '',
             action: function () {
                 internalAction(scope, 1);
             }
@@ -146,6 +150,7 @@ app.directive('paging', function () {
         var prev = {
             value: '<',
             title: 'Previous Page',
+            liClass: scope.page - 1 <= 0 ? scope.disabledClass : '',
             action: function () {
                 internalAction(scope, prevPage);
             }
@@ -159,8 +164,9 @@ app.directive('paging', function () {
     // Adds the next, last text if desired
     function addNext(scope, pageCount) {
 
-        // Ignore if we are not showing
-        if (scope.showPrevNext) {
+        // Ignore if we are not showing 
+		// or there are no pages to display
+        if (!scope.showPrevNext || pageCount < 1) {
             return;
         }
 
@@ -171,6 +177,7 @@ app.directive('paging', function () {
         var last = {
             value: '>>',
             title: 'Last Page',
+            liClass: scope.page + 1 > pageCount ? scope.disabledClass : '',
             action: function () {
                 internalAction(scope, pageCount);
             }
@@ -179,6 +186,7 @@ app.directive('paging', function () {
         var next = {
             value: '>',
             title: 'Next Page',
+            liClass: scope.page + 1 > pageCount ? scope.disabledClass : '',
             action: function () {
                 internalAction(scope, nextPage);
             }
@@ -209,7 +217,7 @@ app.directive('paging', function () {
         validateScopeValues(scope, pageCount);
 
         // Calculate Counts and display
-        addPrev(scope);
+        addPrev(scope, pageCount);
         if (pageCount < (5 + size)) {
 
             start = 1;
@@ -222,7 +230,7 @@ app.directive('paging', function () {
             if (scope.page <= (1 + size)) {
 
                 start = 1;
-                finish = 2 + size;
+                finish = 2 + size + (scope.adjacent - 1);
 
                 addRange(start, finish, scope);
                 addLast(pageCount, scope);
@@ -238,7 +246,7 @@ app.directive('paging', function () {
 
             } else {
 
-                start = pageCount - (1 + size);
+                start = pageCount - (1 + size + (scope.adjacent - 1));
                 finish = pageCount;
 
                 addFirst(scope);
@@ -261,8 +269,9 @@ app.directive('paging', function () {
             dots: '@',
             hideIfEmpty: '@',
             ulClass: '@',
+			activeClass: '@',
+			disabledClass: '@',
             adjacent: '@',
-            activeClass: '@',
             scrollTop: '@',
             showPrevNext: '@',
             pagingAction: '&'

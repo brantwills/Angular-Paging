@@ -78,6 +78,7 @@
 					hide-if-empty="{{hideIfEmpty}}"
 					ul-class="{{ulClass}}"
 					active-class="{{activeClass}}"
+					disabled-class="{{disabledClass}}"
 					show-prev-next="{{showPrevNext}}"
 					paging-action="DoCtrlPagingAct('Paging Clicked', page)">
 				</paging>	
@@ -161,6 +162,15 @@
 							maxlength="100"
 							ng-model="activeClass" 
 							ng-init="activeClass = 'active'"/>
+					</div>
+					<div class="form-group">
+						<label>Disabled Class:</label> 
+						<input
+							placeholder="disabled" 
+							class="form-control" 
+							maxlength="100"
+							ng-model="disabledClass" 
+							ng-init="disabledClass = 'disabled'"/>
 					</div>
 					<br/>
 					<table class="table">
