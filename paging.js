@@ -139,6 +139,7 @@ app.directive('paging', function () {
         var first = {
             value: '<<',
             title: 'First Page',
+            liClass: scope.page - 1 <= 0 ? 'disabled' : '',
             action: function () {
                 internalAction(scope, 1);
             }
@@ -147,6 +148,7 @@ app.directive('paging', function () {
         var prev = {
             value: '<',
             title: 'Previous Page',
+            liClass: scope.page - 1 <= 0 ? 'disabled' : '',
             action: function () {
                 internalAction(scope, prevPage);
             }
@@ -172,6 +174,7 @@ app.directive('paging', function () {
         var last = {
             value: '>>',
             title: 'Last Page',
+            liClass: scope.page + 1 > pageCount ? 'disabled' : '',
             action: function () {
                 internalAction(scope, pageCount);
             }
@@ -180,6 +183,7 @@ app.directive('paging', function () {
         var next = {
             value: '>',
             title: 'Next Page',
+            liClass: scope.page + 1 > pageCount ? 'disabled' : '',
             action: function () {
                 internalAction(scope, nextPage);
             }
@@ -223,7 +227,7 @@ app.directive('paging', function () {
             if (scope.page <= (1 + size)) {
 
                 start = 1;
-                finish = 2 + size;
+                finish = 2 + size + (scope.adjacent-1);
 
                 addRange(start, finish, scope);
                 addLast(pageCount, scope);
@@ -239,7 +243,7 @@ app.directive('paging', function () {
 
             } else {
 
-                start = pageCount - (1 + size);
+                start = pageCount - (1 + size + (scope.adjacent-1));
                 finish = pageCount;
 
                 addFirst(scope);
@@ -275,7 +279,7 @@ app.directive('paging', function () {
 				'ng-class="Item.liClass" ' +
 				'ng-click="Item.action()" ' +
 				'ng-repeat="Item in List"> ' +
-				'<span ng-bind="Item.value"></span> ' +
+				'<a href="" ng-bind="Item.value"></a> ' +
             '</ul>',
         link: function (scope, element, attrs) {
             scope.$watch('page', function () {
