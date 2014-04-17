@@ -27,7 +27,7 @@ app.directive('paging', function () {
 
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
-        scope.showPrevNext = !scope.$eval(attrs.showPrevNext);
+        scope.showPrevNext = scope.$eval(attrs.showPrevNext);
 
     }
 
@@ -128,7 +128,8 @@ app.directive('paging', function () {
     function addPrev(scope, pageCount) {
 
         // Ignore if we are not showing
-        if (scope.showPrevNext || pageCount <= 1) {
+		// or there are no pages to display
+        if (!scope.showPrevNext || pageCount < 1) {
             return;
         }
 
@@ -163,8 +164,9 @@ app.directive('paging', function () {
     // Adds the next, last text if desired
     function addNext(scope, pageCount) {
 
-        // Ignore if we are not showing
-        if (scope.showPrevNext || pageCount <= 1) {
+        // Ignore if we are not showing 
+		// or there are no pages to display
+        if (!scope.showPrevNext || pageCount < 1) {
             return;
         }
 
