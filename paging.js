@@ -23,6 +23,7 @@ app.directive('paging', function () {
         scope.ulClass = scope.ulClass || 'pagination';
         scope.adjacent = parseInt(scope.adjacent) || 2;
         scope.activeClass = scope.activeClass || 'active';
+		scope.disabledClass = scope.disabledClass || 'disabled';
 
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
@@ -139,7 +140,7 @@ app.directive('paging', function () {
         var first = {
             value: '<<',
             title: 'First Page',
-            liClass: scope.page - 1 <= 0 ? 'disabled' : '',
+            liClass: scope.page - 1 <= 0 ? scope.disabledClass : '',
             action: function () {
                 internalAction(scope, 1);
             }
@@ -148,7 +149,7 @@ app.directive('paging', function () {
         var prev = {
             value: '<',
             title: 'Previous Page',
-            liClass: scope.page - 1 <= 0 ? 'disabled' : '',
+            liClass: scope.page - 1 <= 0 ? scope.disabledClass : '',
             action: function () {
                 internalAction(scope, prevPage);
             }
@@ -174,7 +175,7 @@ app.directive('paging', function () {
         var last = {
             value: '>>',
             title: 'Last Page',
-            liClass: scope.page + 1 > pageCount ? 'disabled' : '',
+            liClass: scope.page + 1 > pageCount ? scope.disabledClass : '',
             action: function () {
                 internalAction(scope, pageCount);
             }
@@ -183,7 +184,7 @@ app.directive('paging', function () {
         var next = {
             value: '>',
             title: 'Next Page',
-            liClass: scope.page + 1 > pageCount ? 'disabled' : '',
+            liClass: scope.page + 1 > pageCount ? scope.disabledClass : '',
             action: function () {
                 internalAction(scope, nextPage);
             }
@@ -266,8 +267,9 @@ app.directive('paging', function () {
             dots: '@',
             hideIfEmpty: '@',
             ulClass: '@',
+			activeClass: '@',
+			disabledClass: '@',
             adjacent: '@',
-            activeClass: '@',
             scrollTop: '@',
             showPrevNext: '@',
             pagingAction: '&'
