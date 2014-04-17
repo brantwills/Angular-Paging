@@ -10,7 +10,7 @@
  * @element EA
  *
  */
-app.directive('paging', function () {
+angular.module('myApp').directive('paging', function () {
 
     // Assign null-able scope values from settings
     function setScopeValues(scope, attrs) {
