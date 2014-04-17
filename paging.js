@@ -18,6 +18,7 @@ app.directive('paging', function () {
         scope.List = [];
         scope.Hide = false;
         scope.page = parseInt(scope.page) || 1;
+        scope.total = parseInt(scope.total) || 0;
         scope.dots = scope.dots || '...';
         scope.ulClass = scope.ulClass || 'pagination';
         scope.adjacent = parseInt(scope.adjacent) || 2;
@@ -123,12 +124,13 @@ app.directive('paging', function () {
 
 
     // Adds the first, previous text if desired   
-    function addPrev(scope) {
+    function addPrev(scope, pageCount) {
 
         // Ignore if we are not showing
-        if (scope.showPrevNext) {
+        if (scope.showPrevNext || pageCount <= 1) {
             return;
         }
+
 
         // Calculate the previous page 
         // blocking where page <= 0
@@ -159,7 +161,7 @@ app.directive('paging', function () {
     function addNext(scope, pageCount) {
 
         // Ignore if we are not showing
-        if (scope.showPrevNext) {
+        if (scope.showPrevNext || pageCount <= 1) {
             return;
         }
 
@@ -205,10 +207,10 @@ app.directive('paging', function () {
             pageCount = Math.ceil(scope.total / scope.pageSize);
 
         // Validate Scope
-        validateScopeValues(scope, pageCount);
+        validateScopeValues(scope);
 
         // Calculate Counts and display
-        addPrev(scope);
+        addPrev(scope, pageCount);
         if (pageCount < (5 + size)) {
 
             start = 1;
