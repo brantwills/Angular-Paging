@@ -207,7 +207,7 @@ app.directive('paging', function () {
             pageCount = Math.ceil(scope.total / scope.pageSize);
 
         // Validate Scope
-        validateScopeValues(scope);
+        validateScopeValues(scope, pageCount);
 
         // Calculate Counts and display
         addPrev(scope, pageCount);
