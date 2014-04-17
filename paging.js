@@ -277,7 +277,7 @@ app.directive('paging', function () {
 				'ng-class="Item.liClass" ' +
 				'ng-click="Item.action()" ' +
 				'ng-repeat="Item in List"> ' +
-				'<span ng-bind="Item.value"></span> ' +
+				'<a href="" ng-bind="Item.value"></a> ' +
             '</ul>',
         link: function (scope, element, attrs) {
             scope.$watch('page', function () {
