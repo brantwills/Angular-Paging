@@ -10,7 +10,7 @@
  * @element EA
  *
  */
-app.directive('paging', function () {
+angular.module('myApp').directive('paging', function () {
 
     // Assign null-able scope values from settings
     function setScopeValues(scope, attrs) {
@@ -133,26 +133,30 @@ app.directive('paging', function () {
             return;
         }
 
-
-        // Calculate the previous page 
-        // blocking where page <= 0
+        // Calculate the previous page and if the click actions are allowed
+        // blocking and disabling where page <= 0
+        var disabled = scope.page - 1 <= 0;
         var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
 
         var first = {
             value: '<<',
             title: 'First Page',
-            liClass: scope.page - 1 <= 0 ? scope.disabledClass : '',
+            liClass: disabled ? scope.disabledClass : '',
             action: function () {
-                internalAction(scope, 1);
+                if(!disabled) {
+                    internalAction(scope, 1);
+                }
             }
         };
 
         var prev = {
             value: '<',
             title: 'Previous Page',
-            liClass: scope.page - 1 <= 0 ? scope.disabledClass : '',
+            liClass: disabled ? scope.disabledClass : '',
             action: function () {
-                internalAction(scope, prevPage);
+                if(!disabled) {
+                    internalAction(scope, prevPage);
+                }
             }
         };
 
@@ -170,25 +174,30 @@ app.directive('paging', function () {
             return;
         }
 
-        // Calculate the next page number
+        // Calculate the next page number and if the click actions are allowed
         // blocking where page is >= pageCount
+        var disabled = scope.page + 1 > pageCount;
         var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
 
         var last = {
             value: '>>',
             title: 'Last Page',
-            liClass: scope.page + 1 > pageCount ? scope.disabledClass : '',
+            liClass: disabled ? scope.disabledClass : '',
             action: function () {
-                internalAction(scope, pageCount);
+                if(!disabled){
+                    internalAction(scope, pageCount);
+                }
             }
         };
 
         var next = {
             value: '>',
             title: 'Next Page',
-            liClass: scope.page + 1 > pageCount ? scope.disabledClass : '',
+            liClass: disabled ? scope.disabledClass : '',
             action: function () {
-                internalAction(scope, nextPage);
+                if(!disabled){
+                    internalAction(scope, nextPage);
+                }
             }
         };
 
