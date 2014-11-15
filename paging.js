@@ -298,6 +298,18 @@ angular.module('myApp').directive('paging', function () {
             scope.$watch('page', function () {
                 build(scope, attrs);
             });
+
+            scope.$watch('total', function () {
+                build(scope, attrs);
+            });
+
+            /*
+            If using angular 1.3
+            scope.$watchGroup(['page', 'total'], function(newValues, oldValues, scope) {
+                build(scope, attrs);
+            });
+            */
+            
         }
     };
 });
