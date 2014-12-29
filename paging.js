@@ -296,14 +296,10 @@ angular.module('myApp').directive('paging', function () {
             '</ul>',
         link: function (scope, element, attrs) {
             
-            scope.$watch('page', function () {
+            // Hook in our watched items 
+            scope.$watchCollection('[page,total]', function () {
                 build(scope, attrs);
             });
-            
-            scope.$watch('total', function () {
-                build(scope, attrs);
-            });
-            
         }
     };
 });
