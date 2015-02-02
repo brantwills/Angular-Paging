@@ -5,7 +5,7 @@
 * @description
 * This module is here for sample purposes
 */
-angular.module('myApp', []);
+angular.module('myApp', ["brantwills.paging"]);
 
 
 
