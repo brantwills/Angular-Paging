@@ -104,22 +104,39 @@ angular.module('brantwills.paging', []).directive('paging', function () {
 
     // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
     function addDots(scope) {
-        scope.List.push({
-            value: scope.dots
-        });
+        var result = [];
+        var previous;
+        var current;
+
+        if (scope.List.length > 0) {
+            result.push(scope.List[0]);
+
+            for(var i=1; i<scope.List.length; i++) {
+                previous = scope.List[i - 1];
+                current = scope.List[i];
+
+                if (current.value === previous.value + 1) {
+                    result.push(current);
+                } else {
+                    result.push({
+                        value: scope.dots
+                    });
+                }
+            }
+        }
+
+        scope.List = result;
     }
 
 
     // Add First Pages
     function addFirst(scope) {
         addRange(1, 2, scope);
-        addDots(scope);
     }
 
 
     // Add Last Pages
     function addLast(pageCount, scope) {
-        addDots(scope);
         addRange(pageCount - 1, pageCount, scope);
     }
 
@@ -263,6 +280,9 @@ angular.module('brantwills.paging', []).directive('paging', function () {
 
             }
         }
+
+        addDots(scope);
+
         addNext(scope, pageCount);
 
     }
