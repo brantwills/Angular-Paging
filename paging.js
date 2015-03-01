@@ -10,7 +10,7 @@
  * @element EA
  *
  */
-angular.module('myApp').directive('paging', function () {
+angular.module('brantwills.paging', []).directive('paging', function () {
 
     // Assign null-able scope values from settings
     function setScopeValues(scope, attrs) {
@@ -23,7 +23,7 @@ angular.module('myApp').directive('paging', function () {
         scope.ulClass = scope.ulClass || 'pagination';
         scope.adjacent = parseInt(scope.adjacent) || 2;
         scope.activeClass = scope.activeClass || 'active';
-		scope.disabledClass = scope.disabledClass || 'disabled';
+        scope.disabledClass = scope.disabledClass || 'disabled';
 
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
@@ -60,7 +60,6 @@ angular.module('myApp').directive('paging', function () {
     }
 
 
-
     // Internal Paging Click Action
     function internalAction(scope, page) {
 
@@ -82,53 +81,11 @@ angular.module('myApp').directive('paging', function () {
     }
 
 
-    // Add Range of Numbers
-    function addRange(start, finish, scope) {
-
-        var i = 0;
-        for (i = start; i <= finish; i++) {
-
-            var item = {
-                value: i,
-                title: 'Page ' + i,
-                liClass: scope.page == i ? scope.activeClass : '',
-                action: function () {
-                    internalAction(scope, this.value);
-                }
-            };
-
-            scope.List.push(item);
-        }
-    }
-
-
-    // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
-    function addDots(scope) {
-        scope.List.push({
-            value: scope.dots
-        });
-    }
-
-
-    // Add First Pages
-    function addFirst(scope) {
-        addRange(1, 2, scope);
-        addDots(scope);
-    }
-
-
-    // Add Last Pages
-    function addLast(pageCount, scope) {
-        addDots(scope);
-        addRange(pageCount - 1, pageCount, scope);
-    }
-
-
     // Adds the first, previous text if desired   
     function addPrev(scope, pageCount) {
 
         // Ignore if we are not showing
-		// or there are no pages to display
+        // or there are no pages to display
         if (!scope.showPrevNext || pageCount < 1) {
             return;
         }
@@ -169,7 +126,7 @@ angular.module('myApp').directive('paging', function () {
     function addNext(scope, pageCount) {
 
         // Ignore if we are not showing 
-		// or there are no pages to display
+        // or there are no pages to display
         if (!scope.showPrevNext || pageCount < 1) {
             return;
         }
@@ -204,6 +161,60 @@ angular.module('myApp').directive('paging', function () {
         scope.List.push(next);
         scope.List.push(last);
     }
+
+
+    // Add Range of Numbers
+    function addRange(start, finish, scope) {
+
+        var i = 0;
+        for (i = start; i <= finish; i++) {
+
+            var item = {
+                value: i,
+                title: 'Page ' + i,
+                liClass: scope.page == i ? scope.activeClass : '',
+                action: function () {
+                    internalAction(scope, this.value);
+                }
+            };
+
+            scope.List.push(item);
+        }
+    }
+
+
+    // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
+    function addDots(scope) {
+        scope.List.push({
+            value: scope.dots
+        });
+    }
+
+
+    // Add First Pages
+    function addFirst(scope, next) {
+        addRange(1, 2, scope);
+
+        // We ignore dots if the next value is 3
+        // ie: 1 2 [...] 3 4 5 becomes just 1 2 3 4 5 
+        if(next != 3){
+            addDots(scope);
+        }
+    }
+
+
+    // Add Last Pages
+    function addLast(pageCount, scope, prev) {
+
+        // We ignore dots if the previous value is one less that our start range
+        // ie: 1 2 3 4 [...] 5 6  becomes just 1 2 3 4 5 6 
+        if(prev != pageCount - 2){
+            addDots(scope);
+        }
+
+        addRange(pageCount - 1, pageCount, scope);
+    }
+
 
 
     // Main build function
@@ -242,23 +253,23 @@ angular.module('myApp').directive('paging', function () {
                 finish = 2 + size + (scope.adjacent - 1);
 
                 addRange(start, finish, scope);
-                addLast(pageCount, scope);
+                addLast(pageCount, scope, finish);
 
             } else if (pageCount - size > scope.page && scope.page > size) {
 
                 start = scope.page - scope.adjacent;
                 finish = scope.page + scope.adjacent;
 
-                addFirst(scope);
+                addFirst(scope, start);
                 addRange(start, finish, scope);
-                addLast(pageCount, scope);
+                addLast(pageCount, scope, finish);
 
             } else {
 
                 start = pageCount - (1 + size + (scope.adjacent - 1));
                 finish = pageCount;
 
-                addFirst(scope);
+                addFirst(scope, start);
                 addRange(start, finish, scope);
 
             }
@@ -278,24 +289,26 @@ angular.module('myApp').directive('paging', function () {
             dots: '@',
             hideIfEmpty: '@',
             ulClass: '@',
-			activeClass: '@',
-			disabledClass: '@',
+            activeClass: '@',
+            disabledClass: '@',
             adjacent: '@',
             scrollTop: '@',
             showPrevNext: '@',
             pagingAction: '&'
         },
         template: 
-			'<ul ng-hide="Hide" ng-class="ulClass"> ' +
-				'<li ' +
-				'title="{{Item.title}}" ' +
-				'ng-class="Item.liClass" ' +
-				'ng-click="Item.action()" ' +
-				'ng-repeat="Item in List"> ' +
-				'<span ng-bind="Item.value"></span> ' +
+            '<ul ng-hide="Hide" ng-class="ulClass"> ' +
+                '<li ' +
+                'title="{{Item.title}}" ' +
+                'ng-class="Item.liClass" ' +
+                'ng-click="Item.action()" ' +
+                'ng-repeat="Item in List"> ' +
+                '<span ng-bind="Item.value"></span> ' +
             '</ul>',
         link: function (scope, element, attrs) {
-            scope.$watch('page', function () {
+            
+            // Hook in our watched items 
+            scope.$watchCollection('[page,total]', function () {
                 build(scope, attrs);
             });
         }
