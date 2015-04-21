@@ -2,225 +2,225 @@
 <html>
 <head>
     <title>Angular Paging Directive</title>
-	<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" >
-	<style>
-		.jumbotron h2 {margin-top: 0}
-		hr {margin: 50px 0 60px}
-		.well hr {margin: 30px 0 30px}
-		ul {margin-bottom: 40px}
-		.text-muted {margin-bottom: 20px}
-	</style>
+    <link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" >
+    <style>
+        .jumbotron h2 {margin-top: 0}
+        hr {margin: 50px 0 60px}
+        .well hr {margin: 30px 0 30px}
+        ul {margin-bottom: 40px}
+        .text-muted {margin-bottom: 20px}
+    </style>
 </head>
 <body>
     
 
-	<div class="jumbotron">
-		<div class="container">
-			<h2>Angular Paging</h2> 
-			A directive to aid in paging large datasets while requiring the bare minimum of actual paging information. 
-			We are very dependant on the server for "filtering" results in this paging scheme.  The central idea being
-			we only want to hold the active "page" of items - rather than holding the entire list of items in memory
-			and paging on the client-side.
-		</div>
-	</div>
+    <div class="jumbotron">
+        <div class="container">
+            <h2>Angular Paging</h2> 
+            A directive to aid in paging large datasets while requiring the bare minimum of actual paging information. 
+            We are very dependant on the server for "filtering" results in this paging scheme.  The central idea being
+            we only want to hold the active "page" of items - rather than holding the entire list of items in memory
+            and paging on the client-side.
+        </div>
+    </div>
 
-	
+    
     <div class="container" ng-app="myApp" ng-controller="sampleCtrl">
-			
-		<!--[if lt IE 10]>
-			<div class="alert alert-warning">
-			   <strong>
-					It is highly recommended you update Internet Explorer or try using a modern browser!
-			   </strong> 
-			</div>
-		<![endif]--> 
-		
-		<div class="row">
-			<div class="col-xs-8">
-			
-				<h3> Basic Sample </h3>
-				<ul class="text-muted">
-					<li>Nothing amazing just a basic paging example
-					<li>Using Bootstraps paging css by default
-				</ul>
-				<div paging
-					page="currentPage" 
-					page-size="pageSize" 
-					total="total">
-				</div>	
-			 
-				<hr/>
-				
-				<h3> Advanced Sample </h3>
-				<ul class="text-muted">
-					<li>Changes in settings will be reflected in the advanced sample.
-					<li>View the console.log to see onClick action
-					<li>Don't forget to <strong>apply your settings</strong> once they've been modified!
-				</ul>
-				
-				<!-- 
-					Notice the second parameter of DoCtrlPagingAct 
-					is 'page' not currentPage
-					
-					This corresponds to the paging directives 'page' attribute
-					You may pass in any number of parameters to your function 
-					just be sure that the 'currentPage' parameter is replace with
-					the paging directive page attribute
-				-->
-				<paging
-					class="small"
-					page="currentPage" 
-					page-size="pageSize" 
-					total="total"
-					adjacent="{{adjacent}}"
-					dots="{{dots}}"
-					scroll-top="{{scrollTop}}" 
-					hide-if-empty="{{hideIfEmpty}}"
-					ul-class="{{ulClass}}"
-					active-class="{{activeClass}}"
-					disabled-class="{{disabledClass}}"
-					show-prev-next="{{showPrevNext}}"
-					paging-action="DoCtrlPagingAct('Paging Clicked', page)">
-				</paging>	
-				<hr/>
-				<h3> Known Issues </h3>
-				<ul> 
-					<li>None right now but I'm sure they are out there!
-				</ul>
-				<hr/>
-				<h3> Reference Links </h3>
-				<ul> 
-					<li>Github - <a href="https://github.com/brantwills/Angular-Paging">https://github.com/brantwills/Angular-Paging</a>
-					<li>Brant Wills - <a href="http://brantwills.com">http://brantwills.com</a>
-					<li>@brantwills - <a href="http://twitter.com/brantwills">http://twitter.com/brantwills</a>
-				</ul>
+            
+        <!--[if lt IE 10]>
+            <div class="alert alert-warning">
+               <strong>
+                    It is highly recommended you update Internet Explorer or try using a modern browser!
+               </strong> 
+            </div>
+        <![endif]--> 
+        
+        <div class="row">
+            <div class="col-xs-8">
+            
+                <h3> Basic Sample </h3>
+                <ul class="text-muted">
+                    <li>Nothing amazing just a basic paging example
+                    <li>Using Bootstraps paging css by default
+                </ul>
+                <div paging
+                    page="currentPage" 
+                    page-size="pageSize" 
+                    total="total">
+                </div>  
+             
+                <hr/>
+                
+                <h3> Advanced Sample </h3>
+                <ul class="text-muted">
+                    <li>Changes in settings will be reflected in the advanced sample.
+                    <li>View the console.log to see onClick action
+                    <li>Don't forget to <strong>apply your settings</strong> once they've been modified!
+                </ul>
+                
+                <!-- 
+                    Notice the second parameter of DoCtrlPagingAct 
+                    is 'page' not currentPage
+                    
+                    This corresponds to the paging directives 'page' attribute
+                    You may pass in any number of parameters to your function 
+                    just be sure that the 'currentPage' parameter is replace with
+                    the paging directive page attribute
+                -->
+                <paging
+                    class="small"
+                    page="currentPage" 
+                    page-size="pageSize" 
+                    total="total"
+                    adjacent="{{adjacent}}"
+                    dots="{{dots}}"
+                    scroll-top="{{scrollTop}}" 
+                    hide-if-empty="{{hideIfEmpty}}"
+                    ul-class="{{ulClass}}"
+                    active-class="{{activeClass}}"
+                    disabled-class="{{disabledClass}}"
+                    show-prev-next="{{showPrevNext}}"
+                    paging-action="DoCtrlPagingAct('Paging Clicked', page)">
+                </paging>   
+                <hr/>
+                <h3> Known Issues </h3>
+                <ul> 
+                    <li>None right now but I'm sure they are out there!
+                </ul>
+                <hr/>
+                <h3> Reference Links </h3>
+                <ul> 
+                    <li>Github - <a href="https://github.com/brantwills/Angular-Paging">https://github.com/brantwills/Angular-Paging</a>
+                    <li>Brant Wills - <a href="http://brantwills.com">http://brantwills.com</a>
+                    <li>@brantwills - <a href="http://twitter.com/brantwills">http://twitter.com/brantwills</a>
+                </ul>
 
-			</div>
-			<div class="col-xs-4">
-				<div class="well" class="form-group">
-					<div class="form-group">
-						<label>Current Page:</label> 
-						<input 
-							placeholder="page" 
-							class="form-control"  
-							maxlength="16"
-							ng-model="currentPage" 
-							ng-init="currentPage = 1"/>
-					</div>
-					<div class="form-group">
-						<label>Page Size:</label> 
-						<input 
-							placeholder="Page Size" 
-							class="form-control" 
-							maxlength="16"
-							ng-model="pageSize"
-							ng-init="pageSize = 10"/>
-					</div>		
-					<div class="form-group">
-						<label>Total Items:</label> 
-						<input
-							placeholder="Total" 
-							class="form-control" 
-							maxlength="16"
-							ng-model="total" 
-							ng-init="total = 1000"/>
-					</div>
-					<hr/>
-					<div class="form-group">
-						<label>Dots Display:</label> 
-						<input
-							placeholder="..." 
-							class="form-control" 
-							maxlength="3"
-							ng-model="dots" 
-							ng-init="dots = '...'"/>
-					</div>
-					<div class="form-group">
-						<label>Adjacent Count:</label> 
-						<input
-							placeholder="2" 
-							class="form-control" 
-							maxlength="3"
-							ng-model="adjacent" 
-							ng-init="adjacent = 2"/>
-					</div>
-					<hr/>
-					<div class="form-group">
-						<label>UL Class:</label> 
-						<input
-							placeholder="pagination" 
-							class="form-control" 
-							maxlength="100"
-							ng-model="ulClass" 
-							ng-init="ulClass = 'pagination'"/>
-					</div>
-					<div class="form-group">
-						<label>Active Class:</label> 
-						<input
-							placeholder="active" 
-							class="form-control" 
-							maxlength="100"
-							ng-model="activeClass" 
-							ng-init="activeClass = 'active'"/>
-					</div>
-					<div class="form-group">
-						<label>Disabled Class:</label> 
-						<input
-							placeholder="disabled" 
-							class="form-control" 
-							maxlength="100"
-							ng-model="disabledClass" 
-							ng-init="disabledClass = 'disabled'"/>
-					</div>
-					<br/>
-					<table class="table">
-						<tr>
-							<td><label>Hide if Empty:</label> 
-							<td>
-								<input
-									type="checkbox"
-									ng-model="hideIfEmpty" 
-									ng-init="hideIfEmpty = true"/>
-								{{hideIfEmpty}}
-							</td>
-						</tr>
-						<tr>
-							<td><label>Scroll Top:</label> 
-							<td>
-								<input
-									type="checkbox"
-									ng-model="scrollTop" 
-									ng-init="scrollTop = true"/>
-								{{scrollTop}}
-							</td>
-						</tr>
-						<tr>
-							<td><label>Show Prev Next:</label> 
-							<td>
-								<input
-									type="checkbox"
-									ng-model="showPrevNext" 
-									ng-init="showPrevNext = true"/>
-								{{showPrevNext}}
-							</td>
-						</tr>
-					</table>
-					<hr/>
-					<span class="btn btn-default" onclick="location.reload()"> 
-						<span title="Reset Settings" class="glyphicon glyphicon-repeat"></span>
-					</span>
-					<span class="btn btn-success" ng-click="currentPage = 0">
-						Apply Settings
-					</span>
-					<br/><br/>
-				</div>				
-			</div>
-		</div>
+            </div>
+            <div class="col-xs-4">
+                <div class="well" class="form-group">
+                    <div class="form-group">
+                        <label>Current Page:</label> 
+                        <input 
+                            placeholder="page" 
+                            class="form-control"  
+                            maxlength="16"
+                            ng-model="currentPage" 
+                            ng-init="currentPage = 1"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Page Size:</label> 
+                        <input 
+                            placeholder="Page Size" 
+                            class="form-control" 
+                            maxlength="16"
+                            ng-model="pageSize"
+                            ng-init="pageSize = 10"/>
+                    </div>      
+                    <div class="form-group">
+                        <label>Total Items:</label> 
+                        <input
+                            placeholder="Total" 
+                            class="form-control" 
+                            maxlength="16"
+                            ng-model="total" 
+                            ng-init="total = 1000"/>
+                    </div>
+                    <hr/>
+                    <div class="form-group">
+                        <label>Dots Display:</label> 
+                        <input
+                            placeholder="..." 
+                            class="form-control" 
+                            maxlength="3"
+                            ng-model="dots" 
+                            ng-init="dots = '...'"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Adjacent Count:</label> 
+                        <input
+                            placeholder="2" 
+                            class="form-control" 
+                            maxlength="3"
+                            ng-model="adjacent" 
+                            ng-init="adjacent = 2"/>
+                    </div>
+                    <hr/>
+                    <div class="form-group">
+                        <label>UL Class:</label> 
+                        <input
+                            placeholder="pagination" 
+                            class="form-control" 
+                            maxlength="100"
+                            ng-model="ulClass" 
+                            ng-init="ulClass = 'pagination'"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Active Class:</label> 
+                        <input
+                            placeholder="active" 
+                            class="form-control" 
+                            maxlength="100"
+                            ng-model="activeClass" 
+                            ng-init="activeClass = 'active'"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Disabled Class:</label> 
+                        <input
+                            placeholder="disabled" 
+                            class="form-control" 
+                            maxlength="100"
+                            ng-model="disabledClass" 
+                            ng-init="disabledClass = 'disabled'"/>
+                    </div>
+                    <br/>
+                    <table class="table">
+                        <tr>
+                            <td><label>Hide if Empty:</label> 
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    ng-model="hideIfEmpty" 
+                                    ng-init="hideIfEmpty = true"/>
+                                {{hideIfEmpty}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Scroll Top:</label> 
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    ng-model="scrollTop" 
+                                    ng-init="scrollTop = true"/>
+                                {{scrollTop}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Show Prev Next:</label> 
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    ng-model="showPrevNext" 
+                                    ng-init="showPrevNext = true"/>
+                                {{showPrevNext}}
+                            </td>
+                        </tr>
+                    </table>
+                    <hr/>
+                    <span class="btn btn-default" onclick="location.reload()"> 
+                        <span title="Reset Settings" class="glyphicon glyphicon-repeat"></span>
+                    </span>
+                    <span class="btn btn-success" ng-click="currentPage = 0">
+                        Apply Settings
+                    </span>
+                    <br/><br/>
+                </div>              
+            </div>
+        </div>
     </div>
            <br/><br/>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script src="app.js"></script>
-	<script src="paging.js"></script>
+    <script src="paging.js"></script>
 </body>
 </html>

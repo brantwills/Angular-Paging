@@ -23,7 +23,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         scope.ulClass = scope.ulClass || 'pagination';
         scope.adjacent = parseInt(scope.adjacent) || 2;
         scope.activeClass = scope.activeClass || 'active';
-		scope.disabledClass = scope.disabledClass || 'disabled';
+        scope.disabledClass = scope.disabledClass || 'disabled';
 
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
@@ -85,7 +85,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
     function addPrev(scope, pageCount) {
 
         // Ignore if we are not showing
-		// or there are no pages to display
+        // or there are no pages to display
         if (!scope.showPrevNext || pageCount < 1) {
             return;
         }
@@ -126,7 +126,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
     function addNext(scope, pageCount) {
 
         // Ignore if we are not showing 
-		// or there are no pages to display
+        // or there are no pages to display
         if (!scope.showPrevNext || pageCount < 1) {
             return;
         }
@@ -289,21 +289,21 @@ angular.module('brantwills.paging', []).directive('paging', function () {
             dots: '@',
             hideIfEmpty: '@',
             ulClass: '@',
-			activeClass: '@',
-			disabledClass: '@',
+            activeClass: '@',
+            disabledClass: '@',
             adjacent: '@',
             scrollTop: '@',
             showPrevNext: '@',
             pagingAction: '&'
         },
         template: 
-			'<ul ng-hide="Hide" ng-class="ulClass"> ' +
-				'<li ' +
-				'title="{{Item.title}}" ' +
-				'ng-class="Item.liClass" ' +
-				'ng-click="Item.action()" ' +
-				'ng-repeat="Item in List"> ' +
-				'<span ng-bind="Item.value"></span> ' +
+            '<ul ng-hide="Hide" ng-class="ulClass"> ' +
+                '<li ' +
+                'title="{{Item.title}}" ' +
+                'ng-class="Item.liClass" ' +
+                'ng-click="Item.action()" ' +
+                'ng-repeat="Item in List"> ' +
+                '<span ng-bind="Item.value"></span> ' +
             '</ul>',
         link: function (scope, element, attrs) {
             
