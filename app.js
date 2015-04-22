@@ -22,8 +22,8 @@ angular.module('myApp').controller('sampleCtrl',['$scope', function($scope){
     // In reality this could be calling a service which 
     // returns the items of interest from the server
     // based on the page parameter
-    $scope.DoCtrlPagingAct = function(text, page){
-        console.log(text, page);
+    $scope.DoCtrlPagingAct = function(text, page, pageSize, total){
+        console.log({text, page, pageSize, total});
     };
 
 }]);

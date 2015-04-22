@@ -61,11 +61,14 @@
                 <!-- 
                     Notice the second parameter of DoCtrlPagingAct 
                     is 'page' not currentPage
-                    
+
                     This corresponds to the paging directives 'page' attribute
                     You may pass in any number of parameters to your function 
                     just be sure that the 'currentPage' parameter is replace with
                     the paging directive page attribute
+
+                    The pageSize and total attributes are exposed similarly 
+                    However they share the same name as our controller scope
                 -->
                 <paging
                     class="small"
@@ -80,7 +83,7 @@
                     active-class="{{activeClass}}"
                     disabled-class="{{disabledClass}}"
                     show-prev-next="{{showPrevNext}}"
-                    paging-action="DoCtrlPagingAct('Paging Clicked', page)">
+                    paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
                 </paging>   
                 <hr/>
                 <h3> Known Issues </h3>

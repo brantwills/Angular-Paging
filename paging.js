@@ -68,10 +68,14 @@ angular.module('brantwills.paging', []).directive('paging', function () {
             return;
         }
 
-        // Update the page in scope and fire any paging actions
+        // Update the page in scope 
         scope.page = page;
+
+        // Pass our parameters to the paging action
         scope.pagingAction({
-            page: page
+            page: scope.page,
+            pageSize: scope.pageSize,
+            total: scope.total
         });
 
         // If allowed scroll up to the top of the page
