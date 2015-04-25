@@ -8,26 +8,45 @@ An Angular directive to aid paging large datasets requiring minimum paging infor
 
 ####Background
 --------------
-I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column name.  These limits have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
+I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column name.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
 <br/>
 <br/>
 
-####Code Sample
+####Code Samples
 -------------
 ```html
+<!-- Simple Example -->
 <div paging
   page="7" 
   page-size="100" 
   total="1000"
-  paging-action="foo('Paging Clicked', page)">
+  paging-action="foo('bar', page)">
 </div> 
 ```
-######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/index.html) for complete code samples
+```html
+<!-- Advanced Example -->
+<paging
+  class="small"
+  page="currentPage" 
+  page-size="pageSize" 
+  total="total"
+  adjacent="{{adjacent}}"
+  dots="{{dots}}"
+  scroll-top="{{scrollTop}}" 
+  hide-if-empty="{{hideIfEmpty}}"
+  ul-class="{{ulClass}}"
+  active-class="{{activeClass}}"
+  disabled-class="{{disabledClass}}"
+  show-prev-next="{{showPrevNext}}"
+  paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
+</paging>   
+```
+######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/index.html) for complete code samples and documentation
 <br/>
 
 ####Programmatic Goals
 -------------
-I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some directive attributes for handling CSS classes and items like previous and next arrows. I settled on the following three required directive inputs:
+I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some optional directive attributes for handling CSS classes and hiding previous and next arrows. The following three attributes are required directive inputs:
 
 1. `page` What page am I currently viewing
 2. `pageSize` How many items in the list to display on a page
