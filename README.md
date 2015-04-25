@@ -1,59 +1,39 @@
 ###Angular Paging
 --------------
-A directive to aid in paging large datasets while requiring the bare minimum of actual paging information.
-<br/>
+An Angular directive to aid paging large datasets requiring minimum paging information.
+
 <b>Demo Available At: http://brantwills.github.io/Angular-Paging/</b>
-<br/>
-<br/>
+
+
 
 ####Background
 --------------
-I often find myself paging across millions of rows even after I'd allowed users some level of database filtering (say by date range or name).  
-I also find myself forced into positions with large tables where normalization was not considered, or to be fair, 
-the input into the database itself is just garbage or very "log based".  
-These two limitations have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
-
+I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column name.  These limits have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
 <br/>
 
 
 ####Programmatic Goals
 -------------
-I wanted to create an angular directive I could easily reuse and tie back into some form of controller.  
-I also wanted to include as little "paging" information as possible.  
-There are some attributes for handling CSS classes however, I settled on the required input being:
+I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some directive attributes for handling CSS classes and items like previous and next arrows. I settled on the following three required directive inputs:
 
-1. What page am I currently viewing
-2. How many items in the list to display on a page
-3. What is the total count of items in my list
-
-<br/>
-
+1. `page` What page am I currently viewing
+2. `pageSize` How many items in the list to display on a page
+3. `total` What is the total count of items in my list
 
 
 ####Visual Goals
 --------------
-I wanted to develop a paging display which pulls away from the typical < << first 1 2 3 4 [drop-down] last >> >.  
-In my experience users never really have a true need to zip to the 9th page 2nd result 
-and if they do they have probably bookmarked the actual URL or more directly they have found the result through "better" filtering.
-
-I've found the the best representation allowed the user to quickly move next or previous page, 
-as this meets the immediate need for paging, while still allowing them to "get out of jail freely" by 
-moving to the first or last page instantly. So visually I selected the common pattern 1 2 ... 7 8 9 ... 100 101 
-where the count inside the ellipsis changes as the pages increase or decrease.
-
-<br/>
+I set out to develop a paging display which would allow the user to quickly move to the next or previous page while still allowing them to move to the first or last page instantly. Visually I selected the common pattern `1 2 ... 7 8 9 ... 100 101` where the count inside the dot ellipsis changes as the pages increase or decrease.
 
 
-####Known Issues
+####Future Todo / Wishlist
 --------------
-1. None right now but I'm sure they are out there!
-
-<br/>
-
+1. Reduce the overall code size by combining next previous functions
+2. Clean up documentation
 
 
 ####License
 --------------  
 MIT Licensed - with the exception that you star this repo :)
 
-<br/>
+
