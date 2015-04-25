@@ -18,7 +18,8 @@ I have often found myself paging across millions of log rows or massive non-norm
 <div paging
   page="7" 
   page-size="100" 
-  total="1000">
+  total="1000"
+  paging-action="foo('Paging Clicked', page)">
 </div> 
 ```
 ######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/index.html) for complete code samples
