@@ -8,7 +8,7 @@ An Angular directive to aid paging large datasets requiring minimum paging infor
 
 ####Background
 --------------
-I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column name.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
+I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column value.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
 <br/>
 <br/>
 
