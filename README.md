@@ -12,6 +12,18 @@ I have often found myself paging across millions of log rows or massive non-norm
 <br/>
 <br/>
 
+####Code Sample
+-------------
+```html
+<div paging
+  page="7" 
+  page-size="100" 
+  total="1000">
+</div> 
+```
+######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/index.html) for complete code samples
+<br/>
+
 ####Programmatic Goals
 -------------
 I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some directive attributes for handling CSS classes and items like previous and next arrows. I settled on the following three required directive inputs:
