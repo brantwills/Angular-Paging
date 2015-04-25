@@ -1,8 +1,8 @@
 ###Angular Paging
---------------
-An Angular directive to aid paging large datasets requiring minimum paging information.
-
+<p>
 <b>Demo Available At: http://brantwills.github.io/Angular-Paging/</b>
+</p>
+An Angular directive to aid paging large datasets requiring minimum paging information.
 <br/>
 <br/>
 
