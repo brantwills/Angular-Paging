@@ -59,6 +59,10 @@ I wanted to create an angular directive I could easily reuse and tie back into a
 I set out to develop a paging display which would allow the user to quickly move to the next or previous page while still allowing them to move to the first or last page instantly. Visually I selected the common pattern `1 2 ... 7 8 9 ... 100 101` where the count inside the dot ellipsis changes as the pages increase or decrease.
 <br/>
 <br/>
+![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/basicSample.png "Basic Sample")
+![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/advancedSample.png "Advanced Sample")
+<br/>
+<br/>
 
 ####Future Todo / Wishlist
 --------------
