@@ -61,7 +61,7 @@ I set out to develop a paging display which would allow the user to quickly move
 <br/>
 ![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/basicSample.png "Basic Sample")
 ![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/advancedSample.png "Advanced Sample")
-<br/>
+######See [Full Demo](http://brantwills.github.io/Angular-Paging/) for complete samples and documentation
 <br/>
 
 ####Future Todo / Wishlist
