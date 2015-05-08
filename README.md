@@ -14,7 +14,7 @@ I have often found myself paging across millions of log rows or massive non-norm
 
 ####Code Samples
 -------------
-![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/basicSample.png "Basic Sample")
+[![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/basicSample.png "Basic Sample")](http://brantwills.github.io/Angular-Paging/)
 ```html
 <!-- Simple Example -->
 <div paging
@@ -24,7 +24,7 @@ I have often found myself paging across millions of log rows or massive non-norm
   paging-action="foo('bar', page)">
 </div> 
 ```
-![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/advancedSample.png "Advanced Sample")
+[![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/advancedSample.png "Basic Sample")](http://brantwills.github.io/Angular-Paging/)
 ```html
 <!-- Advanced Example -->
 <paging
