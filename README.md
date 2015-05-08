@@ -18,8 +18,8 @@ I have often found myself paging across millions of log rows or massive non-norm
 ```html
 <!-- Simple Example -->
 <div paging
-  page="7" 
-  page-size="100" 
+  page="35" 
+  page-size="10" 
   total="1000"
   paging-action="foo('bar', page)">
 </div> 
