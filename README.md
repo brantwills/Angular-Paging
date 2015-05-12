@@ -66,6 +66,7 @@ I set out to develop a paging display which would allow the user to quickly move
 --------------
 1. Reduce the overall code size by combining next previous functions
 2. Clean up documentation
+3. Create Karma unit tests
 <br/>
 <br/>
 
