@@ -17,9 +17,9 @@ angular.module('brantwills.paging', []).directive('paging', function () {
 
         scope.List = [];
         scope.Hide = false;
+        scope.dots = scope.dots || '...';
         scope.page = parseInt(scope.page) || 1;
         scope.total = parseInt(scope.total) || 0;
-        scope.dots = scope.dots || '...';
         scope.ulClass = scope.ulClass || 'pagination';
         scope.adjacent = parseInt(scope.adjacent) || 2;
         scope.activeClass = scope.activeClass || 'active';
