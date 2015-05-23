@@ -14,7 +14,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
 
 
     /**
-    * Assign null-able scope values from settings
+    * Assign default scope values from settings
     * Feel free to tweak / fork these for your application
     *
     * @param {Object} scope - The local directive scope object
@@ -35,7 +35,6 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
         scope.showPrevNext = scope.$eval(attrs.showPrevNext);
-
     }
 
 
@@ -280,7 +279,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
     function build(scope, attrs) {
 
         // Block divide by 0 and empty page size
-        if (!scope.pageSize || scope.pageSize < 0) { return; }
+        if (!scope.pageSize || scope.pageSize <= 0) { scope.pageSize = 1; }
 
         // Determine the last page or total page count
         var pageCount = Math.ceil(scope.total / scope.pageSize);
@@ -294,19 +293,16 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         // Create the beginning and end page values 
         var start, finish;
 
-        // Assign the minimum pages required to activate dot break logic
-        var minPagesRequired = 10;
-
-        // Calculate the full adjacency value
-        var fullAdjacentSize = scope.adjacent * 2;
+        // Calculate the full adjacency value 
+        var fullAdjacentSize = (scope.adjacent * 2) + 2;
 
 
         // Add the Next and Previous buttons to our list
         addPrev(scope, pageCount);
 
-        // If the page count is less than or equal to the minimum required amount
+        // If the page count is less than the full adjacnet size
         // Then we simply display all the pages, Otherwise we calculate the proper paging display
-        if (pageCount <= minPagesRequired) {
+        if (pageCount <= (fullAdjacentSize + 2)) {
 
             start = 1;
             addRange(start, pageCount, scope);
@@ -315,18 +311,17 @@ angular.module('brantwills.paging', []).directive('paging', function () {
 
             // Determine if we are showing the beginning of the paging list 
             // We know it is the beginning if the page - adjacent is <= 2
-            // 2 is hard coded since we always wish to display page 1 and 2 before the dots
             if (scope.page - scope.adjacent <= 2) {
 
                 start = 1;
-                finish = 2 + (fullAdjacentSize + 1);
+                finish = 1 + fullAdjacentSize;
 
                 addRange(start, finish, scope);
                 addLast(pageCount, scope, finish);
             } 
 
             // Determine if we are showing the middle of the paging list
-            // We know already we are either in the middle or at the end since the beginning is ruled out above
+            // We know we are either in the middle or at the end since the beginning is ruled out above
             // So we simply check if we are not at the end 
             // Again 2 is hard coded as we always display two pages after the dots
             else if (scope.page < pageCount - (scope.adjacent + 2)) {
@@ -343,18 +338,16 @@ angular.module('brantwills.paging', []).directive('paging', function () {
             // We know this since we have already ruled out the beginning and middle above
             else {
 
-                start = pageCount - (2 + fullAdjacentSize);
+                start = pageCount - fullAdjacentSize;
                 finish = pageCount;
 
                 addFirst(scope, start);
                 addRange(start, finish, scope);
-
             }
         }
 
         // Add the next and last buttons to our paging list
         addNext(scope, pageCount);
-
     }
 
 
