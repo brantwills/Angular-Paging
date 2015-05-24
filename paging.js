@@ -12,14 +12,21 @@
  */
 angular.module('brantwills.paging', []).directive('paging', function () {
 
-    // Assign null-able scope values from settings
+
+    /**
+    * Assign default scope values from settings
+    * Feel free to tweak / fork these for your application
+    *
+    * @param {Object} scope - The local directive scope object
+    * @param {Object} attrs - The local directive attribute object
+    */ 
     function setScopeValues(scope, attrs) {
 
         scope.List = [];
         scope.Hide = false;
+        scope.dots = scope.dots || '...';
         scope.page = parseInt(scope.page) || 1;
         scope.total = parseInt(scope.total) || 0;
-        scope.dots = scope.dots || '...';
         scope.ulClass = scope.ulClass || 'pagination';
         scope.adjacent = parseInt(scope.adjacent) || 2;
         scope.activeClass = scope.activeClass || 'active';
@@ -28,13 +35,16 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
         scope.showPrevNext = scope.$eval(attrs.showPrevNext);
-
     }
 
 
-    // Validate and clean up any scope values
-    // This happens after we have set the
-    // scope values
+    /**
+    * Validate and clean up any scope values
+    * This happens after we have set the scope values
+    *
+    * @param {Object} scope - The local directive scope object
+    * @param {int} pageCount - The last page number or total page count 
+    */
     function validateScopeValues(scope, pageCount) {
 
         // Block where the page is larger than the pageCount
@@ -60,13 +70,16 @@ angular.module('brantwills.paging', []).directive('paging', function () {
     }
 
 
-    // Internal Paging Click Action
+    /**
+    * Assign the method action to take when a page is clicked
+    *
+    * @param {Object} scope - The local directive scope object
+    * @param {int} page - The current page of interest
+    */
     function internalAction(scope, page) {
 
         // Block clicks we try to load the active page
-        if (scope.page == page) {
-            return;
-        }
+        if (scope.page == page) { return; }
 
         // Update the page in scope 
         scope.page = page;
@@ -85,89 +98,82 @@ angular.module('brantwills.paging', []).directive('paging', function () {
     }
 
 
-    // Adds the first, previous text if desired   
-    function addPrev(scope, pageCount) {
-
+    /**
+    * Add the first, previous, next, and last buttons if desired   
+    * The logic is defined by the mode of interest
+    * This method will simply return if the scope.showPrevNext is false
+    * This method will simply return if there are no pages to display
+    *
+    * @param {Object} scope - The local directive scope object
+    * @param {int} pageCount - The last page number or total page count
+    * @param {string} mode - The mode of interest either prev or last 
+    */
+    function addPrevNext(scope, pageCount, mode){
+        
         // Ignore if we are not showing
         // or there are no pages to display
-        if (!scope.showPrevNext || pageCount < 1) {
-            return;
+        if (!scope.showPrevNext || pageCount < 1) { return; }
+
+        // Local variables to help determine logic
+        var disabled, alpha, beta;
+
+        // Determine logic based on the mode of interest
+        // Calculate the previous / next page and if the click actions are allowed
+        if(mode === 'prev') {
+            
+            disabled = scope.page - 1 <= 0;
+            var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
+            
+            alpha = { value : "<<", title: 'First Page', page: 1 };
+            beta = { value: "<", title: 'Previous Page', page: prevPage };
+             
+        } else {
+            
+            disabled = scope.page + 1 > pageCount;
+            var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
+            
+            alpha = { value : ">", title: 'Next Page', page: nextPage };
+            beta = { value: ">>", title: 'Last Page', page: pageCount };
         }
 
-        // Calculate the previous page and if the click actions are allowed
-        // blocking and disabling where page <= 0
-        var disabled = scope.page - 1 <= 0;
-        var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
-
-        var first = {
-            value: '<<',
-            title: 'First Page',
+        // Build the first list item
+        var alphaItem = {
+            value: alpha.value,
+            title: alpha.title,
             liClass: disabled ? scope.disabledClass : '',
             action: function () {
                 if(!disabled) {
-                    internalAction(scope, 1);
+                    internalAction(scope, alpha.page);
                 }
             }
         };
 
-        var prev = {
-            value: '<',
-            title: 'Previous Page',
+        // Build the second list item
+        var betaItem = {
+            value: beta.value,
+            title: beta.title,
             liClass: disabled ? scope.disabledClass : '',
             action: function () {
                 if(!disabled) {
-                    internalAction(scope, prevPage);
+                    internalAction(scope, beta.page);
                 }
             }
         };
 
-        scope.List.push(first);
-        scope.List.push(prev);
+        // Add the items
+        scope.List.push(alphaItem);
+        scope.List.push(betaItem);
     }
 
 
-    // Adds the next, last text if desired
-    function addNext(scope, pageCount) {
-
-        // Ignore if we are not showing 
-        // or there are no pages to display
-        if (!scope.showPrevNext || pageCount < 1) {
-            return;
-        }
-
-        // Calculate the next page number and if the click actions are allowed
-        // blocking where page is >= pageCount
-        var disabled = scope.page + 1 > pageCount;
-        var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
-
-        var last = {
-            value: '>>',
-            title: 'Last Page',
-            liClass: disabled ? scope.disabledClass : '',
-            action: function () {
-                if(!disabled){
-                    internalAction(scope, pageCount);
-                }
-            }
-        };
-
-        var next = {
-            value: '>',
-            title: 'Next Page',
-            liClass: disabled ? scope.disabledClass : '',
-            action: function () {
-                if(!disabled){
-                    internalAction(scope, nextPage);
-                }
-            }
-        };
-
-        scope.List.push(next);
-        scope.List.push(last);
-    }
-
-
-    // Add Range of Numbers
+    /**
+    * Adds a range of numbers to our list 
+    * The range is dependent on the start and finish parameters
+    *
+    * @param {int} start - The start of the range to add to the paging list
+    * @param {int} finish - The end of the range to add to the paging list 
+    * @param {Object} scope - The local directive scope object
+    */
     function addRange(start, finish, scope) {
 
         var i = 0;
@@ -187,7 +193,12 @@ angular.module('brantwills.paging', []).directive('paging', function () {
     }
 
 
-    // Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
+    /**
+    * Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
+    * This is my favorite function not going to lie
+    *
+    * @param {Object} scope - The local directive scope object
+    */
     function addDots(scope) {
         scope.List.push({
             value: scope.dots
@@ -195,8 +206,15 @@ angular.module('brantwills.paging', []).directive('paging', function () {
     }
 
 
-    // Add First Pages
+    /**
+    * Add the first or beginning items in our paging list  
+    * We leverage the 'next' parameter to determine if the dots are required
+    *
+    * @param {Object} scope - The local directive scope object
+    * @param {int} next - the next page number in the paging sequence
+    */
     function addFirst(scope, next) {
+        
         addRange(1, 2, scope);
 
         // We ignore dots if the next value is 3
@@ -206,7 +224,14 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         }
     }
 
-
+    /**
+    * Add the last or end items in our paging list  
+    * We leverage the 'prev' parameter to determine if the dots are required
+    *
+    * @param {int} pageCount - The last page number or total page count 
+    * @param {Object} scope - The local directive scope object
+    * @param {int} prev - the previous page number in the paging sequence
+    */
     // Add Last Pages
     function addLast(pageCount, scope, prev) {
 
@@ -221,45 +246,62 @@ angular.module('brantwills.paging', []).directive('paging', function () {
 
 
 
-    // Main build function
+    /**
+    * The main build function used to determine the paging logic
+    * Feel free to tweak / fork values for your application
+    *
+    * @param {Object} scope - The local directive scope object
+    * @param {Object} attrs - The local directive attribute object
+    */ 
     function build(scope, attrs) {
 
         // Block divide by 0 and empty page size
-        if (!scope.pageSize || scope.pageSize < 0) {
-            return;
-        }
+        if (!scope.pageSize || scope.pageSize <= 0) { scope.pageSize = 1; }
 
-        // Assign scope values
+        // Determine the last page or total page count
+        var pageCount = Math.ceil(scope.total / scope.pageSize);
+
+        // Set the default scope values where needed
         setScopeValues(scope, attrs);
 
-        // local variables
-        var start,
-            size = scope.adjacent * 2,
-            pageCount = Math.ceil(scope.total / scope.pageSize);
-
-        // Validate Scope
+        // Validate the scope values to protect against strange states
         validateScopeValues(scope, pageCount);
 
-        // Calculate Counts and display
-        addPrev(scope, pageCount);
-        if (pageCount < (5 + size)) {
+        // Create the beginning and end page values 
+        var start, finish;
+
+        // Calculate the full adjacency value 
+        var fullAdjacentSize = (scope.adjacent * 2) + 2;
+
+
+        // Add the Next and Previous buttons to our list
+        addPrevNext(scope, pageCount, 'prev');
+
+        // If the page count is less than the full adjacnet size
+        // Then we simply display all the pages, Otherwise we calculate the proper paging display
+        if (pageCount <= (fullAdjacentSize + 2)) {
 
             start = 1;
             addRange(start, pageCount, scope);
 
         } else {
 
-            var finish;
-
-            if (scope.page <= (1 + size)) {
+            // Determine if we are showing the beginning of the paging list 
+            // We know it is the beginning if the page - adjacent is <= 2
+            if (scope.page - scope.adjacent <= 2) {
 
                 start = 1;
-                finish = 2 + size + (scope.adjacent - 1);
+                finish = 1 + fullAdjacentSize;
 
                 addRange(start, finish, scope);
                 addLast(pageCount, scope, finish);
+            } 
 
-            } else if (pageCount - size > scope.page && scope.page > size) {
+            // Determine if we are showing the middle of the paging list
+            // We know we are either in the middle or at the end since the beginning is ruled out above
+            // So we simply check if we are not at the end 
+            // Again 2 is hard coded as we always display two pages after the dots
+            else if (scope.page < pageCount - (scope.adjacent + 2)) {
 
                 start = scope.page - scope.adjacent;
                 finish = scope.page + scope.adjacent;
@@ -267,25 +309,35 @@ angular.module('brantwills.paging', []).directive('paging', function () {
                 addFirst(scope, start);
                 addRange(start, finish, scope);
                 addLast(pageCount, scope, finish);
+            } 
 
-            } else {
+            // If nothing else we conclude we are at the end of the paging list
+            // We know this since we have already ruled out the beginning and middle above
+            else {
 
-                start = pageCount - (1 + size + (scope.adjacent - 1));
+                start = pageCount - fullAdjacentSize;
                 finish = pageCount;
 
                 addFirst(scope, start);
                 addRange(start, finish, scope);
-
             }
         }
-        addNext(scope, pageCount);
 
+        // Add the next and last buttons to our paging list
+        addPrevNext(scope, pageCount, 'next');
     }
 
 
-    // The actual angular directive return
+    /**
+    * The angular return value required for the directive
+    * Feel free to tweak / fork values for your application
+    */ 
     return {
+
+        // Restrict to elements and attributes
         restrict: 'EA',
+
+        // Assign the angular scope attribute formatting
         scope: {
             page: '=',
             pageSize: '=',
@@ -300,15 +352,20 @@ angular.module('brantwills.paging', []).directive('paging', function () {
             showPrevNext: '@',
             pagingAction: '&'
         },
+
+        // Assign the angular directive template HTML
         template: 
             '<ul ng-hide="Hide" ng-class="ulClass"> ' +
                 '<li ' +
-                'title="{{Item.title}}" ' +
-                'ng-class="Item.liClass" ' +
-                'ng-click="Item.action()" ' +
-                'ng-repeat="Item in List"> ' +
-                '<span ng-bind="Item.value"></span> ' +
+                    'title="{{Item.title}}" ' +
+                    'ng-class="Item.liClass" ' +
+                    'ng-click="Item.action()" ' +
+                    'ng-repeat="Item in List"> ' +
+                        '<span ng-bind="Item.value"></span> ' +
+                '</li>' +
             '</ul>',
+
+        // Link the directive to enable our scope watch values
         link: function (scope, element, attrs) {
             
             // Hook in our watched items 
