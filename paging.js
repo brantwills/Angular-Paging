@@ -97,96 +97,74 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         }
     }
 
-
     /**
-    * Add the first and previous button text if desired   
+    * Add the first, previous, next, and last buttons if desired   
+    * The logic is defined by the mode of interest
     * This method will simply return if the scope.showPrevNext is false
     * This method will simply return if there are no pages to display
     *
     * @param {Object} scope - The local directive scope object
-    * @param {int} pageCount - The last page number or total page count 
+    * @param {int} pageCount - The last page number or total page count
+    * @param {string} mode - The mode of interest either prev or last 
     */
-    function addPrev(scope, pageCount) {
-
+    function addPrevNext(scope, pageCount, mode){
+        
         // Ignore if we are not showing
         // or there are no pages to display
         if (!scope.showPrevNext || pageCount < 1) { return; }
 
-        // Calculate the previous page and if the click actions are allowed
-        // blocking and disabling where page <= 0
-        var disabled = scope.page - 1 <= 0;
-        var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
+        // Local variables to help determine logic
+        var disabled, alpha, beta;
 
-        var first = {
-            value: '<<',
-            title: 'First Page',
+        // Determine logic based on the mode of interest
+        if(mode === 'prev') {
+            
+            // Calculate the previous page and if the click actions are allowed
+            // blocking and disabling where page <= 0
+            disabled = scope.page - 1 <= 0;
+            var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
+            
+            alpha = {value :  "<<", title: 'First Page', page: 1 };
+            beta = {value: "<", title: 'Previous Page', page: prevPage };
+             
+        } else {
+            
+            // Calculate the next page number and if the click actions are allowed
+            // blocking where page is >= pageCount
+            disabled = scope.page + 1 > pageCount;
+            var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
+            
+            alpha = {value :  ">", title: 'Next Page', page: nextPage };
+            beta = {value: ">>", title: 'Last Page', page: pageCount };
+        }
+
+        // Build the first list item
+        var alphaItem = {
+            value: alpha.value,
+            title: alpha.title,
             liClass: disabled ? scope.disabledClass : '',
             action: function () {
                 if(!disabled) {
-                    internalAction(scope, 1);
+                    internalAction(scope, alpha.page);
                 }
             }
         };
 
-        var prev = {
-            value: '<',
-            title: 'Previous Page',
+        // Build the second list item
+        var betaItem = {
+            value: beta.value,
+            title: beta.title,
             liClass: disabled ? scope.disabledClass : '',
             action: function () {
                 if(!disabled) {
-                    internalAction(scope, prevPage);
+                    internalAction(scope, beta.page);
                 }
             }
         };
 
-        scope.List.push(first);
-        scope.List.push(prev);
-    }
-
-
-    /**
-    * Add the next and last button text if desired
-    * This method will simply return if the scope.showPrevNext is false
-    * This method will simply return if there are no pages to display
-    *
-    * @param {Object} scope - The local directive scope object
-    * @param {int} pageCount - The last page number or total page count 
-    */
-    function addNext(scope, pageCount) {
-
-        // Ignore if we are not showing 
-        // or there are no pages to display
-        if (!scope.showPrevNext || pageCount < 1) { return; }
-
-        // Calculate the next page number and if the click actions are allowed
-        // blocking where page is >= pageCount
-        var disabled = scope.page + 1 > pageCount;
-        var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
-
-        var last = {
-            value: '>>',
-            title: 'Last Page',
-            liClass: disabled ? scope.disabledClass : '',
-            action: function () {
-                if(!disabled){
-                    internalAction(scope, pageCount);
-                }
-            }
-        };
-
-        var next = {
-            value: '>',
-            title: 'Next Page',
-            liClass: disabled ? scope.disabledClass : '',
-            action: function () {
-                if(!disabled){
-                    internalAction(scope, nextPage);
-                }
-            }
-        };
-
-        scope.List.push(next);
-        scope.List.push(last);
+        // Add the items
+        scope.List.push(alphaItem);
+        scope.List.push(betaItem);
     }
 
 
@@ -298,7 +276,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
 
 
         // Add the Next and Previous buttons to our list
-        addPrev(scope, pageCount);
+        addPrevNext(scope, pageCount, 'prev');
 
         // If the page count is less than the full adjacnet size
         // Then we simply display all the pages, Otherwise we calculate the proper paging display
@@ -347,7 +325,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         }
 
         // Add the next and last buttons to our paging list
-        addNext(scope, pageCount);
+        addPrevNext(scope, pageCount, 'next');
     }
 
 
