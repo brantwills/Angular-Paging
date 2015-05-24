@@ -97,6 +97,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         }
     }
 
+
     /**
     * Add the first, previous, next, and last buttons if desired   
     * The logic is defined by the mode of interest
@@ -117,25 +118,22 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         var disabled, alpha, beta;
 
         // Determine logic based on the mode of interest
+        // Calculate the previous / next page and if the click actions are allowed
         if(mode === 'prev') {
             
-            // Calculate the previous page and if the click actions are allowed
-            // blocking and disabling where page <= 0
             disabled = scope.page - 1 <= 0;
             var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
             
-            alpha = {value :  "<<", title: 'First Page', page: 1 };
-            beta = {value: "<", title: 'Previous Page', page: prevPage };
+            alpha = { value : "<<", title: 'First Page', page: 1 };
+            beta = { value: "<", title: 'Previous Page', page: prevPage };
              
         } else {
             
-            // Calculate the next page number and if the click actions are allowed
-            // blocking where page is >= pageCount
             disabled = scope.page + 1 > pageCount;
             var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
             
-            alpha = {value :  ">", title: 'Next Page', page: nextPage };
-            beta = {value: ">>", title: 'Last Page', page: pageCount };
+            alpha = { value : ">", title: 'Next Page', page: nextPage };
+            beta = { value: ">>", title: 'Last Page', page: pageCount };
         }
 
         // Build the first list item
@@ -216,6 +214,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
     * @param {int} next - the next page number in the paging sequence
     */
     function addFirst(scope, next) {
+        
         addRange(1, 2, scope);
 
         // We ignore dots if the next value is 3
