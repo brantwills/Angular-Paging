@@ -295,6 +295,98 @@ describe('angular-paging', function() {
 
         });
 
+        it('should never display a number twice or a number out of range for the beginning', function(){
+            
+            // Baseline our scope
+            scope.currentPage = 1;
+            scope.pageSize = 1;
+            scope.total = 1000;
+            scope.adjacent = 2;
+            recompile();  
+              
+            for(var size = 1; size <= 1000; size++){
+              
+                var sequence = [];  
+                scope.pageSize = size;
+                var pageCount = Math.ceil(scope.total / scope.pageSize);
+                scope.$digest();    
+                 
+                angular.forEach(paging.find('span'), function(span){
+                    var _span = angular.element(span);
+                    if(!isNaN(_span.text())){
+                        var page = parseInt(_span.text()); 
+                        expect(page > 0).toBeTruthy();
+                        expect(page <= pageCount).toBeTruthy();
+                    }
+                    expect(sequence).not.toContain(_span.text());
+                    sequence.push(_span.text());
+                });   
+            }
+        });
+
+
+        it('should never display a number twice or a number out of range in the middle', function(){
+            
+            // Baseline our scope
+            scope.currentPage = 500;
+            scope.pageSize = 1;
+            scope.total = 1000;
+            scope.adjacent = 2;
+            recompile();  
+              
+            for(var size = 1; size <= 1000; size++){
+              
+                var sequence = [];
+                scope.pageSize = size;
+                scope.currentPage = Math.ceil((scope.total / scope.pageSize) / 2);
+                var pageCount = Math.ceil(scope.total / scope.pageSize);
+                scope.$digest();    
+                
+                angular.forEach(paging.find('span'), function(span){
+                    var _span = angular.element(span);                    
+                    expect(sequence).not.toContain(_span.text());
+                    
+                    if(!isNaN(_span.text())){
+                        var page = parseInt(_span.text());
+                        expect(page > 0).toBeTruthy();
+                        expect(page <= pageCount).toBeTruthy();
+                        sequence.push(_span.text());  
+                    }
+                });   
+            }
+        });
+        
+
+        it('should never display a number twice or a number out of range at the end', function(){
+            
+            // Baseline our scope
+            scope.currentPage = 1000;
+            scope.pageSize = 1;
+            scope.total = 1000;
+            scope.adjacent = 2;
+            recompile();  
+              
+            for(var size = 1; size <= 1000; size++){
+              
+                var sequence = [];  
+                scope.pageSize = size;
+                scope.currentPage = 1000;
+                var pageCount = Math.ceil(scope.total / scope.pageSize);
+                scope.$digest();    
+                
+                angular.forEach(paging.find('span'), function(span){
+                    var _span = angular.element(span);
+                    if(!isNaN(_span.text())){
+                        var page = parseInt(_span.text());
+                        expect(page > 0).toBeTruthy();
+                        expect(page <= pageCount).toBeTruthy();
+                    }
+                    expect(sequence).not.toContain(_span.text());
+                    sequence.push(_span.text());    
+                });   
+            }
+        });
+
 
         it('should display next and previous arrows correctly', function(){
 
@@ -463,11 +555,6 @@ describe('angular-paging', function() {
             expect(scope.currentPage).toBe(page + 1);
 
         });
-
-
-
-
-
 
     });
 
