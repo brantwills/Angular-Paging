@@ -64,9 +64,8 @@ I set out to develop a paging display which would allow the user to quickly move
 
 ####Future Todo / Wishlist
 --------------
-1. Reduce the overall code size by combining next previous functions
-2. Clean up documentation
-3. Expand Karma tests
+1. Clean up documentation
+2. Improve and Expand Karma tests
 <br/>
 <br/>
 
