@@ -16,8 +16,8 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            "http://code.angularjs.org/1.3.15/angular.js",
-            "http://code.angularjs.org/1.3.15/angular-mocks.js",
+            "http://code.angularjs.org/1.4.3/angular.js",
+            "http://code.angularjs.org/1.4.3/angular-mocks.js",
             "paging.js",
             "test/paging.spec.js"
         ],
