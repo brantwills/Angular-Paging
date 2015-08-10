@@ -46,6 +46,16 @@ I have often found myself paging across millions of log rows or massive non-norm
 ######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/index.html) for complete code samples and documentation
 <br/>
 
+####Tests
+--------------
+If it was not done yet you should install [Karma](http://karma-runner.github.io/0.13/index.html) with all required plugins ([jasmine-core](https://www.npmjs.com/package/jasmine-core), [karma-chrome-launcher](https://www.npmjs.com/package/karma-chrome-launcher), [karma-jasmine](https://www.npmjs.com/package/karma-jasmine), [karma-jasmine-html-reporter](https://www.npmjs.com/package/karma-jasmine-html-reporter)) from the root project directory, execute `npm install`.
+
+Then, to start tests, you just need to execute `npm test`.
+
+NB: Chrome will be use as default web browser for tests.
+<br/>
+<br/>
+
 ####Programmatic Goals
 -------------
 I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some optional directive attributes for handling CSS classes and hiding previous and next arrows. The following three attributes are required directive inputs:
