@@ -12,13 +12,15 @@ I have often found myself paging across millions of log rows or massive non-norm
 <br/>
 <br/>
 
-####Download
+####Installation and Download
+--------------
+Using Bower:
+<br/>
+**`bower install angular-paging#1.0.3`**
 
- - Bower
-	 - `bower install angular-paging#1.0.3`
- - CDN
-	 - for test/debug : https://rawgit.com/brantwills/Angular-Paging/master/paging.js
-	 - for production : https://rawgit.com/brantwills/Angular-Paging/v1.0.3/paging.js
+Using [Rawgit CDN](https://rawgit.com/):
+- For test/debug : https://rawgit.com/brantwills/Angular-Paging/master/paging.js
+- For production : https://rawgit.com/brantwills/Angular-Paging/v1.0.3/paging.js
 <br/>
 <br/>
 
