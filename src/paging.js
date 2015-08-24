@@ -12,7 +12,64 @@
  */
 angular.module('brantwills.paging', []).directive('paging', function () {
 
+    /**
+    * The angular return value required for the directive
+    * Feel free to tweak / fork values for your application
+    */ 
+    return {
 
+        // Restrict to elements and attributes
+        restrict: 'EA',
+        
+        // Assign the angular link function
+        link: fieldLink,
+        
+        // Assign the angular scope attribute formatting
+        scope: {
+            page: '=',
+            pageSize: '=',
+            total: '=',
+            dots: '@',
+            hideIfEmpty: '@',
+            ulClass: '@',
+            activeClass: '@',
+            disabledClass: '@',
+            adjacent: '@',
+            scrollTop: '@',
+            showPrevNext: '@',
+            pagingAction: '&'
+        },
+
+        // Assign the angular directive template HTML
+        template: 
+            '<ul ng-hide="Hide" ng-class="ulClass"> ' +
+                '<li ' +
+                    'title="{{Item.title}}" ' +
+                    'ng-class="Item.liClass" ' +
+                    'ng-click="Item.action()" ' +
+                    'ng-repeat="Item in List"> ' +
+                        '<span ng-bind="Item.value"></span> ' +
+                '</li>' +
+            '</ul>'
+    };
+    
+    
+    /**
+    * Link the directive to enable our scope watch values
+    * 
+    * @param {object} scope - Angular link scope
+    * @param {object} el - Angular link element
+    * @param {object} attrs - Angular link attribute 
+    */
+    function fieldLink (scope, el, attrs) {
+            
+        // Hook in our watched items 
+        scope.$watchCollection('[page,pageSize,total]', function () {
+            build(scope, attrs);
+        });
+    }
+    
+    
     /**
     * Assign default scope values from settings
     * Feel free to tweak / fork these for your application
@@ -117,6 +174,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
         // Local variables to help determine logic
         var disabled, alpha, beta;
 
+
         // Determine logic based on the mode of interest
         // Calculate the previous / next page and if the click actions are allowed
         if(mode === 'prev') {
@@ -136,33 +194,23 @@ angular.module('brantwills.paging', []).directive('paging', function () {
             beta = { value: ">>", title: 'Last Page', page: pageCount };
         }
 
-        // Build the first list item
-        var alphaItem = {
-            value: alpha.value,
-            title: alpha.title,
-            liClass: disabled ? scope.disabledClass : '',
-            action: function () {
-                if(!disabled) {
-                    internalAction(scope, alpha.page);
+        // Create the Add Item Function
+        var addItem = function(item, disabled){           
+            scope.List.push({
+                value: item.value,
+                title: item.title,
+                liClass: disabled ? scope.disabledClass : '',
+                action: function(){
+                    if(!disabled) {
+                        internalAction(scope, item.page);
+                    }
                 }
-            }
+            });
         };
 
-        // Build the second list item
-        var betaItem = {
-            value: beta.value,
-            title: beta.title,
-            liClass: disabled ? scope.disabledClass : '',
-            action: function () {
-                if(!disabled) {
-                    internalAction(scope, beta.page);
-                }
-            }
-        };
-
-        // Add the items
-        scope.List.push(alphaItem);
-        scope.List.push(betaItem);
+        // Add our items
+        addItem(alpha, disabled);
+        addItem(beta, disabled);
     }
 
 
@@ -223,6 +271,7 @@ angular.module('brantwills.paging', []).directive('paging', function () {
             addDots(scope);
         }
     }
+
 
     /**
     * Add the last or end items in our paging list  
@@ -328,50 +377,4 @@ angular.module('brantwills.paging', []).directive('paging', function () {
     }
 
 
-    /**
-    * The angular return value required for the directive
-    * Feel free to tweak / fork values for your application
-    */ 
-    return {
-
-        // Restrict to elements and attributes
-        restrict: 'EA',
-
-        // Assign the angular scope attribute formatting
-        scope: {
-            page: '=',
-            pageSize: '=',
-            total: '=',
-            dots: '@',
-            hideIfEmpty: '@',
-            ulClass: '@',
-            activeClass: '@',
-            disabledClass: '@',
-            adjacent: '@',
-            scrollTop: '@',
-            showPrevNext: '@',
-            pagingAction: '&'
-        },
-
-        // Assign the angular directive template HTML
-        template: 
-            '<ul ng-hide="Hide" ng-class="ulClass"> ' +
-                '<li ' +
-                    'title="{{Item.title}}" ' +
-                    'ng-class="Item.liClass" ' +
-                    'ng-click="Item.action()" ' +
-                    'ng-repeat="Item in List"> ' +
-                        '<span ng-bind="Item.value"></span> ' +
-                '</li>' +
-            '</ul>',
-
-        // Link the directive to enable our scope watch values
-        link: function (scope, element, attrs) {
-            
-            // Hook in our watched items 
-            scope.$watchCollection('[page,pageSize,total]', function () {
-                build(scope, attrs);
-            });
-        }
-    };
 });
