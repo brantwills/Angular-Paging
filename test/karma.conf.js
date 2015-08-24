@@ -18,7 +18,7 @@ module.exports = function(config) {
         files: [
             "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js",
             "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-mocks.js",
-            "paging.js",
+            "src/paging.js",
             "test/paging.spec.js"
         ],
 
