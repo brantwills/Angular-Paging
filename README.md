@@ -19,8 +19,8 @@ Using Bower:
 **`bower install angular-paging#1.0.3`**
 
 Using [Rawgit CDN](https://rawgit.com/):
-- For test/debug : https://rawgit.com/brantwills/Angular-Paging/master/paging.js
-- For production : https://rawgit.com/brantwills/Angular-Paging/v1.0.3/paging.js
+- For test/debug : https://rawgit.com/brantwills/Angular-Paging/master/dist/paging.min.js
+- For production : https://rawgit.com/brantwills/Angular-Paging/v1.0.3/dist/paging.min.js
 <br/>
 <br/>
 
