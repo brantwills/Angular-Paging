@@ -300,11 +300,11 @@ describe('angular-paging', function() {
             // Baseline our scope
             scope.currentPage = 1;
             scope.pageSize = 1;
-            scope.total = 1000;
+            scope.total = 100;
             scope.adjacent = 2;
             recompile();  
               
-            for(var size = 1; size <= 1000; size++){
+            for(var size = 1; size <= 100; size++){
               
                 var sequence = [];  
                 scope.pageSize = size;
@@ -328,13 +328,13 @@ describe('angular-paging', function() {
         it('should never display a number twice or a number out of range in the middle', function(){
             
             // Baseline our scope
-            scope.currentPage = 500;
+            scope.currentPage = 50;
             scope.pageSize = 1;
-            scope.total = 1000;
+            scope.total = 100;
             scope.adjacent = 2;
             recompile();  
               
-            for(var size = 1; size <= 1000; size++){
+            for(var size = 1; size <= 100; size++){
               
                 var sequence = [];
                 scope.pageSize = size;
@@ -360,9 +360,9 @@ describe('angular-paging', function() {
         it('should never display a number twice or a number out of range at the end', function(){
             
             // Baseline our scope
-            scope.currentPage = 1000;
+            scope.currentPage = 100;
             scope.pageSize = 1;
-            scope.total = 1000;
+            scope.total = 100;
             scope.adjacent = 2;
             recompile();  
               
@@ -370,7 +370,7 @@ describe('angular-paging', function() {
               
                 var sequence = [];  
                 scope.pageSize = size;
-                scope.currentPage = 1000;
+                scope.currentPage = 100;
                 var pageCount = Math.ceil(scope.total / scope.pageSize);
                 scope.$digest();    
                 
