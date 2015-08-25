@@ -14,7 +14,6 @@ An Angular directive to aid paging large datasets requiring minimum paging infor
 ####Background
 I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column value.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
 
-<br/>
 --------------
 <br/>
 
@@ -50,7 +49,6 @@ I have often found myself paging across millions of log rows or massive non-norm
 ```
 ######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/index.html) for complete code samples and documentation
 
-<br/>
 --------------
 <br/>
 
@@ -61,7 +59,6 @@ I wanted to create an angular directive I could easily reuse and tie back into a
 2. `pageSize` How many items in the list to display on a page
 3. `total` What is the total count of items in my list
 
-<br/>
 --------------
 <br/>
 
