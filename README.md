@@ -7,14 +7,14 @@
 <b>Demo Available At: http://brantwills.github.io/Angular-Paging/</b>
 </p>
 An Angular directive to aid paging large datasets requiring minimum paging information.
-<br/>
-<br/>
+
+
 
 ####Background
 --------------
 I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column value.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
-<br/>
-<br/>
+
+
 
 ####Code Samples
 -------------
@@ -48,7 +48,8 @@ I have often found myself paging across millions of log rows or massive non-norm
 </paging>   
 ```
 ######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/index.html) for complete code samples and documentation
-<br/>
+
+
 
 ####Programmatic Goals
 -------------
@@ -57,11 +58,12 @@ I wanted to create an angular directive I could easily reuse and tie back into a
 1. `page` What page am I currently viewing
 2. `pageSize` How many items in the list to display on a page
 3. `total` What is the total count of items in my list
-<br/>
-<br/>
+
+
 
 ####Visual Goals
 --------------
 I set out to develop a paging display which would allow the user to quickly move to the next or previous page while still allowing them to move to the first or last page instantly. Visually I selected the common pattern `1 2 ... 7 8 9 ... 100 101` where the count inside the dot ellipsis changes as the pages increase or decrease.
 ######See [Full Demo](http://brantwills.github.io/Angular-Paging/) for complete samples and documentation
-<br/>
+
+
