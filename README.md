@@ -8,7 +8,6 @@
 </p>
 An Angular directive to aid paging large datasets requiring minimum paging information.
 
-<br/>
 --------------
 <br/>
 
