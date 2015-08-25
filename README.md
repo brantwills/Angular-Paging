@@ -9,11 +9,13 @@
 An Angular directive to aid paging large datasets requiring minimum paging information.
 
 ---
+<br/>
 
 ####Background
 I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column value.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
 
 ---
+<br/>
 
 ####Code Samples
 [![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/basicSample.png "Basic Sample")](http://brantwills.github.io/Angular-Paging/)
@@ -48,6 +50,7 @@ I have often found myself paging across millions of log rows or massive non-norm
 ######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/index.html) for complete code samples and documentation
 
 ---
+<br/>
 
 ####Programmatic Goals
 I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some optional directive attributes for handling CSS classes and hiding previous and next arrows. The following three attributes are required directive inputs:
@@ -57,6 +60,7 @@ I wanted to create an angular directive I could easily reuse and tie back into a
 3. `total` What is the total count of items in my list
 
 ---
+<br/>
 
 ####Visual Goals
 I set out to develop a paging display which would allow the user to quickly move to the next or previous page while still allowing them to move to the first or last page instantly. Visually I selected the common pattern `1 2 ... 7 8 9 ... 100 101` where the count inside the dot ellipsis changes as the pages increase or decrease.
