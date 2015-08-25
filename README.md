@@ -1,5 +1,7 @@
-###Angular Paging
 [![Build Status](https://travis-ci.org/brantwills/Angular-Paging.svg?branch=npm)](https://travis-ci.org/brantwills/Angular-Paging)
+---------------------
+
+###Angular Paging
 <p>
 <b>Demo Available At: http://brantwills.github.io/Angular-Paging/</b>
 </p>
