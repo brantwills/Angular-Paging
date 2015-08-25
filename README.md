@@ -1,4 +1,8 @@
+[![npm version](https://img.shields.io/npm/v/angular-paging.svg)](https://www.npmjs.org/package/angular-paging)
+[![bower version](https://img.shields.io/bower/v/angular-paging.svg)](https://www.npmjs.org/package/angular-paging)
 [![Build Status](https://travis-ci.org/brantwills/Angular-Paging.svg?branch=npm)](https://travis-ci.org/brantwills/Angular-Paging)
+[![Examples](https://img.shields.io/badge/demo-examples-brightgreen.svg)](http://brantwills.github.io/Angular-Paging)
+
 ---------------------
 
 ###Angular Paging
@@ -75,17 +79,4 @@ I wanted to create an angular directive I could easily reuse and tie back into a
 --------------
 I set out to develop a paging display which would allow the user to quickly move to the next or previous page while still allowing them to move to the first or last page instantly. Visually I selected the common pattern `1 2 ... 7 8 9 ... 100 101` where the count inside the dot ellipsis changes as the pages increase or decrease.
 ######See [Full Demo](http://brantwills.github.io/Angular-Paging/) for complete samples and documentation
-<br/>
-
-####Future Todo / Wishlist
---------------
-1. Clean up documentation
-2. Improve and Expand Karma tests
-<br/>
-<br/>
-
-####License
---------------  
-MIT Licensed - with the exception that you star this repo :)
-<br/>
 <br/>
