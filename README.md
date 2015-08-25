@@ -1,11 +1,8 @@
+###Angular Paging
 [![npm version](https://img.shields.io/npm/v/angular-paging.svg)](https://www.npmjs.org/package/angular-paging)
 [![bower version](https://img.shields.io/bower/v/angular-paging.svg)](https://www.npmjs.org/package/angular-paging)
 [![Build Status](https://travis-ci.org/brantwills/Angular-Paging.svg?branch=npm)](https://travis-ci.org/brantwills/Angular-Paging)
-[![Examples](https://img.shields.io/badge/demo-examples-brightgreen.svg)](http://brantwills.github.io/Angular-Paging)
-
----------------------
-
-###Angular Paging
+[![Examples](https://img.shields.io/badge/cdn-rawgit-brightgreen.svg)](http://brantwills.github.io/Angular-Paging) 
 <p>
 <b>Demo Available At: http://brantwills.github.io/Angular-Paging/</b>
 </p>
@@ -16,18 +13,6 @@ An Angular directive to aid paging large datasets requiring minimum paging infor
 ####Background
 --------------
 I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column value.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
-<br/>
-<br/>
-
-####Installation and Download
---------------
-Using Bower:
-<br/>
-**`bower install angular-paging#1.0.3`**
-
-Using [Rawgit CDN](https://rawgit.com/):
-- For test/debug : https://rawgit.com/brantwills/Angular-Paging/master/dist/paging.min.js
-- For production : https://rawgit.com/brantwills/Angular-Paging/v1.0.3/dist/paging.min.js
 <br/>
 <br/>
 
