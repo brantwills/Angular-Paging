@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "homepage": "https://github.com/brantwills/Angular-Paging",
   "description": "A directive to aid in paging large datasets while requiring the bare minimum of actual paging information",
-  "main": "paging.js",
+  "main": "dist/paging.js",
   "keywords": [
     "angular",
     "paginate",
@@ -19,7 +19,10 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
-  ]
+    "test"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.4.4",
+    "angular": "~1.4.4"
+  }
 }
