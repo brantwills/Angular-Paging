@@ -1,13 +1,23 @@
-Distribution Files
-===
-This folder holds the source and compressed versions of the paging directive.
+####Distribution Files
+
+---
+
+The distribution folder holds the source and compressed versions of the paging directive.
 
 The distribution files are built using grunt.
+
+Any [Bower](https://bower.io/) references should use either the source or compressed version
 
 Any Content Delivery Networks would reference these files
 
 
-Using [Rawgit CDN](https://rawgit.com/)
-===
+####Using [Rawgit CDN](https://rawgit.com/)
+
+---
+
+At the moment the only CDN available is through rawgit
+
+It may not be the best but if you are interested in using a CDN refer to the following:
+
 - For test/debug : https://rawgit.com/brantwills/Angular-Paging/master/paging.js
 - For production : https://rawgit.com/brantwills/Angular-Paging/v1.0.3/paging.js
