@@ -1,5 +1,6 @@
 {
   "name": "Angular-Paging",
+  "distName" : "paging",
   "version": "1.0.3",
   "description": "A directive to aid in paging large datasets while requiring the bare minimum of actual paging information",
   "main": "dist/paging.js",

@@ -11,14 +11,14 @@ module.exports = function(grunt) {
                 '\n*/\n'
       },
       build: {
-        src: 'src/paging.js',
-        dest: 'dist/paging.min.js'
+        src: 'src/<%= pkg.distName %>.js',
+        dest: 'dist/<%= pkg.distName %>.min.js'
       }
     },
     copy: {
       main: {
-        src: 'src/paging.js',
-        dest: 'dist/paging.js',
+        src: 'src/<%= pkg.distName %>.js',
+        dest: 'dist/<%= pkg.distName %>.js',
       }
     }
   });
