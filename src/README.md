@@ -6,6 +6,24 @@ The goal of this working version is to mitigate simple setup and "how to" questi
 ---
 <br/>
 
+####Paging.js
+
+The paging directive code.  This is identical to the source code placed in the distribution file.
+
+The paging directive is contained in a `bw.paging` module which you can consume in your project.
+
+<br/>
+**The following constraints are build into the directive by design:**
+
+- If the current page value is larger than the pageCount, the page will be set to the pageCount value
+- If the current page value is less than or equal to zero (0), the page will be set to one (1)
+- If the adjacent count value is less than or equal to zero (0), the adjacent count value will be set to two (2)
+- The current page on click event is disabled
+
+---
+<br/>
+
+
 ####App.js
 A simple angular application module which consumes the paging directive and introduces a single controller 
 
@@ -18,20 +36,3 @@ The controller is used to explain how a `paging action` could be introduced into
 A simple HTML implementation of the angular application defined in `app.js`
 
 This file should exercise both the simple and advanced options of the paging directive
-
----
-<br/>
-
-
-####Paging.js
-
-The paging directive code.  This is identical to the source code placed in the distribution file.
-
-The paging directive is contained in a `bw.paging` module which you can consume in your project.
-
-**The following constraints are build into the directive by design:**
-
-- If the current page value is larger than the pageCount, the page will be set to the pageCount value
-- If the current page value is less than or equal to zero (0), the page will be set to one (1)
-- If the adjacent count value is less than or equal to zero (0), the adjacent count value will be set to two (2)
-- The current page on click event is disabled
