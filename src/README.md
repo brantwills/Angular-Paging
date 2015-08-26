@@ -29,30 +29,11 @@ The paging directive code.  This is identical to the source code placed in the d
 
 The paging directive is contained in a `bw.paging` module which you can consume in your project.
 
+<br/>
 
 **The following constraints are build into the directive by design:**
 
-`
-**Condition: If the page is larger than the pageCount**
-Result: the page will be set to the pageCount value
-`
-
-`
-**Condition: Block where the page is larger than the pageCount
-Result: 
-`
-
-`
-**Condition: Block where the page is less than 0
-Result: 
-`
-
-`
-**Condition: Block where adjacent value is 0 or below
-Result: 
-`
-
-`
-**Condition: Block clicks we try to load the active page
-Result: 
-`
+- If the current page value is larger than the pageCount, the page will be set to the pageCount value
+- If the current page value is less than or equal to zero (0), the page will be set to one (1)
+- If the adjacent count value is less than or equal to zero (0), the adjacent count value will be set to two (2)
+- The current page on click event is disabled
