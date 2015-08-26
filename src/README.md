@@ -13,7 +13,7 @@ The paging directive code.  This is identical to the source code placed in the d
 The paging directive is contained in a `bw.paging` module which you can consume in your project.
 
 <br/>
-**The following constraints are build into the directive by design:**
+**The following constraints are built into the directive by design:**
 
 - If the current page value is larger than the pageCount, the page will be set to the pageCount value
 - If the current page value is less than or equal to zero (0), the page will be set to one (1)
