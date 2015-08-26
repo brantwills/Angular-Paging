@@ -10,7 +10,7 @@
  * @element EA
  *
  */
-angular.module('brantwills.paging', []).directive('paging', function () {
+angular.module('bw.paging', []).directive('paging', function () {
 
     /**
     * The angular return value required for the directive

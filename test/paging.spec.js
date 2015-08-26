@@ -49,7 +49,7 @@ describe('angular-paging', function() {
     /**
     * Add our paging directive module to the tests 
     */
-    beforeEach(module('brantwills.paging'));
+    beforeEach(module('bw.paging'));
 
 
     /**
