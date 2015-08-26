@@ -16,8 +16,8 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            "bower_components/angular/angular.min.js",
-            "bower_components/angular-mocks/angular-mocks.js",
+            "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js",
+            "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-mocks.js",
             "src/paging.js",
             "test/paging.spec.js"
         ],
