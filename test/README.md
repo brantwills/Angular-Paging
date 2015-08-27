@@ -2,7 +2,9 @@
 
 This folder contains all the necessary test files for those interested in contributing to the paging directive
 
-This directive relies on [node package manager](https://www.npmjs.com/) and [karma test runner](http://karma-runner.github.io/) which executes the [jasmine tests](http://jasmine.github.io/) which are found in the `spec.js` files. 
+This directive relies on [node package manager](https://www.npmjs.com/) and [karma test runner](http://karma-runner.github.io/) 
+
+The actual [jasmine tests](http://jasmine.github.io/) are found in the `spec.js` files 
 
 ---
 <br/>
@@ -30,7 +32,7 @@ The published `karma.config.js` is built with the following considerations in mi
 
 - Leverages [phantomJs](http://phantomjs.org/) with help from the [phantomJs karma launcher](https://www.npmjs.com/package/karma-phantomjs-launcher) as the browser of choice
 
-- Leverages local angular and angular mock source files from the node_modules folder which are created on `npm install`
+- Leverages local angular and angular mock source files from the `node_modules` folder created on `npm install`
 
 - Set for single runs to aid continuous integrators like [travis-ci](https://travis-ci.org/brantwills/Angular-Paging)
 
