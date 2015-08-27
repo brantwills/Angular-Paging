@@ -19,4 +19,5 @@ At the moment the only CDN available is through rawgit
 It may not be the best but if you are interested in using a CDN refer to the following:
 
 - For test/debug : https://rawgit.com/brantwills/Angular-Paging/master/dist/paging.js
+
 - For production : https://rawgit.com/brantwills/Angular-Paging/v1.0.4/dist/paging.js
