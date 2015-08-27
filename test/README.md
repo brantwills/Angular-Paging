@@ -9,7 +9,7 @@ The actual [jasmine tests](http://jasmine.github.io/) are found in the `spec.js`
 ---
 <br/>
 
-####How to test the directive
+####How to Test the Directive
 
 The quickest way to start testing is to perform the following npm console commands 
 
