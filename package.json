@@ -1,6 +1,6 @@
 {
   "name": "Angular-Paging",
-  "distName" : "paging",
+  "distName": "paging",
   "version": "1.0.3",
   "description": "A directive to aid in paging large datasets while requiring the bare minimum of actual paging information",
   "main": "dist/paging.js",
@@ -36,8 +36,8 @@
     "jasmine-core": "~2.3.4",
     "karma": "~0.13.6",
     "karma-jasmine": "~0.3.6",
-    "karma-jasmine-html-reporter": "~0.1.8",
     "karma-phantomjs-launcher": "~0.2.1",
+    "karma-spec-reporter": "~0.0.20",
     "phantomjs": "~1.9.18"
   }
 }
