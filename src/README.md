@@ -26,7 +26,6 @@ The paging directive is contained in a `bw.paging` module which you can consume 
 ---
 <br/>
 
-
 ####App.js
 A simple angular application module which consumes the paging directive and introduces a single controller 
 
