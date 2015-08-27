@@ -47,7 +47,7 @@ I have often found myself paging across millions of log rows or massive non-norm
   paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
 </paging>   
 ```
-######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/dist/index.html) for complete code samples and documentation
+######See [index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html) for complete code samples and documentation
 
 ---
 <br/>
