@@ -1,12 +1,17 @@
 ####v1.0.4: (2015-08-XX) Node and Structure Improvements
 
+**Backward Compatible Changes**
 - Changed module name from `brantwills.paging` to `bw.paging`
 - Folder structure changed to support distribution (dist) and source (src) 
+
+**New Features**
 - Added travis-ci support
 - Added grunt support
 - Added npm package support
+
+**Updates**
 - Changed to phantomJs for npm testing
-- Moved functions around bringing most important info to the top
+- Moved `paging.js` functions around bringing most important info to the top
 
 ---
 <br/>
