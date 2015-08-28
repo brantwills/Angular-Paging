@@ -38,3 +38,5 @@ The controller is used to explain how a `paging action` could be introduced into
 A simple HTML implementation of the angular application defined in `app.js`
 
 This file should exercise both the simple and advanced options of the paging directive
+
+For simplicity we are using [bootstrap](http://getbootstrap.com/) for styling 
