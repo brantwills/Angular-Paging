@@ -3,9 +3,9 @@
 
 The distribution folder holds the source and compressed versions of the paging directive.
 
-The distribution files are built using grunt.
+The distribution files are built using [grunt](http://gruntjs.com/).
 
-Any **[Bower](https://bower.io/)** references should use either the source or compressed version
+Any [Bower](https://bower.io/) references should use either the source or compressed version
 
 Any Content Delivery Networks would reference these files
 
