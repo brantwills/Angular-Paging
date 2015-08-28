@@ -21,6 +21,8 @@ The paging directive is contained in a `bw.paging` module which you can consume 
 
 - If the adjacent count value is less than or equal to zero (0), the adjacent count value will be set to two (2)
 
+- If the page size does not exist or is less than or equal to zero (0), the page size is set to one (1)
+
 - The current page on click event is disabled
 
 ---
