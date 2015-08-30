@@ -1,32 +1,32 @@
 ####Test Files
 
-This folder contains all the necessary test files for those interested in contributing to the paging directive
+This folder contains all the necessary test files for those interested in contributing to the paging directive.
 
-This directive relies on [node package manager](https://www.npmjs.com/) and [karma test runner](http://karma-runner.github.io/) 
+This directive relies on [node package manager](https://www.npmjs.com/) and [karma test runner](http://karma-runner.github.io/).
 
-The actual [jasmine tests](http://jasmine.github.io/) are found in the `spec.js` files 
+The actual [jasmine tests](http://jasmine.github.io/) are found in the `spec.js` files.
 
 ---
 <br/>
 
 ####How to Test the Directive
 
-The quickest way to start testing is to perform the following npm console commands 
+The quickest way to start testing is to perform the following npm console commands:
 
 `> npm install`
 
 `> npm test`
 
-This will start the karma test suite and instantly perform the tests
+This will start the karma test suite and instantly perform the tests.
 
-The karma environment is driven by the `karma.config.js` file
+The karma environment is driven by the `karma.config.js` file.
 
 ---
 <br/>
 
 ####Customizing Tests 
 
-Feel free to modify the `karma.config.js` file locally as you see fit
+Feel free to modify the `karma.config.js` file locally as you see fit.
 
 The published `karma.config.js` is built with the following considerations in mind:
 
