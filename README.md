@@ -12,7 +12,18 @@ An Angular directive to aid paging large datasets requiring minimum paging infor
 <br/>
 
 ####Background
-I have often found myself paging across millions of log rows or massive non-normalized lists even after some level of filtering by date range or on some column value.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
+I have often found myself paging across millions of log rows or massive non-normalized lists even after 
+some level of filtering by date range or on some column value.  
+These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
+
+---
+<br/>
+
+####Installation and Contribution
+The core of this project is a simple angular directive which allows you to use the code in many different ways.
+If you are interested in keeping current with bug fixes and features we support both bower and npm install's.
+If you just want to grab the latest and go, head over to the distribution folder for the latest code base. 
+Finally, if you are interested in contributing or see any issues feel free to fork and test away!
 
 ---
 <br/>
@@ -53,7 +64,10 @@ I have often found myself paging across millions of log rows or massive non-norm
 <br/>
 
 ####Programmatic Goals
-I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some optional directive attributes for handling CSS classes and hiding previous and next arrows. The following three attributes are required directive inputs:
+I wanted to create an angular directive I could easily reuse and tie back into a controller.  
+Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  
+There are some optional directive attributes for handling CSS classes and hiding previous and next arrows. 
+The following three attributes are required directive inputs:
 
 1. `page` What page am I currently viewing
 2. `pageSize` How many items in the list to display on a page
