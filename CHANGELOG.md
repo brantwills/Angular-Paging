@@ -1,8 +1,8 @@
-####v1.0.4: (2015-08-XX) Node and Structure Improvements
+####v2.0.0: (2015-08-30) Node and Structure Improvements
 
-Backward Compatible Changes
+Breaking Changes
 - Changed module name from `brantwills.paging` to `bw.paging`
-- Folder structure changed to support distribution (dist) and source (src) 
+- File structure changed to support distribution (dist) and source (src) folders
 
 New Features
 - Added travis-ci support
