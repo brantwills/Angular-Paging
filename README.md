@@ -21,8 +21,8 @@ These scenarios have pushed me to develop a reusable paging scheme which just ha
 
 ####Installation and Contribution
 The core of this project is a simple angular directive which allows you to use the code in many different ways.
-If you are interested in keeping current with bug fixes and features we support both bower and npm install's.
-If you just want to grab the latest and go, head over to the distribution folder for the latest code base. 
+If you are interested in keeping current with bug fixes and features, we support both bower and npm install commands.
+If you just want to grab the latest or work with CDN's, head over to the distribution folder for the latest code base. 
 Finally, if you are interested in contributing or see any issues feel free to fork and test away!
 
 ---
