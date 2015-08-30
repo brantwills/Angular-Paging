@@ -2,7 +2,7 @@
 [![npm version](https://img.shields.io/npm/v/angular-paging.svg)](https://www.npmjs.org/package/angular-paging)
 [![bower version](https://img.shields.io/bower/v/angular-paging.svg)](https://www.npmjs.org/package/angular-paging)
 [![Build Status](https://travis-ci.org/brantwills/Angular-Paging.svg?branch=npm)](https://travis-ci.org/brantwills/Angular-Paging)
-[![Examples](https://img.shields.io/badge/cdn-rawgit-brightgreen.svg)](https://rawgit.com/brantwills/Angular-Paging/master/dist/paging.js) 
+[![Examples](https://img.shields.io/badge/cdn-rawgit-brightgreen.svg)](https://rawgit.com/brantwills/Angular-Paging/master/dist/paging.min.js) 
 <p>
 <b>Demo Available At: http://brantwills.github.io/Angular-Paging/</b>
 </p>
