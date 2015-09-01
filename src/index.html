@@ -13,10 +13,13 @@
 </head>
 <body>
     
-
     <div class="jumbotron">
         <div class="container">
-            <h2>Angular Paging</h2> 
+            <h2>
+                <a target="_blank" href="https://github.com/brantwills/Angular-Paging">
+                    Angular Paging
+                </a>
+            </h2> 
             A directive to aid in paging large datasets while requiring the bare minimum of actual paging information. 
             We are very dependant on the server for "filtering" results in this paging scheme.  The central idea being
             we only want to hold the active "page" of items - rather than holding the entire list of items in memory
@@ -85,19 +88,16 @@
                     show-prev-next="{{showPrevNext}}"
                     paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
                 </paging>   
-                <hr/>
-                <h3> Known Issues </h3>
-                <ul> 
-                    <li>None right now but I'm sure they are out there!</li>
-                </ul>
+                
                 <hr/>
                 <h3> Reference Links </h3>
                 <ul> 
-                    <li>Github - <a href="https://github.com/brantwills/Angular-Paging">https://github.com/brantwills/Angular-Paging</a></li>
-                    <li>Brant Wills - <a href="http://brantwills.com">http://brantwills.com</a></li>
-                    <li>@brantwills - <a href="http://twitter.com/brantwills">http://twitter.com/brantwills</a></li>
+                    <li>Github - <a target="_blank" href="https://github.com/brantwills/Angular-Paging">https://github.com/brantwills/Angular-Paging</a></li>
+                    <li>npm - <a target="_blank" href="https://www.npmjs.org/package/angular-paging">https://www.npmjs.org/package/angular-paging</a></li>
+                    <li>Brant Wills - <a target="_blank" href="http://brantwills.com">http://brantwills.com</a></li>
+                    <li>@brantwills - <a target="_blank" href="http://twitter.com/brantwills">http://twitter.com/brantwills</a></li>
                 </ul>
-
+                
             </div>
             <div class="col-xs-4">
                 <div class="well" class="form-group">
@@ -220,12 +220,11 @@
             </div>
         </div>
     </div>
+    <br/><br/>
 
-    <br/>
-    <br/>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
     <script src="app.js"></script>
     <script src="paging.js"></script>
 </body>
 </html>
+
