@@ -42,13 +42,13 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         // Assign the angular directive template HTML
         template: 
-            '<ul ng-hide="Hide" ng-class="ulClass"> ' +
+            '<ul data-ng-hide="Hide" data-ng-class="ulClass"> ' +
                 '<li ' +
                     'title="{{Item.title}}" ' +
-                    'ng-class="Item.liClass" ' +
-                    'ng-click="Item.action()" ' +
-                    'ng-repeat="Item in List"> ' +
-                        '<span ng-bind="Item.value"></span> ' +
+                    'data-ng-class="Item.liClass" ' +
+                    'data-ng-click="Item.action()" ' +
+                    'data-ng-repeat="Item in List"> ' +
+                        '<span data-ng-bind="Item.value"></span> ' +
                 '</li>' +
             '</ul>'
     };
