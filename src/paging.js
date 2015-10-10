@@ -10,7 +10,7 @@
  * @element EA
  *
  */
-angular.module('bw.paging', []).directive('paging', function() {
+angular.module('bw.paging', []).directive('paging', function () {
 
     /**
      * The angular return value required for the directive
@@ -41,14 +41,15 @@ angular.module('bw.paging', []).directive('paging', function() {
         },
 
         // Assign the angular directive template HTML
-        template: '<ul data-ng-hide="Hide" data-ng-class="ulClass"> ' +
-            '<li ' +
-            'title="{{Item.title}}" ' +
-            'data-ng-class="Item.liClass" ' +
-            'data-ng-click="Item.action()" ' +
-            'data-ng-repeat="Item in List"> ' +
-            '<span data-ng-bind="Item.value"></span> ' +
-            '</li>' +
+        template: 
+            '<ul data-ng-hide="Hide" data-ng-class="ulClass"> ' +
+                '<li ' +
+                    'title="{{Item.title}}" ' +
+                    'data-ng-class="Item.liClass" ' +
+                    'data-ng-click="Item.action()" ' +
+                    'data-ng-repeat="Item in List"> ' +
+                        '<span data-ng-bind="Item.value"></span> ' +
+                '</li>' +
             '</ul>'
     };
 
@@ -63,7 +64,7 @@ angular.module('bw.paging', []).directive('paging', function() {
     function fieldLink(scope, el, attrs) {
 
         // Hook in our watched items
-        scope.$watchCollection('[page,pageSize,total]', function() {
+        scope.$watchCollection('[page,pageSize,total]', function () {
             build(scope, attrs);
         });
     }
@@ -190,6 +191,7 @@ angular.module('bw.paging', []).directive('paging', function() {
                 title: 'First Page',
                 page: 1
             };
+
             beta = {
                 value: "<",
                 title: 'Previous Page',
@@ -206,6 +208,7 @@ angular.module('bw.paging', []).directive('paging', function() {
                 title: 'Next Page',
                 page: nextPage
             };
+
             beta = {
                 value: ">>",
                 title: 'Last Page',
@@ -214,12 +217,12 @@ angular.module('bw.paging', []).directive('paging', function() {
         }
 
         // Create the Add Item Function
-        var addItem = function(item, disabled) {
+        var addItem = function (item, disabled) {
             scope.List.push({
                 value: item.value,
                 title: item.title,
                 liClass: disabled ? scope.disabledClass : '',
-                action: function() {
+                action: function () {
                     if (!disabled) {
                         internalAction(scope, item.page);
                     }
@@ -242,12 +245,12 @@ angular.module('bw.paging', []).directive('paging', function() {
      * @param {Object} scope - The local directive scope object
      */
     function addRange(start, finish, scope) {
-        var addIt = function(i) {
+        var addIt = function (i) {
             return {
                 value: i,
                 title: 'Page ' + i,
                 liClass: scope.page == i ? scope.activeClass : '',
-                action: function() {
+                action: function () {
                     internalAction(scope, this.value);
                 }
             };
