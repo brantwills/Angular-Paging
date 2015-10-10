@@ -14,7 +14,7 @@ angular.module('myApp', ["bw.paging"]);
  * @description
  * This controller is here for sample purposes
  */
-angular.module('myApp').controller('sampleCtrl', ['$scope', function($scope, $log) {
+angular.module('myApp').controller('sampleCtrl', ['$scope', '$log', function($scope, $log) {
 
     // A function to do some act on paging click
     // In reality this could be calling a service which
