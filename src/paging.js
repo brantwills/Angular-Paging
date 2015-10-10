@@ -217,8 +217,8 @@ angular.module('bw.paging', []).directive('paging', function () {
         }
 
         // Create the Add Item Function
-        var addItem = function (item, disabled) {
-            scope.List.push({
+        var buildItem = function (item, disabled) {
+            return {
                 value: item.value,
                 title: item.title,
                 liClass: disabled ? scope.disabledClass : '',
@@ -227,12 +227,16 @@ angular.module('bw.paging', []).directive('paging', function () {
                         internalAction(scope, item.page);
                     }
                 }
-            });
+            };
         };
 
+        // Build our items
+        var alphaItem = buildItem(alpha, disabled);
+        var betaItem = buildItem(beta, disabled);
+        
         // Add our items
-        addItem(alpha, disabled);
-        addItem(beta, disabled);
+        scope.List.push(alphaItem);
+        scope.List.push(betaItem);
     }
 
 
@@ -245,7 +249,9 @@ angular.module('bw.paging', []).directive('paging', function () {
      * @param {Object} scope - The local directive scope object
      */
     function addRange(start, finish, scope) {
-        var addIt = function (i) {
+       
+        // Create the Add Item Function
+        var buildItem = function (i) {
             return {
                 value: i,
                 title: 'Page ' + i,
@@ -255,9 +261,12 @@ angular.module('bw.paging', []).directive('paging', function () {
                 }
             };
         };
+       
+        // Add our items where i is the page number
         var i = 0;
         for (i = start; i <= finish; i++) {
-            scope.List.push(addIt(i));
+            var item = buildItem(i);
+            scope.List.push(item);
         }
     }
 
