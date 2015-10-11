@@ -8,7 +8,9 @@ The goal of this working version is to mitigate simple setup and "how to" questi
 
 ####Paging.js
 
-The paging directive javascript code.  This is identical to the source code placed in the distribution file.
+The angular paging directive javascript code.  
+
+This is the latest code under development - see the `dist` folder for tagged and minified versions.
 
 The paging directive is contained in a `bw.paging` module which you can consume in your project.
 
