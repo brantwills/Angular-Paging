@@ -5,6 +5,8 @@ The distribution folder holds the source and compressed versions of the paging d
 
 The distribution files are built using [grunt](http://gruntjs.com/).
 
+The distribution files are built when a tagged version is released - see the `src` folder for latest
+
 Any [bower](https://bower.io/) references should use either the source or compressed version.
 
 Any Content Delivery Networks would reference these files.
