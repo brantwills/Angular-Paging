@@ -124,4 +124,23 @@ describe('Angular-Paging: CSS Class Name Tests', function() {
 
 	});
 	
+	
+	it('Should append the disabled class to the dots list item', function(){
+		
+		// Baseline scope 
+		scope.currentPage = 10;
+		recompile();
+		
+		var firstDotIndex = 2;
+		var secondDotIndex = 8;
+		
+		var li = paging.find('li');
+		var firstDot = li.eq(firstDotIndex);
+		var secondDot = li.eq(secondDotIndex);
+		
+		expect(firstDot.hasClass(scope.disabledClass)).toEqual(true);
+		expect(secondDot.hasClass(scope.disabledClass)).toEqual(true);
+		
+	});
+
 });
