@@ -293,7 +293,8 @@ angular.module('bw.paging', []).directive('paging', function () {
      */
     function addDots(scope) {
         scope.List.push({
-            value: scope.dots
+            value: scope.dots,
+            liClass: scope.disabledClass
         });
     }
 
