@@ -1,7 +1,8 @@
 /**
- * Contains Jasmine tests for the Angular-Paging directive
+ * Contains the custom text and tooltip title tests
+ * These tests ensure the text-* and text-title-* attributes are applied correctly
  */
-describe('Angular-Paging: Text and Tooltip Tests', function() {
+describe('Angular-Paging: Custom Text and Tooltip Title Tests', function() {
 
     // Global Variable Declaration
     var scope, paging, compile;
@@ -54,7 +55,7 @@ describe('Angular-Paging: Text and Tooltip Tests', function() {
         scope = $rootScope.$new();
         scope.currentPage = 1;
         scope.pageSize = 10;
-        scope.total = 1000;
+        scope.total = 50;
         scope.showPrevNext = true;
         recompile();
 
@@ -63,12 +64,6 @@ describe('Angular-Paging: Text and Tooltip Tests', function() {
 
 
     it('Should assign the default text and title tool tip values', function(){
-
-        // Baseline our scope
-        scope.currentPage = 1;
-        scope.pageSize = 10;
-        scope.total = 50;
-        recompile();
 
         // Hook in our click action
         var li = paging.find('li');
@@ -110,10 +105,6 @@ describe('Angular-Paging: Text and Tooltip Tests', function() {
         var textTitlePrev = "Custom Prev Title"
 
         // Baseline our scope
-        scope.currentPage = 1;
-        scope.pageSize = 10;
-        scope.total = 50;
-
         scope.textFirst = textFirst;
         scope.textLast = textLast;
         scope.textNext = textNext;
@@ -160,9 +151,6 @@ describe('Angular-Paging: Text and Tooltip Tests', function() {
         var pageTitleIndex = 3
 
         // Baseline our scope
-        scope.currentPage = 1;
-        scope.pageSize = 10;
-        scope.total = 50;
         scope.textTitlePage = 'Page {page} and Again {page}';
         recompile();
 
