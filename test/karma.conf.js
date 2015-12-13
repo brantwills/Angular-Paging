@@ -19,7 +19,7 @@ module.exports = function(config) {
             "node_modules/angular/angular.min.js",
             "node_modules/angular-mocks/angular-mocks.js",
             "src/paging.js",
-            "test/paging.spec.js"
+            "test/*.spec.js"
         ],
 
 
