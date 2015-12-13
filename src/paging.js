@@ -37,7 +37,16 @@ angular.module('bw.paging', []).directive('paging', function () {
             adjacent: '@',
             scrollTop: '@',
             showPrevNext: '@',
-            pagingAction: '&'
+            pagingAction: '&',
+            textFirst: '@',
+            textLast: '@',
+            textNext: '@',
+            textPrev: '@',
+            textTitlePage: '@',
+            textTitleFirst: '@',
+            textTitleLast: '@',
+            textTitleNext: '@',
+            textTitlePrev: '@'
         },
 
         // Assign the angular directive template HTML
@@ -81,6 +90,7 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         scope.List = [];
         scope.Hide = false;
+
         scope.dots = scope.dots || '...';
         scope.page = parseInt(scope.page) || 1;
         scope.total = parseInt(scope.total) || 0;
@@ -88,6 +98,17 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.adjacent = parseInt(scope.adjacent) || 2;
         scope.activeClass = scope.activeClass || 'active';
         scope.disabledClass = scope.disabledClass || 'disabled';
+
+        scope.textFirst = scope.textFirst || '<<';
+        scope.textLast = scope.textLast || '>>';
+        scope.textNext = scope.textNext || '>';
+        scope.textPrev = scope.textPrev || '<';
+
+        scope.textTitlePage = scope.textTitlePage || 'Page {page}';
+        scope.textTitleFirst = scope.textTitleFirst || 'First Page'; 
+        scope.textTitleLast = scope.textTitleLast || 'Last Page'; 
+        scope.textTitleNext = scope.textTitleNext || 'Next Page'; 
+        scope.textTitlePrev = scope.textTitlePrev || 'Previous Page'; 
 
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
@@ -178,7 +199,6 @@ angular.module('bw.paging', []).directive('paging', function () {
         // Local variables to help determine logic
         var disabled, alpha, beta;
 
-
         // Determine logic based on the mode of interest
         // Calculate the previous / next page and if the click actions are allowed
         if (mode === 'prev') {
@@ -187,14 +207,14 @@ angular.module('bw.paging', []).directive('paging', function () {
             var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
 
             alpha = {
-                value: "<<",
-                title: 'First Page',
+                value: scope.textFirst,
+                title: scope.textTitleFirst, 
                 page: 1
             };
 
             beta = {
-                value: "<",
-                title: 'Previous Page',
+                value: scope.textPrev,
+                title: scope.textTitlePrev, 
                 page: prevPage
             };
 
@@ -204,14 +224,14 @@ angular.module('bw.paging', []).directive('paging', function () {
             var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
 
             alpha = {
-                value: ">",
-                title: 'Next Page',
+                value: scope.textNext,
+                title: scope.textTitleNext, 
                 page: nextPage
             };
 
             beta = {
-                value: ">>",
-                title: 'Last Page',
+                value: scope.textLast,
+                title: scope.textTitleLast, 
                 page: pageCount
             };
         }
@@ -250,23 +270,17 @@ angular.module('bw.paging', []).directive('paging', function () {
      */
     function addRange(start, finish, scope) {
        
-        // Create the Add Item Function
-        var buildItem = function (i) {
-            return {
+        // Add our items where i is the page number
+        var i = 0;
+        for (i = start; i <= finish; i++) {
+            scope.List.push({
                 value: i,
-                title: 'Page ' + i,
+                title: scope.textTitlePage.replace(/\{page\}/g, i),
                 liClass: scope.page == i ? scope.activeClass : '',
                 action: function () {
                     internalAction(scope, this.value);
                 }
-            };
-        };
-       
-        // Add our items where i is the page number
-        var i = 0;
-        for (i = start; i <= finish; i++) {
-            var item = buildItem(i);
-            scope.List.push(item);
+            });
         }
     }
 
