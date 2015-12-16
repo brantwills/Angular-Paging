@@ -81,7 +81,7 @@ describe('Angular-Paging: CSS Class Name Tests', function() {
 				count++;
 				hasActiveClass = true;
 
-				var span = _item.find('span').eq(0);
+				var span = _item.find('a').eq(0);
 				spanText = parseInt(span.text(), 10);
 			}
 		});

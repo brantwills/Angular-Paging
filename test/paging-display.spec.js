@@ -73,7 +73,7 @@ describe('Angular-Paging: Display and Structure tests', function() {
 	it('Should generate a single span within each list item', function() {
 		angular.forEach(paging.find('li'), function(item){
 			var _item = angular.element(item);
-			expect(_item.find('span').length).toBe(1);
+			expect(_item.find('a').length).toBe(1);
 		});
 	});
 

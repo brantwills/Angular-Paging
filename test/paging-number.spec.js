@@ -67,7 +67,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
 		var sequence = [];
 		var correctSequence = ['1','2','3','4','5','6','7','...','99','100'];
 
-		angular.forEach(paging.find('span'), function(span){
+		angular.forEach(paging.find('a'), function(span){
 			var _span = angular.element(span);
 			sequence.push(_span.text());
 		});
@@ -88,7 +88,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
 		var sequence = [];
 		var correctSequence = ['1','2','...','48','49','50','51','52','...','99','100'];
 
-		angular.forEach(paging.find('span'), function(span){
+		angular.forEach(paging.find('a'), function(span){
 			var _span = angular.element(span);
 			sequence.push(_span.text());
 		});
@@ -108,7 +108,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
 		var sequence = [];
 		var correctSequence = ['1','2','...','94','95','96','97','98','99','100'];
 
-		angular.forEach(paging.find('span'), function(span){
+		angular.forEach(paging.find('a'), function(span){
 			var _span = angular.element(span);
 			sequence.push(_span.text());
 		});
@@ -130,7 +130,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
 		var sequence = [];
 		var correctSequence = ['1','2','3','4','5'];
 
-		angular.forEach(paging.find('span'), function(span){
+		angular.forEach(paging.find('a'), function(span){
 			var _span = angular.element(span);
 			sequence.push(_span.text());
 		});
@@ -154,7 +154,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
 			var pageCount = Math.ceil(scope.total / scope.pageSize);
 			scope.$digest();    
 				
-			angular.forEach(paging.find('span'), function(span){
+			angular.forEach(paging.find('a'), function(span){
 				var _span = angular.element(span);
 				if(!isNaN(_span.text())){
 					var page = parseInt(_span.text()); 
@@ -184,7 +184,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
 			var pageCount = Math.ceil(scope.total / scope.pageSize);
 			scope.$digest();    
 			
-			angular.forEach(paging.find('span'), function(span){
+			angular.forEach(paging.find('a'), function(span){
 				var _span = angular.element(span);                    
 				expect(sequence).not.toContain(_span.text());
 				
@@ -215,7 +215,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
 			var pageCount = Math.ceil(scope.total / scope.pageSize);
 			scope.$digest();    
 			
-			angular.forEach(paging.find('span'), function(span){
+			angular.forEach(paging.find('a'), function(span){
 				var _span = angular.element(span);
 				if(!isNaN(_span.text())){
 					var page = parseInt(_span.text());
@@ -242,7 +242,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
 		var sequence = [];
 		var correctSequence = [first, previous, '1','2','3','4','5', next, last];
 
-		angular.forEach(paging.find('span'), function(span){
+		angular.forEach(paging.find('a'), function(span){
 			var _span = angular.element(span);
 			sequence.push(_span.text());
 		});

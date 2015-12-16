@@ -77,7 +77,7 @@ describe('Angular-Paging: Click Tests', function() {
 		expect(scope.paramTotal).toBeFalsy();
 
 		// Hook in our click action
-		var item = paging.find('li').eq(pageToClick - 1);
+		var item = paging.find('a').eq(pageToClick - 1);
 		item.triggerHandler('click');
 
 		// Test that inner scope params have been updated
@@ -101,7 +101,7 @@ describe('Angular-Paging: Click Tests', function() {
 		expect(scope.currentPage).toBe(page);
 
 		// Hook in our click action
-		var item = paging.find('li').eq(0);
+		var item = paging.find('a').eq(0);
 		item.triggerHandler('click');
 
 		// Test that current page has been updated 
@@ -124,7 +124,7 @@ describe('Angular-Paging: Click Tests', function() {
 		expect(scope.currentPage).toBe(page);
 
 		// Hook in our click action
-		var item = paging.find('li').eq(1);
+		var item = paging.find('a').eq(1);
 		item.triggerHandler('click');
 
 		// Test that current page has been updated 
@@ -145,7 +145,7 @@ describe('Angular-Paging: Click Tests', function() {
 		expect(scope.currentPage).toBe(page);
 
 		// Hook in our click action
-		var items = paging.find('li');
+		var items = paging.find('a');
 		var count = items.length;
 		var item = items.eq(count - 1);
 		item.triggerHandler('click');
@@ -171,7 +171,7 @@ describe('Angular-Paging: Click Tests', function() {
 		expect(scope.currentPage).toBe(page);
 
 		// Hook in our click action
-		var items = paging.find('li');
+		var items = paging.find('a');
 		var count = items.length;
 		var item = items.eq(count - 2);
 		item.triggerHandler('click');
