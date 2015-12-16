@@ -20,6 +20,7 @@ describe('Angular-Paging: Custom Text and Tooltip Title Tests', function() {
                 'page="currentPage" ' +
                 'page-size="pageSize" ' +
                 'total="total" ' +
+                'pg-href="{{pgHref}}" ' +
                 'show-prev-next="{{showPrevNext}}" ' +
                 'text-first="{{textFirst}}" ' +
                 'text-last="{{textLast}}" ' +
@@ -162,6 +163,27 @@ describe('Angular-Paging: Custom Text and Tooltip Title Tests', function() {
         expect(pageItem.attr('title')).toEqual('Page ' + pageTitleIndex + ' and Again ' + pageTitleIndex);
 
     });
+    
+    
+    it('Should replace {page} for the actual page number in anchor link', function(){
+
+        // Page to test against
+        var pageIndex = 4;
+        var pageTitleIndex = 3
+
+        // Baseline our scope
+        scope.pgHref = 'Goto {page} and Again {page}';
+        recompile();
+
+        // Hook in our click action
+        var li = paging.find('a');
+        var pageItem = li.eq(pageIndex);
+
+        // Check that our page has been replaced correctly
+        expect(pageItem.attr('href')).toEqual('Goto ' + pageTitleIndex + ' and Again ' + pageTitleIndex);
+
+    });
+
 
 
 
