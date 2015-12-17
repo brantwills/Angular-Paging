@@ -25,6 +25,7 @@ describe('Angular-Paging: CSS Class Name Tests', function() {
                 'active-class="{{activeClass}}" ' +
                 'disabled-class="{{disabledClass}}" ' +
                 'show-prev-next="{{showPrevNext}}" ' +
+                'show-first-last="{{showFirstLast}}" ' +
             '</div>';
 
         paging = compile(template)(scope);
@@ -54,6 +55,8 @@ describe('Angular-Paging: CSS Class Name Tests', function() {
 		scope.ulClass = 'pagination';
         scope.activeClass = 'active';
         scope.disabledClass = 'disabled';
+		scope.showPrevNext = true;
+		scope.showFirstLast = true;
         recompile();
 
     }));
@@ -96,7 +99,6 @@ describe('Angular-Paging: CSS Class Name Tests', function() {
 	it('Should append the disabled class to the previous items in the list', function(){
 
 		// Baseline scope
-		scope.showPrevNext = true;
 		scope.disabledClass = 'disabled';
 		recompile();
 
@@ -112,7 +114,6 @@ describe('Angular-Paging: CSS Class Name Tests', function() {
 
 		// Adjust current page to the end of the list
 		scope.currentPage = 100;
-		scope.showPrevNext = true;
 		scope.disabledClass = 'disabled';
 		recompile();
 
@@ -131,8 +132,8 @@ describe('Angular-Paging: CSS Class Name Tests', function() {
 		scope.currentPage = 10;
 		recompile();
 		
-		var firstDotIndex = 2;
-		var secondDotIndex = 8;
+		var firstDotIndex = 4;
+		var secondDotIndex = 10;
 		
 		var li = paging.find('li');
 		var firstDot = li.eq(firstDotIndex);

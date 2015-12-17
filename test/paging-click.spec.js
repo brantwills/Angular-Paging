@@ -21,6 +21,7 @@ describe('Angular-Paging: Click Tests', function() {
                 'page-size="pageSize" ' +
                 'total="total" ' +
                 'show-prev-next="{{showPrevNext}}" ' +
+				'show-first-last="{{showFirstLast}}" ' +
                 'paging-action="KarmTestAction(page, pageSize, total)"> ' +
             '</div>';
 
@@ -56,6 +57,7 @@ describe('Angular-Paging: Click Tests', function() {
         scope.pageSize = 10;
         scope.total = 50;
 		scope.showPrevNext = true;
+		scope.showFirstLast = true;
         recompile();
 
     }));
@@ -69,6 +71,7 @@ describe('Angular-Paging: Click Tests', function() {
 
 		// Baseline our scope
 		scope.showPrevNext = false;
+		scope.showFirstLast = false;
 		recompile();
 
 		// Ensure inner scope params are falsy to begin

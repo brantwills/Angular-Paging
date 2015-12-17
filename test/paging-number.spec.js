@@ -28,6 +28,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
                 'adjacent="{{adjacent}}" ' +
                 'dots="{{dots}}" ' +
 				'show-prev-next="{{showPrevNext}}" ' +
+				'show-first-last="{{showFirstLast}}" ' +
             '</div>';
 
         paging = compile(template)(scope);
@@ -56,6 +57,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
         scope.total = 1000;
         scope.adjacent = 2;
 		scope.showPrevNext = false;
+		scope.showFirstLast = false;
         recompile();
 
     }));
@@ -236,6 +238,7 @@ describe('Angular-Paging: Number and Symbol Formatting Tests', function() {
 		scope.pageSize = 10;
 		scope.total = 50;
 		scope.showPrevNext = true;
+		scope.showFirstLast = true;
 		recompile();
 
 		// Setup and perform test

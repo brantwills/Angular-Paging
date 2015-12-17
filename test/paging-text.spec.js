@@ -22,6 +22,7 @@ describe('Angular-Paging: Custom Text and Tooltip Title Tests', function() {
                 'total="total" ' +
                 'pg-href="{{pgHref}}" ' +
                 'show-prev-next="{{showPrevNext}}" ' +
+                'show-first-last="{{showFirstLast}}" ' +
                 'text-first="{{textFirst}}" ' +
                 'text-last="{{textLast}}" ' +
                 'text-next="{{textNext}}" ' +
@@ -58,6 +59,7 @@ describe('Angular-Paging: Custom Text and Tooltip Title Tests', function() {
         scope.pageSize = 10;
         scope.total = 50;
         scope.showPrevNext = true;
+        scope.showFirstLast = true;
         recompile();
 
     }));
