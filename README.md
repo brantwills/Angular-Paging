@@ -40,6 +40,7 @@ The core of this project is a simple angular directive which allows you to use t
   page="currentPage" 
   page-size="pageSize" 
   total="total"
+  pg-href="#GotoPage-{page}"
   adjacent="{{adjacent}}"
   dots="{{dots}}"
   scroll-top="{{scrollTop}}" 
@@ -48,6 +49,16 @@ The core of this project is a simple angular directive which allows you to use t
   active-class="{{activeClass}}"
   disabled-class="{{disabledClass}}"
   show-prev-next="{{showPrevNext}}"
+  show-first-last="{{showFirstLast}}"
+  text-first="&laquo;"
+  text-last="&raquo;"
+  text-next="&rsaquo;"
+  text-prev="&lsaquo;"
+  text-title-page="Page {page} hover title text"
+  text-title-first="First Page hover title text"
+  text-title-last="Last Page hover title text"
+  text-title-next="Next Page hover title text"
+  text-title-prev="Previous hover Page title text"    
   paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
 </paging>   
 ```
