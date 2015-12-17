@@ -96,6 +96,7 @@
                     active-class="{{activeClass}}"
                     disabled-class="{{disabledClass}}"
                     show-prev-next="{{showPrevNext}}"
+                    show-first-last="{{showFirstLast}}"
                     paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
                 </paging>   
                 
@@ -214,6 +215,16 @@
                                     type="checkbox"
                                     ng-model="showPrevNext" 
                                     ng-init="showPrevNext = true"/>
+                                {{showPrevNext}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Show First Last:</label></td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    ng-model="showFirstLast" 
+                                    ng-init="showFirstLast = true"/>
                                 {{showPrevNext}}
                             </td>
                         </tr>

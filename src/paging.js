@@ -48,6 +48,7 @@ angular.module('bw.paging', []).directive('paging', function () {
             adjacent: '@',
             scrollTop: '@',
             showPrevNext: '@',
+            showFirstLast: '@',
             pagingAction: '&',
             pgHref: '@',
             textFirst: '@',
@@ -140,6 +141,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
         scope.showPrevNext = scope.$eval(attrs.showPrevNext);
+        scope.showFirstLast = scope.$eval(attrs.showFirstLast);
     }
 
 
@@ -219,7 +221,7 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         // Ignore if we are not showing
         // or there are no pages to display
-        if (!scope.showPrevNext || pageCount < 1) {
+        if ((!scope.showPrevNext && !scope.showFirstLast) || pageCount < 1) {
             return;
         }
 
@@ -233,34 +235,43 @@ angular.module('bw.paging', []).directive('paging', function () {
             disabled = scope.page - 1 <= 0;
             var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
 
-            alpha = {
-                value: scope.textFirst,
-                title: scope.textTitleFirst, 
-                page: 1
-            };
+            if(scope.showFirstLast){
+                alpha = {
+                    value: scope.textFirst,
+                    title: scope.textTitleFirst, 
+                    page: 1
+                };                
+            }
 
-            beta = {
-                value: scope.textPrev,
-                title: scope.textTitlePrev, 
-                page: prevPage
-            };
+            if(scope.showPrevNext){
+                beta = {
+                    value: scope.textPrev,
+                    title: scope.textTitlePrev, 
+                    page: prevPage
+                };    
+            }
 
         } else {
 
             disabled = scope.page + 1 > pageCount;
             var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
 
-            alpha = {
-                value: scope.textNext,
-                title: scope.textTitleNext, 
-                page: nextPage
-            };
-
-            beta = {
-                value: scope.textLast,
-                title: scope.textTitleLast, 
-                page: pageCount
-            };
+            if(scope.showPrevNext){
+                alpha = {
+                    value: scope.textNext,
+                    title: scope.textTitleNext, 
+                    page: nextPage
+                };    
+            }
+            
+            if(scope.showFirstLast){
+                beta = {
+                    value: scope.textLast,
+                    title: scope.textTitleLast, 
+                    page: pageCount
+                };    
+            }
+            
         }
 
         // Create the Add Item Function
@@ -275,16 +286,20 @@ angular.module('bw.paging', []).directive('paging', function () {
                         internalAction(scope, item.page);
                     }
                 }
-            };
+            };    
         };
 
-        // Build our items
-        var alphaItem = buildItem(alpha, disabled);
-        var betaItem = buildItem(beta, disabled);
+        // Add alpha items
+        if(alpha){
+            var alphaItem = buildItem(alpha, disabled);
+            scope.List.push(alphaItem);    
+        }
         
-        // Add our items
-        scope.List.push(alphaItem);
-        scope.List.push(betaItem);
+        // Add beta items
+        if(beta){
+            var betaItem = buildItem(beta, disabled);
+            scope.List.push(betaItem);    
+        }
     }
 
 
