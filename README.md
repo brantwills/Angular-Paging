@@ -3,10 +3,11 @@
 [![bower version](https://img.shields.io/bower/v/angular-paging.svg)](https://www.npmjs.org/package/angular-paging)
 [![Build Status](https://travis-ci.org/brantwills/Angular-Paging.svg)](https://travis-ci.org/brantwills/Angular-Paging)
 [![CDN](https://img.shields.io/badge/cdn-rawgit-brightgreen.svg)](https://rawgit.com/brantwills/Angular-Paging/master/dist/paging.min.js) 
-<p>
-<b></b>
-**Demo Available At: [http://brantwills.github.io/Angular-Paging](http://brantwills.github.io/Angular-Paging)**
-</p>
+
+
+**Demo Available At: [http://brantwills.github.io/Angular-Paging/](http://brantwills.github.io/Angular-Paging/)**
+
+
 An Angular directive to aid paging large datasets requiring minimum paging information.  This paging directive is unique in that we are only interested in the active page of items rather than holding the entire list of items in memory.  This forces any filtering or sorting to be performed outside the directive.
 
 <br/>
