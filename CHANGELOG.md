@@ -1,3 +1,24 @@
+####v2.1.0: (2015-12-22) Localization and Link Support
+
+New Features
+- Added support for custom first, last, next, previous text
+- Added granularity to show combinations of first, last, next, previous items
+- Added disabled class to the dots list item 
+- Switched from span tags to anchor tags in list items
+- Introduced {page} text format to display the page number
+- Introduced {page} href format to display the page number 
+
+Updates
+- Added tests to support new features
+- Split and created individual 'spec' files for testing  
+- Added specific advanced test to index.html
+- Updated to bootstrap 3.3.6 
+- Updated to angular 1.4.8
+
+---
+<br/>
+
+
 ####v2.0.0: (2015-08-30) Node and Structure Improvements
 
 Breaking Changes
