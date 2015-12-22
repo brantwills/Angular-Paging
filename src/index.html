@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Angular Paging Directive</title>
-    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
     <style>
         body {margin-bottom: 50px;}
         li {padding: 5px}
@@ -312,12 +312,14 @@
                             ng-init="textLast = 'last'"/>
                     </div>
                     <br/>
-                    <span class="btn btn-default" onclick="location.reload()"> 
-                        <span title="Reset Settings" class="glyphicon glyphicon-repeat"></span>
-                    </span>
-                    <span class="btn btn-success" ng-click="currentPage = 0">
-                        Apply Settings
-                    </span>
+                    <div class="visible-md visible-lg">
+                        <span class="btn btn-default" onclick="location.reload()"> 
+                            <span title="Reset Settings" class="glyphicon glyphicon-repeat"></span>
+                        </span>
+                        <span class="btn btn-success" ng-click="currentPage = 0">
+                            Apply Settings
+                        </span>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -364,6 +366,15 @@
                             maxlength="20"
                             ng-model="textTitleLast" 
                             ng-init="textTitleLast = 'Last hover'"/>
+                    </div>
+                    <br/>
+                    <div class="visible-xs visible-sm">
+                        <span class="btn btn-default" onclick="location.reload()"> 
+                            <span title="Reset Settings" class="glyphicon glyphicon-repeat"></span>
+                        </span>
+                        <span class="btn btn-success" ng-click="currentPage = 0">
+                            Apply Settings
+                        </span>
                     </div>
                 </div>
             </div>
@@ -448,7 +459,7 @@
 
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="app.js"></script>
     <script src="paging.js"></script>
 </body>
