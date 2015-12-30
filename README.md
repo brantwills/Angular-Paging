@@ -53,7 +53,7 @@ The core of this project is a simple angular directive which allows you to use t
   disabled-class="{{disabledClass}}"
   show-prev-next="{{showPrevNext}}"
   show-first-last="{{showFirstLast}}"
-  show-outside-pages="{{showOutsidePages}}"
+  hide-outside-pages="{{hideOutsidePages}}"
   text-first="&laquo;"
   text-last="&raquo;"
   text-next="&rsaquo;"
