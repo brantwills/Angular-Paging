@@ -50,7 +50,7 @@ angular.module('bw.paging', []).directive('paging', function () {
             scrollTop: '@',
             showPrevNext: '@',
             showFirstLast: '@',
-            showOutsidePages: '@',
+            hideOutsidePages: '@',
             pagingAction: '&',
             pgHref: '@',
             textFirst: '@',
@@ -145,7 +145,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
         scope.showPrevNext = scope.$eval(attrs.showPrevNext);
         scope.showFirstLast = scope.$eval(attrs.showFirstLast);
-        scope.showOutsidePages = scope.$eval(attrs.showOutsidePages);
+        scope.hideOutsidePages = scope.$eval(attrs.hideOutsidePages);
     }
 
 
@@ -169,7 +169,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         }
 
         // Block where assigned outside pages is less than 1
-        // To display no outside pages, set showOutsidePages
+        // To display no outside pages, set hideOutsidePages
         if (scope.outsidePages <= 0) {
             scope.outsidePages = 1;
         }
@@ -419,7 +419,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         var start, finish;
 
         // Calculate the outside page count
-        var outsidePages = (scope.showOutsidePages) ? scope.outsidePages : 0;
+        var outsidePages = (!scope.hideOutsidePages) ? scope.outsidePages : 0;
 
         // Calculate the full adjacency value with outside pages as buffer
         var fullAdjacentSize = (scope.adjacent * 2) + outsidePages;
@@ -446,7 +446,7 @@ angular.module('bw.paging', []).directive('paging', function () {
                 addRange(start, finish, scope);
 
                 // Determine if outside pages are being displayed
-                if (scope.showOutsidePages) addLast(pageCount, scope, finish);
+                if (!scope.hideOutsidePages) addLast(pageCount, scope, finish);
             }
 
             // Determine if we are showing the middle of the paging list
@@ -459,9 +459,9 @@ angular.module('bw.paging', []).directive('paging', function () {
                 finish = scope.page + scope.adjacent;
 
                 // Determine if outside pages are being displayed
-                if (scope.showOutsidePages) addFirst(scope, start);
+                if (!scope.hideOutsidePages) addFirst(scope, start);
                 addRange(start, finish, scope);
-                if (scope.showOutsidePages) addLast(pageCount, scope, finish);
+                if (!scope.hideOutsidePages) addLast(pageCount, scope, finish);
             }
 
             // If nothing else we conclude we are at the end of the paging list
@@ -472,7 +472,7 @@ angular.module('bw.paging', []).directive('paging', function () {
                 finish = pageCount;
 
                 // Determine if outside pages are being displayed
-                if (scope.showOutsidePages) addFirst(scope, start);
+                if (!scope.hideOutsidePages) addFirst(scope, start);
                 addRange(start, finish, scope);
             }
         }
