@@ -56,8 +56,8 @@ describe('Angular-Paging: Click Tests', function() {
         scope.currentPage = 1;
         scope.pageSize = 10;
         scope.total = 50;
-		scope.showPrevNext = true;
-		scope.showFirstLast = true;
+    		scope.showPrevNext = true;
+    		scope.showFirstLast = true;
         recompile();
 
     }));

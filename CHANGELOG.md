@@ -1,3 +1,12 @@
+####v2.2.0: (2015-12-30) Assign Outside Page Values
+
+New Features
+- Added support to declare specific outside page values
+- Added support to disable outside pages
+
+---
+<br/>
+
 ####v2.1.0: (2015-12-22) Localization and Link Support
 
 New Features
