@@ -46,9 +46,11 @@ angular.module('bw.paging', []).directive('paging', function () {
             activeClass: '@',
             disabledClass: '@',
             adjacent: '@',
+            outsidePages: '@',
             scrollTop: '@',
             showPrevNext: '@',
             showFirstLast: '@',
+            showOutsidePages: '@',
             pagingAction: '&',
             pgHref: '@',
             textFirst: '@',
@@ -119,6 +121,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.page = parseInt(scope.page) || 1;
         scope.total = parseInt(scope.total) || 0;
         scope.adjacent = parseInt(scope.adjacent) || 2;
+        scope.outsidePages = parseInt(scope.outsidePages) || 2;
 
         scope.pgHref = scope.pgHref || '';
         scope.dots = scope.dots || '...';
@@ -142,6 +145,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
         scope.showPrevNext = scope.$eval(attrs.showPrevNext);
         scope.showFirstLast = scope.$eval(attrs.showFirstLast);
+        scope.showOutsidePages = scope.$eval(attrs.showOutsidePages);
     }
 
 
@@ -162,6 +166,12 @@ angular.module('bw.paging', []).directive('paging', function () {
         // Block where the page is less than 0
         if (scope.page <= 0) {
             scope.page = 1;
+        }
+
+        // Block where assigned outside pages is less than 1
+        // To display no outside pages, set showOutsidePages
+        if (scope.outsidePages <= 0) {
+            scope.outsidePages = 1;
         }
 
         // Block where adjacent value is 0 or below
@@ -351,12 +361,11 @@ angular.module('bw.paging', []).directive('paging', function () {
      * @param {int} next - the next page number in the paging sequence
      */
     function addFirst(scope, next) {
+        addRange(1, scope.outsidePages, scope);
 
-        addRange(1, 2, scope);
-
-        // We ignore dots if the next value is 3
+        // We ignore dots if the next value is greater than outside page allowance
         // ie: 1 2 [...] 3 4 5 becomes just 1 2 3 4 5
-        if (next != 3) {
+        if (next != (scope.outsidePages + 1)) {
             addDots(scope);
         }
     }
@@ -372,14 +381,13 @@ angular.module('bw.paging', []).directive('paging', function () {
      */
     // Add Last Pages
     function addLast(pageCount, scope, prev) {
-
-        // We ignore dots if the previous value is one less that our start range
+        // We ignore dots if the previous value is within our outside page allowance
         // ie: 1 2 3 4 [...] 5 6  becomes just 1 2 3 4 5 6
-        if (prev != pageCount - 2) {
+        if (prev != pageCount - scope.outsidePages) {
             addDots(scope);
         }
 
-        addRange(pageCount - 1, pageCount, scope);
+        addRange(pageCount - (scope.outsidePages - 1), pageCount, scope);
     }
 
 
@@ -410,16 +418,18 @@ angular.module('bw.paging', []).directive('paging', function () {
         // Create the beginning and end page values
         var start, finish;
 
-        // Calculate the full adjacency value
-        var fullAdjacentSize = (scope.adjacent * 2) + 2;
+        // Calculate the outside page count
+        var outsidePages = (scope.showOutsidePages) ? scope.outsidePages : 0;
 
+        // Calculate the full adjacency value with outside pages as buffer
+        var fullAdjacentSize = (scope.adjacent * 2) + outsidePages;
 
         // Add the Next and Previous buttons to our list
         addPrevNext(scope, pageCount, 'prev');
 
-        // If the page count is less than the full adjacnet size
+        // If the page count is less than the full adjacent size
         // Then we simply display all the pages, Otherwise we calculate the proper paging display
-        if (pageCount <= (fullAdjacentSize + 2)) {
+        if (pageCount <= (fullAdjacentSize + outsidePages)) {
 
             start = 1;
             addRange(start, pageCount, scope);
@@ -427,28 +437,31 @@ angular.module('bw.paging', []).directive('paging', function () {
         } else {
 
             // Determine if we are showing the beginning of the paging list
-            // We know it is the beginning if the page - adjacent is <= 2
-            if (scope.page - scope.adjacent <= 2) {
+            // We know it is the beginning if the page - adjacent is <= outside pages
+            if (scope.page - scope.adjacent <= outsidePages) {
 
                 start = 1;
                 finish = 1 + fullAdjacentSize;
 
                 addRange(start, finish, scope);
-                addLast(pageCount, scope, finish);
+
+                // Determine if outside pages are being displayed
+                if (scope.showOutsidePages) addLast(pageCount, scope, finish);
             }
 
             // Determine if we are showing the middle of the paging list
             // We know we are either in the middle or at the end since the beginning is ruled out above
             // So we simply check if we are not at the end
-            // Again 2 is hard coded as we always display two pages after the dots
-            else if (scope.page < pageCount - (scope.adjacent + 2)) {
+            // Get number of outside pages being displayed after dots
+            else if (scope.page < pageCount - (scope.adjacent + outsidePages)) {
 
                 start = scope.page - scope.adjacent;
                 finish = scope.page + scope.adjacent;
 
-                addFirst(scope, start);
+                // Determine if outside pages are being displayed
+                if (scope.showOutsidePages) addFirst(scope, start);
                 addRange(start, finish, scope);
-                addLast(pageCount, scope, finish);
+                if (scope.showOutsidePages) addLast(pageCount, scope, finish);
             }
 
             // If nothing else we conclude we are at the end of the paging list
@@ -458,7 +471,8 @@ angular.module('bw.paging', []).directive('paging', function () {
                 start = pageCount - fullAdjacentSize;
                 finish = pageCount;
 
-                addFirst(scope, start);
+                // Determine if outside pages are being displayed
+                if (scope.showOutsidePages) addFirst(scope, start);
                 addRange(start, finish, scope);
             }
         }
