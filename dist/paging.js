@@ -18,7 +18,7 @@ angular.module('bw.paging', []).directive('paging', function () {
      * Feel free to tweak / fork values for your application
      */
     var regex = /\{page\}/g;
-    
+
 
     /**
      * The angular return value required for the directive
@@ -31,7 +31,7 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         // Assign the angular link function
         link: fieldLink,
-        
+
         // Assign the angular directive template HTML
         template: fieldTemplate,
 
@@ -59,9 +59,11 @@ angular.module('bw.paging', []).directive('paging', function () {
             textTitleFirst: '@',
             textTitleLast: '@',
             textTitleNext: '@',
-            textTitlePrev: '@'
+            textTitlePrev: '@',
+            showNumbers:'@',
+            showDots:'@'
         }
-                    
+
     };
 
 
@@ -79,28 +81,28 @@ angular.module('bw.paging', []).directive('paging', function () {
             build(scope, attrs);
         });
     }
-    
-    
+
+
     /**
-     * Create our template html 
+     * Create our template html
      * We use a function to figure out how to handle href correctly
-     * 
+     *
      * @param {object} el - Angular link element
      * @param {object} attrs - Angular link attribute
      */
     function fieldTemplate(el, attrs){
-            return '<ul data-ng-hide="Hide" data-ng-class="ulClass"> ' +
-                '<li ' +
-                    'title="{{Item.title}}" ' +
-                    'data-ng-class="Item.liClass" ' +
-                    'data-ng-repeat="Item in List"> ' +
-                        '<a ' + 
-                            (attrs.pgHref ? 'data-ng-href="{{Item.pgHref}}" ' : 'href ') +
-                            'data-ng-click="Item.action()" ' +
-                            'data-ng-bind="Item.value">'+ 
-                        '</a> ' +
-                '</li>' +
-            '</ul>' 
+        return '<ul data-ng-hide="Hide" data-ng-class="ulClass"> ' +
+            '<li ' +
+            'title="{{Item.title}}" ' +
+            'data-ng-class="Item.liClass" ' +
+            'data-ng-repeat="Item in List"> ' +
+            '<a ' +
+            (attrs.pgHref ? 'data-ng-href="{{Item.pgHref}}" ' : 'href ') +
+            'data-ng-click="Item.action()" ' +
+            'data-ng-bind="Item.value">'+
+            '</a> ' +
+            '</li>' +
+            '</ul>'
     }
 
 
@@ -115,14 +117,14 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         scope.List = [];
         scope.Hide = false;
-        
+
         scope.page = parseInt(scope.page) || 1;
         scope.total = parseInt(scope.total) || 0;
         scope.adjacent = parseInt(scope.adjacent) || 2;
 
         scope.pgHref = scope.pgHref || '';
         scope.dots = scope.dots || '...';
-        
+
         scope.ulClass = scope.ulClass || 'pagination';
         scope.activeClass = scope.activeClass || 'active';
         scope.disabledClass = scope.disabledClass || 'disabled';
@@ -133,15 +135,17 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.textPrev = scope.textPrev || '<';
 
         scope.textTitlePage = scope.textTitlePage || 'Page {page}';
-        scope.textTitleFirst = scope.textTitleFirst || 'First Page'; 
-        scope.textTitleLast = scope.textTitleLast || 'Last Page'; 
-        scope.textTitleNext = scope.textTitleNext || 'Next Page'; 
-        scope.textTitlePrev = scope.textTitlePrev || 'Previous Page'; 
+        scope.textTitleFirst = scope.textTitleFirst || 'First Page';
+        scope.textTitleLast = scope.textTitleLast || 'Last Page';
+        scope.textTitleNext = scope.textTitleNext || 'Next Page';
+        scope.textTitlePrev = scope.textTitlePrev || 'Previous Page';
 
         scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
         scope.showPrevNext = scope.$eval(attrs.showPrevNext);
         scope.showFirstLast = scope.$eval(attrs.showFirstLast);
+        scope.showNumbers = scope.$eval(attrs.showNumbers);
+        scope.showDots = scope.$eval(attrs.showDots);
     }
 
 
@@ -238,17 +242,17 @@ angular.module('bw.paging', []).directive('paging', function () {
             if(scope.showFirstLast){
                 alpha = {
                     value: scope.textFirst,
-                    title: scope.textTitleFirst, 
+                    title: scope.textTitleFirst,
                     page: 1
-                };                
+                };
             }
 
             if(scope.showPrevNext){
                 beta = {
                     value: scope.textPrev,
-                    title: scope.textTitlePrev, 
+                    title: scope.textTitlePrev,
                     page: prevPage
-                };    
+                };
             }
 
         } else {
@@ -259,19 +263,19 @@ angular.module('bw.paging', []).directive('paging', function () {
             if(scope.showPrevNext){
                 alpha = {
                     value: scope.textNext,
-                    title: scope.textTitleNext, 
+                    title: scope.textTitleNext,
                     page: nextPage
-                };    
+                };
             }
-            
+
             if(scope.showFirstLast){
                 beta = {
                     value: scope.textLast,
-                    title: scope.textTitleLast, 
+                    title: scope.textTitleLast,
                     page: pageCount
-                };    
+                };
             }
-            
+
         }
 
         // Create the Add Item Function
@@ -286,19 +290,19 @@ angular.module('bw.paging', []).directive('paging', function () {
                         internalAction(scope, item.page);
                     }
                 }
-            };    
+            };
         };
 
         // Add alpha items
         if(alpha){
             var alphaItem = buildItem(alpha, disabled);
-            scope.List.push(alphaItem);    
+            scope.List.push(alphaItem);
         }
-        
+
         // Add beta items
         if(beta){
             var betaItem = buildItem(beta, disabled);
-            scope.List.push(betaItem);    
+            scope.List.push(betaItem);
         }
     }
 
@@ -312,7 +316,10 @@ angular.module('bw.paging', []).directive('paging', function () {
      * @param {Object} scope - The local directive scope object
      */
     function addRange(start, finish, scope) {
-    
+        if(!scope.showNumbers)
+        {
+            return;
+        }
         // Add our items where i is the page number
         var i = 0;
         for (i = start; i <= finish; i++) {
@@ -336,6 +343,7 @@ angular.module('bw.paging', []).directive('paging', function () {
      * @param {Object} scope - The local directive scope object
      */
     function addDots(scope) {
+        return;
         scope.List.push({
             value: scope.dots,
             liClass: scope.disabledClass
