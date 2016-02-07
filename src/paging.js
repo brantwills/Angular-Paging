@@ -201,7 +201,8 @@ angular.module('bw.paging', []).directive('paging', function () {
         });
 
         // If allowed scroll up to the top of the page
-        if (scope.scrollTop) {
+        // We use == 'true' for string and boolean comparison
+        if (scope.scrollTop == 'true') {
             scrollTo(0, 0);
         }
     }
