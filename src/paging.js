@@ -41,14 +41,10 @@ angular.module('bw.paging', []).directive('paging', function () {
             pageSize: '=',
             total: '=',
             dots: '@',
-            hideIfEmpty: '@',
             ulClass: '@',
             activeClass: '@',
             disabledClass: '@',
             adjacent: '@',
-            scrollTop: '@',
-            showPrevNext: '@',
-            showFirstLast: '@',
             pagingAction: '&',
             pgHref: '@',
             textFirst: '@',
@@ -138,12 +134,23 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.textTitleNext = scope.textTitleNext || 'Next Page'; 
         scope.textTitlePrev = scope.textTitlePrev || 'Previous Page'; 
 
-        scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
-        scope.showPrevNext = scope.$eval(attrs.showPrevNext);
-        scope.showFirstLast = scope.$eval(attrs.showFirstLast);
-     
-        scope.scrollTop = angular.isDefined(attrs.scrollTop) 
-            ? !!scope.$parent.$eval(attrs.scrollTop) 
+        scope.hideIfEmpty = evalBoolAttribute(scope, attrs.hideIfEmpty);
+        scope.showPrevNext = evalBoolAttribute(scope, attrs.showPrevNext);
+        scope.showFirstLast = evalBoolAttribute(scope, attrs.showFirstLast);
+        scope.scrollTop = evalBoolAttribute(scope, attrs.scrollTop)
+    }
+
+
+    /**
+     * A helper to perform our boolean eval on attributes
+     * This allows flexibility in the attribute for strings and variables in scope
+     * 
+     * @param {Object} scope - The local directive scope object
+     * @param {Object} value - The attribute value of interest
+     */
+    function evalBoolAttribute(scope, value){
+        return angular.isDefined(value)
+            ? !!scope.$parent.$eval(value)
             : false;
     }
 
