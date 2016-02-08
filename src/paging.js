@@ -138,10 +138,13 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.textTitleNext = scope.textTitleNext || 'Next Page'; 
         scope.textTitlePrev = scope.textTitlePrev || 'Previous Page'; 
 
-        scope.scrollTop = scope.$eval(attrs.scrollTop);
         scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
         scope.showPrevNext = scope.$eval(attrs.showPrevNext);
         scope.showFirstLast = scope.$eval(attrs.showFirstLast);
+     
+        scope.scrollTop = angular.isDefined(attrs.scrollTop) 
+            ? !!scope.$parent.$eval(attrs.scrollTop) 
+            : false;
     }
 
 
@@ -201,8 +204,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         });
 
         // If allowed scroll up to the top of the page
-        // We use == 'true' for string and boolean comparison
-        if (scope.scrollTop == 'true') {
+        if (scope.scrollTop) {
             scrollTo(0, 0);
         }
     }
