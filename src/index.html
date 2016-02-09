@@ -385,10 +385,81 @@
         <hr/>
 
 
+        <h3> CSS First Last, Next Prev Sample </h3>
+        <ul class="list-unstyled text-muted">
+            <li>Using Bootstraps glyphicons css by default</li>
+        </ul>
+        <div class="well">
+            <paging
+                class="small"
+                page="currentPage" 
+                page-size="pageSize" 
+                total="total"
+                hide-if-empty="{{hideIfEmpty}}"
+                ul-class="{{ulClass}}"
+                active-class="{{activeClass}}"
+                disabled-class="{{disabledClass}}"
+                show-prev-next="{{showPrevNext}}"
+                show-first-last="{{showFirstLast}}"
+                text-next-class="{{textNextClass}}"
+                text-prev-class="{{textPrevClass}}"
+                text-first-class="{{textFirstClass}}"
+                text-last-class="{{textLastClass}}">
+            </paging>   
+        </div>
+        <div class="well">
+            <div class="form-group">
+                <label>Next Class:</label> 
+                <input
+                    placeholder="pagination" 
+                    class="form-control" 
+                    maxlength="100"
+                    ng-model="textNextClass" 
+                    ng-init="textNextClass = 'glyphicon glyphicon-chevron-right'"/>
+            </div>
+            <div class="form-group">
+                <label>Previous Class:</label> 
+                <input
+                    placeholder="pagination" 
+                    class="form-control" 
+                    maxlength="100"
+                    ng-model="textPrevClass" 
+                    ng-init="textPrevClass = 'glyphicon glyphicon-chevron-left'"/>
+            </div>
+            <div class="form-group">
+                <label>First Class:</label> 
+                <input
+                    placeholder="pagination" 
+                    class="form-control" 
+                    maxlength="100"
+                    ng-model="textFirstClass" 
+                    ng-init="textFirstClass = 'glyphicon glyphicon-backward'"/>
+            </div>
+            <div class="form-group">
+                <label>Last Class:</label> 
+                <input
+                    placeholder="pagination" 
+                    class="form-control" 
+                    maxlength="100"
+                    ng-model="textLastClass" 
+                    ng-init="textLastClass = 'glyphicon glyphicon-forward'"/>
+            </div>
+            <hr/>
+            <span class="btn btn-default" onclick="location.reload()"> 
+                <span title="Reset Settings" class="glyphicon glyphicon-repeat"></span>
+            </span>
+            <span class="btn btn-success" ng-click="currentPage = 0">
+                Apply Settings
+            </span>
+        </div>
+        <script src="https://gist.github.com/brantwills/eb41588c8a5a34f18e4d.js"></script>
+        <hr/>
 
 
 
-        <h3> CSS Sample </h3>
+
+
+        <h3> CSS List Item Sample </h3>
         <ul class="list-unstyled text-muted">
             <li>Using Bootstraps paging css by default</li>
             <li>Disabed class is applied to the dots item</li>

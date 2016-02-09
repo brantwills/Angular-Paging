@@ -137,7 +137,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.textNext = scope.textNext || '>';
         scope.textPrev = scope.textPrev || '<';
         
-        scope.textFirstClass = scope.textFirstClass || 'glyphicon glyphicon-cog';
+        scope.textFirstClass = scope.textFirstClass || '';
         scope.textLastClass= scope.textLastClass || '';
         scope.textNextClass = scope.textNextClass || '';
         scope.textPrevClass = scope.textPrevClass || '';
