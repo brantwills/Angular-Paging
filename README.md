@@ -60,7 +60,11 @@ The core of this project is a simple angular directive which allows you to use t
   text-title-first="First Page hover title text"
   text-title-last="Last Page hover title text"
   text-title-next="Next Page hover title text"
-  text-title-prev="Previous hover Page title text"    
+  text-title-prev="Previous hover Page title text"  
+  text-first-class="glyphicon glyphicon-backward"
+  text-last-class="glyphicon glyphicon-forward" 
+  text-next-class="glyphicon glyphicon-chevron-right"
+  text-prev-class="glyphicon glyphicon-chevron-left"
   paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
 </paging>   
 ```
