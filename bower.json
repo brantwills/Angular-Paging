@@ -14,6 +14,9 @@
   "authors": [
     "Brant Wills"
   ],
+  "dependencies": {
+    "angular": "1.5+"
+  },
   "license": "MIT",
   "ignore": [
     "**/.*",
