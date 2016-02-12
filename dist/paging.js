@@ -41,20 +41,20 @@ angular.module('bw.paging', []).directive('paging', function () {
             pageSize: '=',
             total: '=',
             dots: '@',
-            hideIfEmpty: '@',
             ulClass: '@',
             activeClass: '@',
             disabledClass: '@',
             adjacent: '@',
-            scrollTop: '@',
-            showPrevNext: '@',
-            showFirstLast: '@',
             pagingAction: '&',
             pgHref: '@',
             textFirst: '@',
             textLast: '@',
             textNext: '@',
             textPrev: '@',
+            textFirstClass: '@',
+            textLastClass: '@',
+            textNextClass: '@',
+            textPrevClass: '@',
             textTitlePage: '@',
             textTitleFirst: '@',
             textTitleLast: '@',
@@ -96,6 +96,7 @@ angular.module('bw.paging', []).directive('paging', function () {
                     'data-ng-repeat="Item in List"> ' +
                         '<a ' + 
                             (attrs.pgHref ? 'data-ng-href="{{Item.pgHref}}" ' : 'href ') +
+                            'data-ng-class="Item.aClass" ' +
                             'data-ng-click="Item.action()" ' +
                             'data-ng-bind="Item.value">'+ 
                         '</a> ' +
@@ -131,6 +132,11 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.textLast = scope.textLast || '>>';
         scope.textNext = scope.textNext || '>';
         scope.textPrev = scope.textPrev || '<';
+        
+        scope.textFirstClass = scope.textFirstClass || '';
+        scope.textLastClass= scope.textLastClass || '';
+        scope.textNextClass = scope.textNextClass || '';
+        scope.textPrevClass = scope.textPrevClass || '';
 
         scope.textTitlePage = scope.textTitlePage || 'Page {page}';
         scope.textTitleFirst = scope.textTitleFirst || 'First Page'; 
@@ -138,10 +144,24 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.textTitleNext = scope.textTitleNext || 'Next Page'; 
         scope.textTitlePrev = scope.textTitlePrev || 'Previous Page'; 
 
-        scope.scrollTop = scope.$eval(attrs.scrollTop);
-        scope.hideIfEmpty = scope.$eval(attrs.hideIfEmpty);
-        scope.showPrevNext = scope.$eval(attrs.showPrevNext);
-        scope.showFirstLast = scope.$eval(attrs.showFirstLast);
+        scope.hideIfEmpty = evalBoolAttribute(scope, attrs.hideIfEmpty);
+        scope.showPrevNext = evalBoolAttribute(scope, attrs.showPrevNext);
+        scope.showFirstLast = evalBoolAttribute(scope, attrs.showFirstLast);
+        scope.scrollTop = evalBoolAttribute(scope, attrs.scrollTop)
+    }
+
+
+    /**
+     * A helper to perform our boolean eval on attributes
+     * This allows flexibility in the attribute for strings and variables in scope
+     * 
+     * @param {Object} scope - The local directive scope object
+     * @param {Object} value - The attribute value of interest
+     */
+    function evalBoolAttribute(scope, value){
+        return angular.isDefined(value)
+            ? !!scope.$parent.$eval(value)
+            : false;
     }
 
 
@@ -239,6 +259,7 @@ angular.module('bw.paging', []).directive('paging', function () {
                 alpha = {
                     value: scope.textFirst,
                     title: scope.textTitleFirst, 
+                    aClass: scope.textFirstClass,
                     page: 1
                 };                
             }
@@ -247,6 +268,7 @@ angular.module('bw.paging', []).directive('paging', function () {
                 beta = {
                     value: scope.textPrev,
                     title: scope.textTitlePrev, 
+                    aClass: scope.textPrevClass,
                     page: prevPage
                 };    
             }
@@ -260,6 +282,7 @@ angular.module('bw.paging', []).directive('paging', function () {
                 alpha = {
                     value: scope.textNext,
                     title: scope.textTitleNext, 
+                    aClass: scope.textNextClass,
                     page: nextPage
                 };    
             }
@@ -268,6 +291,7 @@ angular.module('bw.paging', []).directive('paging', function () {
                 beta = {
                     value: scope.textLast,
                     title: scope.textTitleLast, 
+                    aClass: scope.textLastClass,
                     page: pageCount
                 };    
             }
@@ -277,9 +301,10 @@ angular.module('bw.paging', []).directive('paging', function () {
         // Create the Add Item Function
         var buildItem = function (item, disabled) {
             return {
-                value: item.value,
+                value: item.aClass ? '' : item.value,
                 title: item.title,
                 liClass: disabled ? scope.disabledClass : '',
+                aClass: item.aClass,
                 pgHref: scope.pgHref.replace(regex, item.page),
                 action: function () {
                     if (!disabled) {
