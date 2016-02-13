@@ -20,4 +20,4 @@ It may not be the best but if you are interested in using a CDN refer to the fol
 
 - For test/debug : https://rawgit.com/brantwills/Angular-Paging/master/dist/paging.js
 
-- For production : https://rawgit.com/brantwills/Angular-Paging/v2.0.0/dist/paging.min.js
+- For production : https://rawgit.com/brantwills/Angular-Paging/v2.2.0/dist/paging.min.js
