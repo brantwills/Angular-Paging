@@ -1,3 +1,18 @@
+####v2.2.0: (2016-2-12) CSS Class Additions and Attribute Cleanup
+
+New Features
+- Added support for custom CSS first, last, next, previous text like glyphicons in bootstrap
+- Added Angular dependency in bower
+- Adjusted boolean logic for flag settings like scroll-top
+
+Updates
+- Added tests to support new features
+- Updated to Angular 1.5.0
+- Updated to PhantomJS2 for tests
+
+---
+<br/>
+
 ####v2.1.0: (2015-12-22) Localization and Link Support
 
 New Features
@@ -17,7 +32,6 @@ Updates
 
 ---
 <br/>
-
 
 ####v2.0.0: (2015-08-30) Node and Structure Improvements
 
