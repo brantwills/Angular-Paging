@@ -26,6 +26,10 @@ describe('Angular-Paging: CSS Class Name Tests', function() {
                 'disabled-class="{{disabledClass}}" ' +
                 'show-prev-next="{{showPrevNext}}" ' +
                 'show-first-last="{{showFirstLast}}" ' +
+                'text-next-class="{{textNextClass}}" ' +
+                'text-prev-class="{{textPrevClass}}" ' +
+                'text-first-class="{{textFirstClass}}" ' +
+                'text-last-class="{{textLastClass}}" ' +
             '</div>';
 
         paging = compile(template)(scope);
@@ -143,5 +147,31 @@ describe('Angular-Paging: CSS Class Name Tests', function() {
 		expect(secondDot.hasClass(scope.disabledClass)).toEqual(true);
 		
 	});
+
+
+    it('Should append the class items to the first, last, next, prev items', function(){
+        
+        scope.textFirstClass = 'first class';
+        scope.textLastClass = 'last class';
+        scope.textNextClass = 'next class';
+        scope.textPrevClass = 'prev class';
+        recompile();
+        
+        var items = paging.find('a');
+        var count = items.length;
+        
+        var firstItem = items.eq(0);
+        var prevItem = items.eq(1);
+        var lastItem = items.eq(count - 1);
+        var nextItem = items.eq(count - 2);
+        
+        expect(firstItem.hasClass(scope.textFirstClass)).toEqual(true);
+        expect(prevItem.hasClass(scope.textPrevClass)).toEqual(true);
+        expect(nextItem.hasClass(scope.textNextClass)).toEqual(true);
+        expect(lastItem.hasClass(scope.textLastClass)).toEqual(true);
+        
+    });
+
+
 
 });
