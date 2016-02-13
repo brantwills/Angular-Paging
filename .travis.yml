@@ -6,3 +6,5 @@ before_install:
 language: node_js
 node_js:
   - 0.12  
+script:
+  - npm run ci

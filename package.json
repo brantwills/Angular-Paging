@@ -8,7 +8,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "karma start test/karma.conf.js"
+    "ci": "npm run test:travisci",
+    "test": "karma start test/karma.conf.js",
+    "test:travisci": "env PHANTOMJS_BIN=/usr/local/bin/phantomjs npm test"
   },
   "repository": {
     "type": "git",
