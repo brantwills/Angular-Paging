@@ -15,7 +15,7 @@
     "Brant Wills"
   ],
   "dependencies": {
-    "angular": "1.5+"
+    "angular": "~1.5.0"
   },
   "license": "MIT",
   "ignore": [
