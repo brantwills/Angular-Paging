@@ -1,3 +1,11 @@
+####v2.2.1: (2016-2-18) Bower hotfix 
+
+Updates
+- Corrected bad Angular 1.5.0 reference in bower.json 
+
+---
+<br/>
+
 ####v2.2.0: (2016-2-12) CSS Class Additions and Attribute Cleanup
 
 New Features
