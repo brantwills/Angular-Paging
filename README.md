@@ -23,6 +23,15 @@ The core of this project is a simple angular directive which allows you to use t
 
 <br/>
 
+## Blah Blah Blah.. How to Use!
+To include the paging directive in your own project, add the `paging.js` or `paging.min.js` file and include the module as a dependency to your angular application.  We do support [npm](https://www.npmjs.org/package/angular-paging) and [bower](http://bower.io/) if you are familiar with those distribution systems.  Please review the [src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html) file for a working version of the directive if you are new to angular modules.
+``` javascript
+// Add the Angular-Paging module as a dependency to your application module:
+var app = angular.module('yourApp', ['bw.paging'])
+```
+
+<br/>
+
 ## Code Samples
 [![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/basicSample.png "Basic Sample")](http://brantwills.github.io/Angular-Paging/)
 ```html
