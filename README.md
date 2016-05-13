@@ -2,7 +2,7 @@
 [![npm version](https://img.shields.io/npm/v/angular-paging.svg)](https://www.npmjs.org/package/angular-paging)
 [![bower version](https://img.shields.io/bower/v/angular-paging.svg)](https://www.npmjs.org/package/angular-paging)
 [![Build Status](https://travis-ci.org/brantwills/Angular-Paging.svg)](https://travis-ci.org/brantwills/Angular-Paging)
-[![CDN](https://img.shields.io/badge/cdn-rawgit-brightgreen.svg)](https://rawgit.com/brantwills/Angular-Paging/master/dist/paging.min.js) 
+[![CDN](https://img.shields.io/badge/cdn-rawgit-brightgreen.svg)](https://rawgit.com/brantwills/Angular-Paging/master/dist/paging.min.js)
 
 
 **Demo Available At: [http://brantwills.github.io/Angular-Paging/](http://brantwills.github.io/Angular-Paging/)**
@@ -13,7 +13,7 @@ An Angular directive to aid paging large datasets requiring minimum paging infor
 <br/>
 
 ## Background
-I have often found myself paging across millions of log rows or massive non-normalized lists even after 
+I have often found myself paging across millions of log rows or massive non-normalized lists even after
 some level of filtering by date range or on some column value.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
 
 <br/>
@@ -37,24 +37,25 @@ var app = angular.module('yourApp', ['bw.paging'])
 ```html
 <!-- Simple Example -->
 <div paging
-  page="35" 
-  page-size="10" 
+  page="35"
+  page-size="10"
   total="1000"
   paging-action="foo('bar', page)">
-</div> 
+</div>
 ```
 [![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/advancedSample.png "Basic Sample")](http://brantwills.github.io/Angular-Paging/)
 ```html
 <!-- Advanced Example -->
 <paging
   class="small"
-  page="currentPage" 
-  page-size="pageSize" 
+  page="currentPage"
+  page-size="pageSize"
   total="total"
+  disable-paging="disable"
   pg-href="#GotoPage-{page}"
   adjacent="{{adjacent}}"
   dots="{{dots}}"
-  scroll-top="{{scrollTop}}" 
+  scroll-top="{{scrollTop}}"
   hide-if-empty="{{hideIfEmpty}}"
   ul-class="{{ulClass}}"
   active-class="{{activeClass}}"
@@ -69,13 +70,13 @@ var app = angular.module('yourApp', ['bw.paging'])
   text-title-first="First Page hover title text"
   text-title-last="Last Page hover title text"
   text-title-next="Next Page hover title text"
-  text-title-prev="Previous hover Page title text"  
+  text-title-prev="Previous hover Page title text"
   text-first-class="glyphicon glyphicon-backward"
-  text-last-class="glyphicon glyphicon-forward" 
+  text-last-class="glyphicon glyphicon-forward"
   text-next-class="glyphicon glyphicon-chevron-right"
   text-prev-class="glyphicon glyphicon-chevron-left"
   paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
-</paging>   
+</paging>
 ```
 **See [src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html) for complete code samples and documentation**
 
