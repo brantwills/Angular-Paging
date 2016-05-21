@@ -51,6 +51,7 @@ var app = angular.module('yourApp', ['bw.paging'])
   page="currentPage" 
   page-size="pageSize" 
   total="total"
+  disabled="{{isDisabled}}"
   pg-href="#GotoPage-{page}"
   adjacent="{{adjacent}}"
   dots="{{dots}}"
