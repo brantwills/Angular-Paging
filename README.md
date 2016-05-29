@@ -10,18 +10,12 @@
 
 An Angular directive to aid paging large datasets requiring minimum paging information.  This paging directive is unique in that we are only interested in the active page of items rather than holding the entire list of items in memory.  This forces any filtering or sorting to be performed outside the directive.
 
-<br/>
-
 ## Background
 I have often found myself paging across millions of log rows or massive non-normalized lists even after 
 some level of filtering by date range or on some column value.  These scenarios have pushed me to develop a reusable paging scheme which just happens to drop nicely into AngularJS.
 
-<br/>
-
 ## Installation and Contribution
 The core of this project is a simple angular directive which allows you to use the code in many different ways.  If you are interested in keeping current with bug fixes and features, we support both bower and npm install commands.  If you just want to grab the latest or work with CDN's, head over to the distribution folder for the latest code base.  Finally, if you are interested in contributing or see any issues feel free to fork and test away!
-
-<br/>
 
 ## Blah Blah Blah.. How to Use!
 To include the paging directive in your own project, add the `paging.js` or `paging.min.js` file and include the module as a dependency to your angular application.  We do support [npm](https://www.npmjs.org/package/angular-paging) and [bower](http://bower.io/) if you are familiar with those distribution systems.  Please review the [src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html) and [src/app.js](https://github.com/brantwills/Angular-Paging/blob/master/src/app.js) files for a working version of the directive if you are new to angular modules.
@@ -30,12 +24,20 @@ To include the paging directive in your own project, add the `paging.js` or `pag
 var app = angular.module('yourApp', ['bw.paging'])
 ```
 
-<br/>
-
 ## Code Samples
+**See [Full Demo](http://brantwills.github.io/Angular-Paging/) for complete samples and documentation**
+
+**See [src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html) for complete code samples and documentation**
+
+I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some optional directive attributes for handling CSS classes and hiding previous and next arrows.  The following three attributes are required directive inputs:
+
+1. `page` What page am I currently viewing
+2. `pageSize` How many items in the list to display on a page
+3. `total` What is the total count of items in my list
+
+## Basic Example
 [![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/basicSample.png "Basic Sample")](http://brantwills.github.io/Angular-Paging/)
 ```html
-<!-- Simple Example -->
 <div paging
   page="35" 
   page-size="10" 
@@ -43,25 +45,21 @@ var app = angular.module('yourApp', ['bw.paging'])
   paging-action="foo('bar', page)">
 </div> 
 ```
+
+## Enable First and Last Text
 [![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/advancedSample.png "Basic Sample")](http://brantwills.github.io/Angular-Paging/)
 ```html
-<!-- Advanced Example -->
 <paging
-  class="small"
   page="currentPage" 
   page-size="pageSize" 
   total="total"
-  disabled="{{isDisabled}}"
-  pg-href="#GotoPage-{page}"
-  adjacent="{{adjacent}}"
-  dots="{{dots}}"
-  scroll-top="{{scrollTop}}" 
-  hide-if-empty="{{hideIfEmpty}}"
-  ul-class="{{ulClass}}"
-  active-class="{{activeClass}}"
-  disabled-class="{{disabledClass}}"
-  show-prev-next="{{showPrevNext}}"
-  show-first-last="{{showFirstLast}}"
+  show-prev-next="true"
+  show-first-last="true">
+</paging>  
+
+<!-- Adjust Text, Class, and Hover Over Title -->
+<paging
+  ...
   text-first="&laquo;"
   text-last="&raquo;"
   text-next="&rsaquo;"
@@ -74,26 +72,47 @@ var app = angular.module('yourApp', ['bw.paging'])
   text-first-class="glyphicon glyphicon-backward"
   text-last-class="glyphicon glyphicon-forward" 
   text-next-class="glyphicon glyphicon-chevron-right"
-  text-prev-class="glyphicon glyphicon-chevron-left"
-  paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
+  text-prev-class="glyphicon glyphicon-chevron-left">
+</paging>  
+```
+
+## Enable Anchor Link Href
+The text `{page}` will display the page number
+```html
+<paging
+  ...
+  pg-href="#GotoPage-{page}">
 </paging>   
 ```
-**See [src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html) for complete code samples and documentation**
 
-<br/>
+## Adjust Class Name Settings
+```html
+<paging
+  ...
+  class="small"
+  ul-class="{{ulClass}}"
+  active-class="{{activeClass}}"
+  disabled-class="{{disabledClass}}">
+</paging>   
+```
 
-## Programmatic Goals
-I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some optional directive attributes for handling CSS classes and hiding previous and next arrows.  The following three attributes are required directive inputs:
+## Boolean Flag Settings
+```html
+<paging
+  ...
+  disabled="{{isDisabled}}"
+  scroll-top="{{willScrollTop}}" 
+  hide-if-empty="{{hideIfEmpty}}">
+</paging>   
+```
 
-1. `page` What page am I currently viewing
-2. `pageSize` How many items in the list to display on a page
-3. `total` What is the total count of items in my list
-
-<br/>
-
-## Visual Goals
-I set out to develop a paging display which would allow the user to quickly move to the next or previous page while still allowing them to move to the first or last page instantly. Visually I selected the common pattern `1 2 ... 7 8 9 ... 100 101` where the count inside the dot ellipsis changes as the pages increase or decrease.
-
-**See [Full Demo](http://brantwills.github.io/Angular-Paging/) for complete samples and documentation**
+## Other Helper Settings
+```html
+<paging
+  ...
+  adjacent="{{adjacent}}"
+  dots="{{dots}}"
+  paging-action="DoCtrlPagingAct('Paging Clicked', page, pageSize, total)">
+</paging>   
 
 
