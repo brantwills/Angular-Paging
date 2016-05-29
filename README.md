@@ -24,6 +24,8 @@ To include the paging directive in your own project, add the `paging.js` or `pag
 var app = angular.module('yourApp', ['bw.paging'])
 ```
 
+<br/>
+
 ## Code Samples
 **See [Full Demo](http://brantwills.github.io/Angular-Paging/) for complete samples and documentation**
 
