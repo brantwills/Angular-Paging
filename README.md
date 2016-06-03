@@ -36,7 +36,7 @@ The following attributes explored in the basic example are required directive in
 2. `pageSize` How many items in the list to display on a page
 3. `total` What is the total count of items in my list
 
-The other examples listed are supporting attributes which may be mixed and matched as you see fit. Please see **[src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html)** for complete code samples and documentation for a working HTML sample.
+The other code examples explore supporting attributes which may be mixed and matched as you see fit. Please see **[src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html)** for complete code samples and documentation for a working HTML sample.
 
 <br/>
 
