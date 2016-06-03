@@ -25,6 +25,7 @@ var app = angular.module('yourApp', ['bw.paging'])
 ```
 
 <br/>
+<br/>
 
 ## Code Samples
 **See [Full Demo](http://brantwills.github.io/Angular-Paging/) for complete samples and documentation**
@@ -64,8 +65,13 @@ I wanted to create an angular directive I could easily reuse and tie back into a
   show-prev-next="true"
   show-first-last="true">
 </paging>  
+```
 
-<!-- Adjust Text, Class, and Hover Over Title -->
+<br/>
+
+**Adjust Text, Class, and Hover Over Title** 
+
+```html
 <paging
   ...
   text-first="&laquo;"
