@@ -18,7 +18,7 @@ some level of filtering by date range or on some column value.  These scenarios 
 The core of this project is a simple angular directive which allows you to use the code in many different ways.  If you are interested in keeping current with bug fixes and features, we support both bower and npm install commands.  If you just want to grab the latest or work with CDN's, head over to the distribution folder for the latest code base.  Finally, if you are interested in contributing or see any issues feel free to fork and test away!
 
 ## Blah Blah Blah.. How to Use!
-To include the paging directive in your own project, add the `paging.js` or `paging.min.js` file and include the module as a dependency to your angular application.  We do support [npm](https://www.npmjs.org/package/angular-paging) and [bower](http://bower.io/) if you are familiar with those distribution systems.  Please review the [src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html) and [src/app.js](https://github.com/brantwills/Angular-Paging/blob/master/src/app.js) files for a working version of the directive if you are new to angular modules.
+To include the paging directive in your own project, add the `paging.js` or `paging.min.js` file and include the module as a dependency to your angular application.  We do support **[npm](https://www.npmjs.org/package/angular-paging)** and **[bower](http://bower.io/)** if you are familiar with those distribution systems.  Please review the **[src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html)** and **[src/app.js](https://github.com/brantwills/Angular-Paging/blob/master/src/app.js)** files for a working version of the directive if you are new to angular modules.
 ``` javascript
 // Add the Angular-Paging module as a dependency to your application module:
 var app = angular.module('yourApp', ['bw.paging'])
@@ -30,13 +30,13 @@ var app = angular.module('yourApp', ['bw.paging'])
 ## Code Samples
 **See [Full Demo](http://brantwills.github.io/Angular-Paging/) for complete samples and documentation**
 
-**See [src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html) for complete code samples and documentation**
-
-I wanted to create an angular directive I could easily reuse and tie back into a controller.  Programmatically I wanted to limit the "paging" information a developer would have to pass into the directive.  There are some optional directive attributes for handling CSS classes and hiding previous and next arrows.  The following three attributes are required directive inputs:
+The following attributes explored in the basic example are required directive inputs:
 
 1. `page` What page am I currently viewing
 2. `pageSize` How many items in the list to display on a page
 3. `total` What is the total count of items in my list
+
+The other examples listed are supporting attributes which may be mixed and matched as you see fit. Please see **[src/index.html](https://github.com/brantwills/Angular-Paging/blob/master/src/index.html)** for complete code samples and documentation for a working HTML sample.
 
 <br/>
 
