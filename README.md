@@ -37,7 +37,8 @@ I wanted to create an angular directive I could easily reuse and tie back into a
 2. `pageSize` How many items in the list to display on a page
 3. `total` What is the total count of items in my list
 
-## Basic Example
+**Basic Example**
+
 [![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/basicSample.png "Basic Sample")](http://brantwills.github.io/Angular-Paging/)
 ```html
 <div paging
@@ -48,7 +49,8 @@ I wanted to create an angular directive I could easily reuse and tie back into a
 </div> 
 ```
 
-## Enable First and Last Text
+**Enable First and Last Text**
+
 [![alt text](https://raw.githubusercontent.com/brantwills/Angular-Paging/gh-pages/advancedSample.png "Basic Sample")](http://brantwills.github.io/Angular-Paging/)
 ```html
 <paging
@@ -78,7 +80,8 @@ I wanted to create an angular directive I could easily reuse and tie back into a
 </paging>  
 ```
 
-## Enable Anchor Link Href
+**Enable Anchor Link Href**
+
 The text `{page}` will display the page number
 ```html
 <paging
@@ -87,7 +90,8 @@ The text `{page}` will display the page number
 </paging>   
 ```
 
-## Adjust Class Name Settings
+**Adjust Class Name Settings**
+
 ```html
 <paging
   ...
@@ -98,7 +102,8 @@ The text `{page}` will display the page number
 </paging>   
 ```
 
-## Boolean Flag Settings
+**Boolean Flag Settings**
+
 ```html
 <paging
   ...
@@ -108,7 +113,8 @@ The text `{page}` will display the page number
 </paging>   
 ```
 
-## Other Helper Settings
+**Other Helper Settings**
+
 ```html
 <paging
   ...
