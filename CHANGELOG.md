@@ -1,3 +1,16 @@
+####v2.2.2: (2016-06-04) Adding Disabled Attribute
+
+New Features
+- Added Disabled attribute support 
+- How to use section added to the readme
+
+Updates
+- Limited minimum Angular version to 1.3.1 due to scope watch support
+- Updated readme code sample section
+
+---
+<br/>
+
 ####v2.2.1: (2016-2-18) Bower hotfix 
 
 Updates

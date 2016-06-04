@@ -1,6 +1,6 @@
 {
   "name": "angular-paging",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "homepage": "https://github.com/brantwills/Angular-Paging",
   "description": "A directive to aid in paging large datasets while requiring the bare minimum of actual paging information",
   "main": "dist/paging.js",
