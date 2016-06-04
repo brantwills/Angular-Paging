@@ -59,6 +59,9 @@
             </div>  
         </div>
         <div class="well">
+
+
+
             <div class="form-group">
                 <label>Current Page:</label>
                 <input 
@@ -184,6 +187,7 @@
                 page="currentPage" 
                 page-size="pageSize" 
                 total="total"
+                disabled="{{isDisabled}}"
                 scroll-top="{{scrollTop}}" 
                 hide-if-empty="{{hideIfEmpty}}"
                 show-prev-next="{{showPrevNext}}"
@@ -192,6 +196,16 @@
         </div>
         <div class="well">
             <table> 
+                <tr>
+                    <td><label>Is Disabled:</label></td>
+                    <td>
+                        <input
+                            type="checkbox"
+                            ng-model="isDisabled" 
+                            ng-init="isDisabled = true"/>
+                        {{isDisabled}}
+                    </td>
+                </tr>
                 <tr>
                     <td><label>Hide if Empty:</label></td>
                     <td>

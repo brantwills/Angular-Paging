@@ -40,6 +40,7 @@ angular.module('bw.paging', []).directive('paging', function () {
             page: '=',
             pageSize: '=',
             total: '=',
+            disabled: '@',
             dots: '@',
             ulClass: '@',
             activeClass: '@',
@@ -75,7 +76,7 @@ angular.module('bw.paging', []).directive('paging', function () {
     function fieldLink(scope, el, attrs) {
 
         // Hook in our watched items
-        scope.$watchCollection('[page,pageSize,total]', function () {
+        scope.$watchCollection('[page,pageSize,total,disabled]', function () {
             build(scope, attrs);
         });
     }
@@ -147,7 +148,8 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.hideIfEmpty = evalBoolAttribute(scope, attrs.hideIfEmpty);
         scope.showPrevNext = evalBoolAttribute(scope, attrs.showPrevNext);
         scope.showFirstLast = evalBoolAttribute(scope, attrs.showFirstLast);
-        scope.scrollTop = evalBoolAttribute(scope, attrs.scrollTop)
+        scope.scrollTop = evalBoolAttribute(scope, attrs.scrollTop);
+        scope.isDisabled = evalBoolAttribute(scope, attrs.disabled);
     }
 
 
@@ -207,6 +209,12 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         // Block clicks we try to load the active page
         if (scope.page == page) {
+            return;
+        }
+
+        // Block if we are forcing disabled 
+        if(scope.isDisabled)
+        {
             return;
         }
 
@@ -301,11 +309,11 @@ angular.module('bw.paging', []).directive('paging', function () {
         // Create the Add Item Function
         var buildItem = function (item, disabled) {
             return {
-                value: item.aClass ? '' : item.value,
                 title: item.title,
-                liClass: disabled ? scope.disabledClass : '',
                 aClass: item.aClass,
-                pgHref: scope.pgHref.replace(regex, item.page),
+                value: item.aClass ? '' : item.value,
+                liClass: disabled ? scope.disabledClass : '',
+                pgHref: disabled ? '' : scope.pgHref.replace(regex, item.page),
                 action: function () {
                     if (!disabled) {
                         internalAction(scope, item.page);
@@ -313,6 +321,11 @@ angular.module('bw.paging', []).directive('paging', function () {
                 }
             };    
         };
+
+        // Force disabled if specified
+        if(scope.isDisabled){
+            disabled = true;
+        }
 
         // Add alpha items
         if(alpha){
@@ -341,11 +354,22 @@ angular.module('bw.paging', []).directive('paging', function () {
         // Add our items where i is the page number
         var i = 0;
         for (i = start; i <= finish; i++) {
+
+            var pgHref = scope.pgHref.replace(regex, i);
+            var liClass = scope.page == i ? scope.activeClass : ''; 
+
+            // Handle items that are affected by disabled
+            if(scope.isDisabled){
+                pgHref = '';
+                liClass = scope.disabledClass;
+            }
+
+
             scope.List.push({
                 value: i,
                 title: scope.textTitlePage.replace(regex, i),
-                liClass: scope.page == i ? scope.activeClass : '',
-                pgHref: scope.pgHref.replace(regex, i),
+                liClass: liClass,
+                pgHref: pgHref,
                 action: function () {
                     internalAction(scope, this.value);
                 }
