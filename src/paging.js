@@ -210,7 +210,7 @@ angular.module('bw.paging', []).directive('paging', function () {
     /**
      * Scroll up to the top of the page
      */
-    function scrollTop() {
+    function scrollUpTop() {
         // If allowed scroll up to the top of the page
         if (scope.scrollTop) {
             scrollTo(0, 0);
@@ -231,8 +231,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         }
 
         // Block if we are forcing disabled
-        if(scope.isDisabled)
-        {
+        if(scope.isDisabled) {
             return;
         }
 
@@ -250,11 +249,14 @@ angular.module('bw.paging', []).directive('paging', function () {
         if (isResolve(paging)) {
             return paging.then(function () {
                 scope.page = page;
-                scrollTop();
+                scrollUpTop();
             });
-        } else {
+        }
+
+        // Update the page in scope
+        else {
             scope.page = page;
-            scrollTop();
+            scrollUpTop();
         }
 
 
