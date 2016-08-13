@@ -8,17 +8,14 @@
  * information.
  *
  * @element EA
- *
  */
 angular.module('bw.paging', []).directive('paging', function () {
-
 
     /**
      * The regex expression to use for any replace methods
      * Feel free to tweak / fork values for your application
      */
     var regex = /\{page\}/g;
-
 
     /**
      * The angular return value required for the directive
@@ -65,7 +62,6 @@ angular.module('bw.paging', []).directive('paging', function () {
 
     };
 
-
     /**
      * Link the directive to enable our scope watch values
      *
@@ -81,7 +77,6 @@ angular.module('bw.paging', []).directive('paging', function () {
         });
     }
 
-
     /**
      * Create our template html
      * We use a function to figure out how to handle href correctly
@@ -90,21 +85,20 @@ angular.module('bw.paging', []).directive('paging', function () {
      * @param {object} attrs - Angular link attribute
      */
     function fieldTemplate(el, attrs){
-            return '<ul data-ng-hide="Hide" data-ng-class="ulClass"> ' +
-                '<li ' +
-                    'title="{{Item.title}}" ' +
-                    'data-ng-class="Item.liClass" ' +
-                    'data-ng-repeat="Item in List"> ' +
-                        '<a ' +
-                            (attrs.pgHref ? 'data-ng-href="{{Item.pgHref}}" ' : 'href ') +
-                            'data-ng-class="Item.aClass" ' +
-                            'data-ng-click="Item.action()" ' +
-                            'data-ng-bind="Item.value">'+
-                        '</a> ' +
-                '</li>' +
-            '</ul>'
+        return '<ul data-ng-hide="Hide" data-ng-class="ulClass"> ' +
+            '<li ' +
+                'title="{{Item.title}}" ' +
+                'data-ng-class="Item.liClass" ' +
+                'data-ng-repeat="Item in List"> ' +
+                    '<a ' +
+                        (attrs.pgHref ? 'data-ng-href="{{Item.pgHref}}" ' : 'href ') +
+                        'data-ng-class="Item.aClass" ' +
+                        'data-ng-click="Item.action()" ' +
+                        'data-ng-bind="Item.value">'+
+                    '</a> ' +
+            '</li>' +
+        '</ul>'
     }
-
 
     /**
      * Assign default scope values from settings
@@ -152,7 +146,6 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.isDisabled = evalBoolAttribute(scope, attrs.disabled);
     }
 
-
     /**
      * A helper to perform our boolean eval on attributes
      * This allows flexibility in the attribute for strings and variables in scope
@@ -165,7 +158,6 @@ angular.module('bw.paging', []).directive('paging', function () {
             ? !!scope.$parent.$eval(value)
             : false;
     }
-
 
     /**
      * Validate and clean up any scope values
@@ -197,8 +189,6 @@ angular.module('bw.paging', []).directive('paging', function () {
             scope.Hide = scope.hideIfEmpty;
         }
     }
-
-
 
     /**
      * Assign the method action to take when a page is clicked
@@ -232,14 +222,14 @@ angular.module('bw.paging', []).directive('paging', function () {
         if (isResolve(paging)) {
             return paging.then(function () {
                 scope.page = page;
-                scrollUpTop(scope);
+                scrollPage(scope);
             });
         }
 
         // Update the page in scope
         else {
             scope.page = page;
-            scrollUpTop(scope);
+            scrollPage(scope);
         }
 
     }
@@ -250,7 +240,9 @@ angular.module('bw.paging', []).directive('paging', function () {
      * @param {mixed} paging
      */
     function isResolve(paging) {
+
         return angular.isObject(paging) && paging.then;
+
     }
 
     /**
@@ -259,11 +251,13 @@ angular.module('bw.paging', []).directive('paging', function () {
      *
      * @param {Object} scope - The local directive scope object
      */
-    function scrollUpTop(scope) {
+    function scrollPage(scope) {
+
         // If allowed scroll up to the top of the page
         if (scope.scrollTop) {
             scrollTo(0, 0);
         }
+
     }
 
     /**
@@ -369,8 +363,8 @@ angular.module('bw.paging', []).directive('paging', function () {
             var betaItem = buildItem(beta, disabled);
             scope.List.push(betaItem);
         }
-    }
 
+    }
 
     /**
      * Adds a range of numbers to our list
@@ -395,7 +389,6 @@ angular.module('bw.paging', []).directive('paging', function () {
                 liClass = scope.disabledClass;
             }
 
-
             scope.List.push({
                 value: i,
                 title: scope.textTitlePage.replace(regex, i),
@@ -406,8 +399,8 @@ angular.module('bw.paging', []).directive('paging', function () {
                 }
             });
         }
-    }
 
+    }
 
     /**
      * Add Dots ie: 1 2 [...] 10 11 12 [...] 56 57
@@ -416,12 +409,13 @@ angular.module('bw.paging', []).directive('paging', function () {
      * @param {Object} scope - The local directive scope object
      */
     function addDots(scope) {
+
         scope.List.push({
             value: scope.dots,
             liClass: scope.disabledClass
         });
-    }
 
+    }
 
     /**
      * Add the first or beginning items in our paging list
@@ -439,8 +433,8 @@ angular.module('bw.paging', []).directive('paging', function () {
         if (next != 3) {
             addDots(scope);
         }
-    }
 
+    }
 
     /**
      * Add the last or end items in our paging list
@@ -460,9 +454,8 @@ angular.module('bw.paging', []).directive('paging', function () {
         }
 
         addRange(pageCount - 1, pageCount, scope);
+
     }
-
-
 
     /**
      * The main build function used to determine the paging logic
@@ -545,6 +538,7 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         // Add the next and last buttons to our paging list
         addPrevNext(scope, pageCount, 'next');
+
     }
 
 });
