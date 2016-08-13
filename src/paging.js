@@ -198,24 +198,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         }
     }
 
-    /**
-     * Checks if the page can be resolved
-     *
-     * @param {mixed} paging
-     */
-    function isResolve(paging) {
-        return angular.isObject(paging) && paging.then;
-    }
 
-    /**
-     * Scroll up to the top of the page
-     */
-    function scrollUpTop() {
-        // If allowed scroll up to the top of the page
-        if (scope.scrollTop) {
-            scrollTo(0, 0);
-        }
-    }
 
     /**
      * Assign the method action to take when a page is clicked
@@ -249,19 +232,39 @@ angular.module('bw.paging', []).directive('paging', function () {
         if (isResolve(paging)) {
             return paging.then(function () {
                 scope.page = page;
-                scrollUpTop();
+                scrollUpTop(scope);
             });
         }
 
         // Update the page in scope
         else {
             scope.page = page;
-            scrollUpTop();
+            scrollUpTop(scope);
         }
-
 
     }
 
+    /**
+     * Checks if the page can be resolved
+     *
+     * @param {mixed} paging
+     */
+    function isResolve(paging) {
+        return angular.isObject(paging) && paging.then;
+    }
+
+    /**
+     * An auxiliary to scroll the page to the top,
+     * this allows us reuses it in other places
+     *
+     * @param {Object} scope - The local directive scope object
+     */
+    function scrollUpTop(scope) {
+        // If allowed scroll up to the top of the page
+        if (scope.scrollTop) {
+            scrollTo(0, 0);
+        }
+    }
 
     /**
      * Add the first, previous, next, and last buttons if desired
