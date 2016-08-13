@@ -208,20 +208,18 @@ angular.module('bw.paging', []).directive('paging', function () {
             return;
         }
 
-        // Update the page in scope
-        scope.page = page;
-
         // Pass our parameters to the paging action
         var paging = scope.pagingAction({
-            page: scope.page,
+            page: page,
             pageSize: scope.pageSize,
             total: scope.total
         });
 
         // Update the page in scope when resolved promise
         if (isResolve(paging)) {
-            return paging.then(function () {
+            paging.then(function () {
                 scope.page = page;
+
                 scrollPage(scope);
             });
         }
@@ -229,6 +227,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         // Update the page in scope
         else {
             scope.page = page;
+
             scrollPage(scope);
         }
 
