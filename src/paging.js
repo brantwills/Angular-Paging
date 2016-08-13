@@ -239,7 +239,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         scope.page = page;
 
         // Pass our parameters to the paging action
-        var paging scope.pagingAction({
+        var paging = scope.pagingAction({
             page: scope.page,
             pageSize: scope.pageSize,
             total: scope.total
