@@ -94,16 +94,16 @@ angular.module('bw.paging', []).directive('paging', function () {
                 '<li ' +
                     'title="{{Item.title}}" ' +
                     'data-ng-class="Item.liClass" ' +
-                    'data-ng-repeat="Item in List track by $index"> ' +
-                        '<a ' + 
+                    'data-ng-repeat="Item in List track by $index">' +
+                        '<a ' +
                             (attrs.pgHref ? 'data-ng-href="{{Item.pgHref}}" ' : 'href ') +
+                            'ng-attr-id="{{ $first ? \'previous\' : $last ? \'next\' : \'page\' + $index }}"' +
                             'data-ng-class="Item.aClass" ' +
                             'data-ng-click="Item.action()" ' +
-                            'data-ng-bind="Item.value"'+
-                            'ng-attr-id="$first || $last ? $index : undefined">'
+                            'data-ng-bind="Item.value">' +
                         '</a> ' +
                 '</li>' +
-            '</ul>' 
+            '</ul>'
     }
 
 
