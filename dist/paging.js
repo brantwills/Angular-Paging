@@ -241,15 +241,17 @@ angular.module('bw.paging', []).directive('paging', function () {
             return;
         }
 
-        // Update the page in scope
-        scope.page = page;
-
         // Pass our parameters to the paging action
-        scope.pagingAction({
-            page: scope.page,
+        if (scope.pagingAction({
+            page: page,
             pageSize: scope.pageSize,
             total: scope.total
-        });
+        }) === false) {
+            return;
+        }
+
+        // Update the page in scope
+        scope.page = page;
 
         // If allowed scroll up to the top of the page
         if (scope.scrollTop) {
