@@ -33,7 +33,30 @@ angular.module('bw.paging', []).directive('paging', function () {
         link: fieldLink,
         
         // Assign the angular directive template HTML
-        template: fieldTemplate,
+        //template: fieldTemplate,
+        templateUrl: function (elem, attrs) {
+            if (attrs.templateUrl) {
+                return attrs.templateUrl;
+            }
+
+            var templateUrl = 'directives/paging/paging.tpl.html',
+                ngModule;
+            try {
+                ngModule = angular.module(['ng']);
+            } catch (e) {
+                ngModule = angular.module('ng', []);
+            }
+            var value = fieldTemplate(elem, attrs),
+                injector = angular.element(window.document).injector();
+            if (injector) {
+                injector.get('$templateCache').put(templateUrl, value);
+            } else {
+                ngModule.run(['$templateCache', function ($templateCache) {
+                    $templateCache.put(templateUrl, value);
+                }]);
+            }
+            return templateUrl;
+        },
 
         // Assign the angular scope attribute formatting
         scope: {
@@ -120,7 +143,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         
         scope.page = parseInt(scope.page) || 1;
         scope.total = parseInt(scope.total) || 0;
-        scope.adjacent = parseInt(scope.adjacent) || 2;
+        scope.adjacent = parseInt(scope.adjacent) || 0
 
         scope.pgHref = scope.pgHref || '';
         scope.dots = scope.dots || '...';
@@ -188,7 +211,7 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         // Block where adjacent value is 0 or below
         if (scope.adjacent <= 0) {
-            scope.adjacent = 2;
+            scope.adjacent = 0;
         }
 
         // Hide from page if we have 1 or less pages
@@ -218,15 +241,17 @@ angular.module('bw.paging', []).directive('paging', function () {
             return;
         }
 
-        // Update the page in scope
-        scope.page = page;
-
         // Pass our parameters to the paging action
-        scope.pagingAction({
-            page: scope.page,
+        if (scope.pagingAction({
+            page: page,
             pageSize: scope.pageSize,
             total: scope.total
-        });
+        }) === false) {
+            return;
+        }
+
+        // Update the page in scope
+        scope.page = page;
 
         // If allowed scroll up to the top of the page
         if (scope.scrollTop) {

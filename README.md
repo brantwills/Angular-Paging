@@ -69,6 +69,20 @@ The other code examples explore supporting attributes which may be mixed and mat
 
 <br/>
 
+**templateUrl Example**
+
+```html
+<paging template-url="directives/paging/paging.tpl.html"
+  page="currentPage" 
+  page-size="pageSize" 
+  total="total"
+  show-prev-next="true"
+  show-first-last="true">
+</paging>  
+```
+
+<br/>
+
 **Adjust Text, Class, and Hover Over Title** 
 
 ```html
