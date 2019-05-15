@@ -143,7 +143,7 @@ angular.module('bw.paging', []).directive('paging', function () {
         
         scope.page = parseInt(scope.page) || 1;
         scope.total = parseInt(scope.total) || 0;
-        scope.adjacent = parseInt(scope.adjacent) || 2;
+        scope.adjacent = parseInt(scope.adjacent) || 0
 
         scope.pgHref = scope.pgHref || '';
         scope.dots = scope.dots || '...';
@@ -211,7 +211,7 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         // Block where adjacent value is 0 or below
         if (scope.adjacent <= 0) {
-            scope.adjacent = 2;
+            scope.adjacent = 0;
         }
 
         // Hide from page if we have 1 or less pages
